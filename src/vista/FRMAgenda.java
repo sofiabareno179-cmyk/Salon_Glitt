@@ -76,13 +76,13 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Dia semana", "Hora inicio", "Hora fin"
+                "Id", "Dia semana", "Hora inicio", "Hora fin"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
