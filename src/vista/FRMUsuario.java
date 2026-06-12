@@ -18,7 +18,36 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
      */
     public FRMUsuario() {
         initComponents();
+        TXTIdUsuario.setValue(0);
+        TXTIdUsuario.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdUsuario.setValue(0);
+    TXTNombreUsuario.setText("Escriba Nombre");
+    TXTEmail.setText("Escriba Email");
+    TXTTelefono.setText("Escriba Telefono");
+    TXTBuscarUsuarios.setText("Escriba texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Usuario unUsuario = new Usuario();
+    DefaultTableModel tabla = (DefaultTableModel)tblUsuario.getModel();
+    Iterator<Usuario> itUsuario = unUsuario.listar();
+    Object[] filaUsuario = new Object[tblUsuario.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itUsuario.hasNext()) { 
+        unUsuario = itUsuario.next();
+        filaUsuario[0] = unUsuario.getIdUsuario();
+        filaUsuario[1] = unUsuario.getNombreuser();
+        filaUsuario[2] = unUsuario.getEmail();       
+        filaUsuario[3] = unUsuario.getTelefono();
+        tabla.addRow(filaUsuario);
+    }
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,21 +103,39 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
                 "id", "Nombre Usuario", "Email", "Telefono"
             }
         ));
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUsuario);
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         lblBuscar.setText("Buscar");
 
         TXTBuscarUsuarios.setText("Escriba texto a buscar");
+        TXTBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarUsuariosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarUsuariosFocusLost(evt);
+            }
+        });
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,6 +214,87 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+          doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        usuarioController.controlarAccion(evt, obtenerUsuario());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+          usuarioController.controlarAccion(evt, obtenerUsuario());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+          usuarioController.controlarAccion(evt, obtenerUsuario());
+        limpiarFormulario();                        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblUsuario.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdUsuario.setValue((Integer)tblUsuario.getValueAt(fila, 0));
+                TXTNombreUsuario.setText((String)tblUsuario.getValueAt(fila, 1));
+                TXTEmail.setText((String)tblUsuario.getValueAt(fila, 2));
+                TXTTelefono.setText((String)tblUsuario.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblUsuarioMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+          llenarTablaConBusqueda(TXTBuscarUsuarios.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarUsuariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarUsuariosFocusGained
+        // TODO add your handling code here:
+         if (TXTBuscarUsuarios.getText().equals("Escriba texto a buscar")){
+            TXTBuscarUsuarios.setText("");
+        } 
+    }//GEN-LAST:event_TXTBuscarUsuariosFocusGained
+
+    private void TXTBuscarUsuariosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarUsuariosFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarUsuarios.getText().isEmpty()){
+            TXTBuscarUsuarios.setText("Escriba texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarUsuariosFocusLost
+
+    private Usuario obtenerUsuario(){
+    Usuario elUsuario = new Usuario();
+    elUsuario.setIdUsuario((Integer) TXTIdUsuario.getValue());
+    elUsuario.setNombreuser( TXTNombreUsuario.getText());
+    elUsuario.setEmail( TXTEmail.getText());
+    elUsuario.setTelefono( TXTTelefono.getText());
+    return elUsuario;
+}
+private void llenarTablaConBusqueda(String busqueda){
+    Usuario unUsuario = new Usuario();
+    DefaultTableModel tabla = (DefaultTableModel)tblUsuario.getModel();
+    Iterator<Usuario> itUsuario = unUsuario.buscar(busqueda);
+    Object[] filaUsuario = new Object[tblUsuario.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itUsuario.hasNext()) {
+    unUsuario = itUsuario.next();
+    filaUsuario[0] = unUsuario.getIdUsuario();
+    filaUsuario[1] = unUsuario.getNombreuser();
+    filaUsuario[2] = unUsuario.getEmail();
+    filaUsuario[3] = unUsuario.getTelefono();
+    ((DefaultTableModel)tblUsuario.getModel()).addRow(filaUsuario);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTBuscarUsuarios;
