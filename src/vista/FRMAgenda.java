@@ -41,7 +41,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAgenda = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -74,7 +74,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
 
         btnBuscar.setText("Buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,7 +85,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                 "Id", "Dia semana", "Hora inicio", "Hora fin"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAgenda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,10 +173,10 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tblAgenda;
     // End of variables declaration//GEN-END:variables
 }
