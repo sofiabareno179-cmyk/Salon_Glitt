@@ -12,12 +12,15 @@ import java.util.Iterator;
  * @author LENOVO
  */
 public class FRMAgenda extends javax.swing.JInternalFrame {
-
+    ControladorAgenda agendaController = new ControladorAgenda();
     /**
      * Creates new form FRMAgenda
      */
     public FRMAgenda() {
         initComponents();
+        TXTIdAgenda.setValue(0);
+        TXTIdAgenda.setVisible(false);
+        limpiarFormulario();
     }
 
     /**
