@@ -32,7 +32,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
     btnEliminar.setEnabled(false);
     llenarTabla();
 }
-        public void llenarTabla(){
+    public void llenarTabla(){
     Agenda unAgenda = new Agenda();
     DefaultTableModel tabla = (DefaultTableModel)tblAgenda.getModel();
     Iterator<Agenda> itAgenda = unAgenda.listar();
@@ -129,7 +129,15 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
             new String [] {
                 "Id", "Dia semana", "Hora inicio", "Hora fin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tblAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblAgendaMouseClicked(evt);
