@@ -22,6 +22,32 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         TXTIdAgenda.setVisible(false);
         limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdAgenda.setValue(0);
+    TXTDiasemana.setText("Escribe dia de la semana");
+    TXTHorainicio.setText("Escribe hora de inicio");
+    TXTHorafin.setText("Escribe hora de fin");
+    TXTBuscarAgenda.setText("Escribe texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Agenda unAgenda = new Agenda();
+    DefaultTableModel tabla = (DefaultTableModel)tblAgenda.getModel();
+    Iterator<Agenda> itAgenda = unAgenda.listar();
+    Object[] filaAgenda = new Object[tblAgenda.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itAgenda.hasNext()) { 
+        unAgenda = itAgenda.next();
+        filaAgenda[0] = unAgenda.getIdagenda();
+        filaAgenda[1] = unAgenda.getDiasemana();
+        filaAgenda[2] = unAgenda.getHorainicio();       
+        filaAgenda[3] = unAgenda.getHorafin();
+        tabla.addRow(filaAgenda);
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,10 +62,10 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        TXTDiasemana = new javax.swing.JTextField();
+        TXTHorainicio = new javax.swing.JTextField();
+        TXTHorafin = new javax.swing.JTextField();
+        TXTBuscarAgenda = new javax.swing.JTextField();
         TXTIdAgenda = new javax.swing.JFormattedTextField();
         btnInsertar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -62,23 +88,36 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Buscar");
 
-        jTextField1.setText("Escribe dia de la semana");
+        TXTDiasemana.setText("Escribe dia de la semana");
 
-        jTextField2.setText("Escribe hora de inicio");
+        TXTHorainicio.setText("Escribe hora de inicio");
 
-        jTextField3.setText("Escribe hora de fin");
+        TXTHorafin.setText("Escribe hora de fin");
 
-        jTextField4.setText("Escribe texto a buscar");
+        TXTBuscarAgenda.setText("Escribe texto a buscar");
+        TXTBuscarAgenda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarAgendaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarAgendaFocusLost(evt);
+            }
+        });
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +129,20 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
             new String [] {
                 "Id", "Dia semana", "Hora inicio", "Hora fin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAgendaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAgenda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,7 +155,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TXTBuscarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,7 +163,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TXTDiasemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TXTIdAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,11 +175,11 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TXTHorafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TXTHorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnModificar)))))
                 .addGap(25, 25, 25))
@@ -140,24 +192,24 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TXTDiasemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(TXTIdAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnInsertar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXTHorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXTHorafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXTBuscarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
@@ -166,8 +218,92 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+           doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+         agendaController.controlarAccion(evt, obtenerAgenda());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        agendaController.controlarAccion(evt, obtenerAgenda());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        agendaController.controlarAccion(evt, obtenerAgenda());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendaMouseClicked
+        // TODO add your handling code here:
+            if(evt.getClickCount()==2){
+            int fila = tblAgenda.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdAgenda.setValue((Integer)tblAgenda.getValueAt(fila, 0));
+                TXTDiasemana.setText((String)tblAgenda.getValueAt(fila, 1));
+                TXTHorainicio.setText((String)tblAgenda.getValueAt(fila, 2));
+                TXTHorafin.setText((String)tblAgenda.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblAgendaMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+         llenarTablaConBusqueda(TXTBuscarAgenda.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarAgendaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarAgendaFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarAgenda.getText().equals("Escribe texto a buscar")){
+            TXTBuscarAgenda.setText("");
+        } 
+    }//GEN-LAST:event_TXTBuscarAgendaFocusGained
+
+    private void TXTBuscarAgendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarAgendaFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarAgenda.getText().isEmpty()){
+            TXTBuscarAgenda.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarAgendaFocusLost
+    private Agenda obtenerAgenda(){
+    Agenda elAgenda = new Agenda();
+    elAgenda.setIdagenda((Integer) TXTIdAgenda.getValue());
+    elAgenda.setDiasemana(  TXTDiasemana.getText());
+    elAgenda.setHorainicio(  TXTHorainicio.getText());
+    elAgenda.setHorafin(  TXTHorafin.getText());
+    return elAgenda;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Agenda unAgenda = new Agenda();
+    DefaultTableModel tabla = (DefaultTableModel)tblAgenda.getModel();
+    Iterator<Agenda> itAgenda = unAgenda.buscar(busqueda);
+    Object[] filaAgenda = new Object[tblAgenda.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itAgenda.hasNext()) {
+    unAgenda = itAgenda.next();
+    filaAgenda[0] = unAgenda.getIdagenda();
+    filaAgenda[1] = unAgenda.getDiasemana();
+    filaAgenda[2] = unAgenda.getHorainicio();
+    filaAgenda[3] = unAgenda.getHorafin();
+    ((DefaultTableModel)tblAgenda.getModel()).addRow(filaAgenda);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TXTBuscarAgenda;
+    private javax.swing.JTextField TXTDiasemana;
+    private javax.swing.JTextField TXTHorafin;
+    private javax.swing.JTextField TXTHorainicio;
     private javax.swing.JFormattedTextField TXTIdAgenda;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
@@ -179,10 +315,6 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tblAgenda;
     // End of variables declaration//GEN-END:variables
 }
