@@ -102,7 +102,15 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
             new String [] {
                 "id", "Nombre Usuario", "Email", "Telefono"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblUsuarioMouseClicked(evt);
