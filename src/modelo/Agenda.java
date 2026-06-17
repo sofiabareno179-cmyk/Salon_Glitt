@@ -78,7 +78,7 @@ public class Agenda {
         final Agenda other = (Agenda) obj;
         return this.idagenda == other.idagenda;
     }
-          public Iterator<Agenda> listar(){
+    public Iterator<Agenda> listar(){
     ArrayList<Agenda> laAgenda = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
@@ -134,7 +134,7 @@ public void modificar(){
 public void eliminar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM "
-                + this.getClass().getSimpleName() + " WHERE idCliente = ?");
+                + this.getClass().getSimpleName() + " WHERE idagenda = ?");
         sql.setInt(1, this.getIdagenda());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " eliminado correctamente");
@@ -170,7 +170,7 @@ public Agenda buscarPorId(int elId){
     Agenda unaAgenda = new Agenda();
     unaAgenda.setDiasemana(" no hay disponibilidad");
     try {
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idCliente = ?");
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idagenda = ?");
         sql.setInt(1, elId);
         ResultSet rs = sql.executeQuery();
         while (rs.next()) {
