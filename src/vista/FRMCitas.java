@@ -33,6 +33,21 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     btnEliminar.setEnabled(false);
     llenarTabla();
 }
+    public void llenarTabla(){
+    Citas unaCita = new Citas();
+    DefaultTableModel tabla = (DefaultTableModel)tblCitas.getModel();
+    Iterator<Citas> itCitas = unaCita.listar();
+    Object[] filaCitas = new Object[tblCitas.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itCitas.hasNext()) { 
+        unaCita = itCitas.next();
+        filaCitas[0] = unaCita.getIdcitas();
+        filaCitas[1] = unaCita.getFechahora();
+        filaCitas[2] = unaCita.getEstado();       
+        filaCitas[3] = unaCita.getServicio();
+        tabla.addRow(filaCitas);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,10 +87,13 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel3.setText("Servicio");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
@@ -89,8 +107,17 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel4.setText("Buscar");
 
         TXTBuscarCitas.setText("Escribe texto a buscar");
+        TXTBuscarCitas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarCitasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarCitasFocusLost(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,6 +130,11 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                 "Id", "Fecha Hora", "Estado", "Servicio"
             }
         ));
+        tblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCitasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCitas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,7 +207,85 @@ public class FRMCitas extends javax.swing.JInternalFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
+        doDefaultCloseAction();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCitasMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblCitas.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdCitas.setValue((Integer)tblCitas.getValueAt(fila, 0));
+                spnFechahora.setValue(tblCitas.getValueAt(fila, 1));
+                spnFechahora.setText((DateTime)tblCitas.getValueAt(fila, 1));
+                TXTEstado.setText((String)tblCitas.getValueAt(fila, 2));
+                TXTServicio.setText((String)tblCitas.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblCitasMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+         llenarTablaConBusqueda(TXTBuscarCitas.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarCitasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCitasFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarCitas.getText().equals("Escribe texto a buscar")){
+            TXTBuscarCitas.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarCitasFocusGained
+
+    private void TXTBuscarCitasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCitasFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarCitas.getText().isEmpty()){
+            TXTBuscarCitas.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarCitasFocusLost
+    private Citas obtenerCitas(){
+    Citas laCita = new Citas();
+    laCita.setIdcitas((Integer) TXTIdCitas.getValue());
+    laCita.setFechahora((DateTime)spnFechahora.getValue());
+    laCita.setEstado( TXTEstado.getText());
+    laCita.setServicio( TXTServicio.getText());
+    return laCita;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Citas unaCita = new Citas();
+    DefaultTableModel tabla = (DefaultTableModel)tblCitas.getModel();
+    Iterator<Citas> itCitas = unaCita.buscar(busqueda);
+    Object[] filaCitas = new Object[tblCitas.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itCitas.hasNext()) {
+    unaCita = itCitas.next();
+    filaCitas[0] = unaCita.getIdcitas();
+    filaCitas[1] = unaCita.getFechahora();
+    filaCitas[2] = unaCita.getEstado();
+    filaCitas[3] = unaCita.getServicio();
+    ((DefaultTableModel)tblCitas.getModel()).addRow(filaCitas);
+}
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
