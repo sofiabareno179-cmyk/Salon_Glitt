@@ -3,19 +3,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorInventario; 
+import modelo.Inventario;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
 public class FRMInventario extends javax.swing.JInternalFrame {
-
+    ControladorInventario inventarioController = new ControladorInventario();
     /**
      * Creates new form FRMInventario
      */
     public FRMInventario() {
         initComponents();
+        TXTIdInventario.setValue(0);
+        TXTIdInventario.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdInventario.setValue(0); 
+    spnStock.setValue(new java.util.Date()); 
+    TXTFecha.setText("Escriba texto a buscar");
+    TXTBuscarInventario.setText("Escriba texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Inventario unInventario = new Inventario();
+    DefaultTableModel tabla = (DefaultTableModel)tblInventario.getModel();
+    Iterator<Inventario> itInventario = unInventario.listar();
+    Object[] filaInventario = new Object[tblInventario.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itInventario.hasNext()) { 
+        unInventario = itInventario.next();
+        filaInventario[0] = unInventario.getIdinventario();
+        filaInventario[1] = unInventario.getStock();
+        filaInventario[2] = unInventario.getFecha();       
+        tabla.addRow(filaInventario);
+    }
+    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,12 +77,16 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         setTitle("                                          Formulario de Inventario");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Stock");
 
@@ -63,10 +97,19 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         jLabel2.setText("Buscar");
 
         TXTBuscarInventario.setText("Escribe texto a buscar");
+        TXTBuscarInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarInventarioFocusLost(evt);
+            }
+        });
 
         spnStock.setModel(new javax.swing.SpinnerDateModel());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +128,11 @@ public class FRMInventario extends javax.swing.JInternalFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tblInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInventarioMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblInventario);
@@ -152,6 +200,83 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        inventarioController.controlarAccion(evt, obtenerInventario());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:citasController.controlarAccion(evt, obtenerCitas());
+        inventarioController.controlarAccion(evt, obtenerInventario());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        inventarioController.controlarAccion(evt, obtenerInventario());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventarioMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblInventario.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdInventario.setValue((Integer)tblInventario.getValueAt(fila, 0));
+                spnStock.setText((Integer)tblInventario.getValueAt(fila, 1));
+                TXTFecha.setText((String)tblInventario.getValueAt(fila, 2));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }  
+    }//GEN-LAST:event_tblInventarioMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(TXTBuscarInventario.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarInventarioFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarInventario.getText().equals("Escribe texto a buscar")){
+            TXTBuscarInventario.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarInventarioFocusGained
+
+    private void TXTBuscarInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarInventarioFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarInventario.getText().isEmpty()){
+            TXTBuscarInventario.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarInventarioFocusLost
+    private Inventario obtenerInventario(){
+    Inventario elInventario = new Inventario();
+    elInventario.setIdinventario((Integer) TXTIdInventario.getValue());   
+    elInventario.setStock((Integer)spnStock.getValue());
+    elInventario.setFecha( TXTFecha.getText());
+    return elInventario;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Inventario unInventario = new Inventario();
+    DefaultTableModel tabla = (DefaultTableModel)tblInventario.getModel();
+    Iterator<Inventario> itInventario = unInventario.buscar(busqueda);
+    Object[] filaInventario = new Object[tblInventario.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itInventario.hasNext()) {
+    unInventario = itInventario.next();
+    filaInventario[0] = unInventario.getIdinventario();
+    filaInventario[1] = unInventario.getStock();
+    filaInventario[2] = unInventario.getFecha();
+    ((DefaultTableModel)tblInventario.getModel()).addRow(filaInventario);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTBuscarInventario;

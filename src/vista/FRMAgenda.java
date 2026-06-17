@@ -4,6 +4,7 @@
  */
 package vista;
 import controlador.ControladorAgenda; 
+import java.time.LocalTime;
 import modelo.Agenda;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
@@ -279,8 +280,8 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
     Agenda elAgenda = new Agenda();
     elAgenda.setIdagenda((Integer) TXTIdAgenda.getValue());
     elAgenda.setDiasemana(  TXTDiasemana.getText());
-    elAgenda.setHorainicio(  TXTHorainicio.getText());
-    elAgenda.setHorafin(  TXTHorafin.getText());
+    elAgenda.setHorainicio(LocalTime.parse(TXTHorainicio.getText()));
+    elAgenda.setHorafin( LocalTime.parse(TXTHorafin.getText()));
     return elAgenda;
 }
     private void llenarTablaConBusqueda(String busqueda){
