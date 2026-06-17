@@ -11,4 +11,18 @@ import modelo.Inventario;
  */
 public class ControladorInventario {
     
+    public void controlarAccion(ActionEvent evento, Inventario unInventario){
+        String accion = evento.getActionCommand();
+        switch(accion){
+            case "Insertar":
+                unInventario.insertar();
+            break;
+            case "Modificar":
+                unInventario.modificar();
+            break;
+            case "Eliminar":
+                unInventario.eliminar();
+            break;
+        }
+    }
 }
