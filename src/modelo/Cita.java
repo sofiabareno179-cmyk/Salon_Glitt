@@ -1,0 +1,186 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package modelo;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
+/**
+ *
+ * @author USUARIO
+ */
+public class Cita {
+    private int idcitas;
+    private LocalDateTime fechahora;
+    private String estado;
+    private String servicio;
+
+    public int getIdcitas() {
+        return idcitas;
+    }
+
+    public void setIdcitas(int idcitas) {
+        this.idcitas = idcitas;
+    }
+
+    public LocalDateTime getFechahora() {
+        return fechahora;
+    }
+
+    public void setFechahora(LocalDateTime fechahora) {
+        this.fechahora = fechahora;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    @Override
+    public String toString() {
+        return "Cita{" + "servicio=" + servicio + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cita other = (Cita) obj;
+        return this.idcitas == other.idcitas;
+    }
+     public Iterator<Cita> listar(){
+    ArrayList<Cita> lasCitas = new ArrayList<>();
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
+        ResultSet rs = sql.executeQuery();
+        Cita unaCita;
+        while (rs.next()) {
+            unaCita = new Cita();
+            unaCita.setIdcitas(rs.getInt("idcitas"));
+            unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
+            unaCita.setEstado(rs.getString("estado"));
+            unaCita.setServicio(rs.getString("servicio"));
+            lasCitas.add(unaCita);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al listar las citas : " + ex.getMessage());
+    }
+    if (lasCitas.isEmpty()){
+        Cita misCitas = new Cita();
+        misCitas.setServicio("No hay disponibilidad para ese servicio");
+        lasCitas.add(misCitas);
+    }
+    return lasCitas.iterator();
+}
+   
+    public void insertar(){
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
+                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
+        sql.setObject(1, this.getFechahora());
+        sql.setString(2, this.getEstado());
+        sql.setString(3, this.getServicio());
+        sql.executeUpdate();
+        System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
+    } catch (SQLException ex) {
+        System.err.println("Error al insertar " + this.getClass().getSimpleName() + ": " + ex.getMessage());
+    }
+}
+
+public void modificar(){
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
+                " SET fechahora = ?, estado = ?, servicio = ? WHERE idcitas = ?");
+        sql.setObject(1, this.getFechahora());
+        sql.setString(2, this.getEstado());
+        sql.setString(3, this.getServicio());
+        sql.executeUpdate();
+        System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
+    } catch (SQLException ex) {
+        System.err.println("Error al modificar " + this.getClass().getSimpleName() + ": " + ex.getMessage());
+    }
+}
+public void eliminar(){
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM "
+                + this.getClass().getSimpleName() + " WHERE idcitas = ?");
+        sql.setInt(1, this.getIdcitas());
+        sql.executeUpdate();
+        System.out.println(this.getClass().getSimpleName() + " eliminado correctamente");
+    } catch (SQLException ex) {
+        System.err.println("Error al eliminar " + this.getClass().getSimpleName() + ": " + ex.getMessage());
+    }
+}
+
+public Iterator<Cita> buscar(String busqueda){
+    ArrayList<Cita> lasCitas = new ArrayList<>();
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
+                + " WHERE fechahora LIKE ? OR estado LIKE ? OR servicio LIKE ?");
+        sql.setString(1, "%" + busqueda + "%");
+        sql.setString(2, "%" + busqueda + "%");
+        sql.setString(3, "%" + busqueda + "%");
+        ResultSet rs = sql.executeQuery();
+        Cita unaCita;
+        while (rs.next()) {
+            unaCita = new Cita();
+            unaCita.setIdcitas(rs.getInt("idcitas"));
+            unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
+            unaCita.setEstado(rs.getString("estado"));
+            unaCita.setServicio(rs.getString("servicio"));
+            lasCitas.add(unaCita);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al buscar " + this.getClass().getSimpleName() + ": " + ex.getMessage());
+    }
+    return lasCitas.iterator();
+}
+public Cita buscarPorId(int elId){
+    Cita unaCita = new Cita();
+    unaCita.setServicio(" no hay disponibilidad para ese servicio");
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idcitas = ?");
+        sql.setInt(1, elId);
+        ResultSet rs = sql.executeQuery();
+        while (rs.next()) {
+            unaCita.setIdcitas(rs.getInt("idcitas"));
+            unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
+            unaCita.setEstado(rs.getString("estado"));
+            unaCita.setServicio(rs.getString("servicio"));
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al buscar por Id " + ex.getMessage());
+    }
+    return unaCita;
+}
+
+    
+}
