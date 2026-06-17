@@ -18,8 +18,21 @@ public class FRMCitas extends javax.swing.JInternalFrame {
      */
     public FRMCitas() {
         initComponents();
-        
+        initComponents();
+        TXTIdCitas.setValue(0);
+        TXTIdCitas.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdCitas.setValue(0);
+    spnFechahora.setValue(new java.util.Date());
+    TXTEstado.setText("Escriba Email");
+    TXTServicio.setText("Escriba Telefono");
+    TXTBuscarCitas.setText("Escriba texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +50,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        spnFecgahora = new javax.swing.JSpinner();
+        spnFechahora = new javax.swing.JSpinner();
         TXTEstado = new javax.swing.JTextField();
         TXTServicio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -67,7 +80,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        spnFecgahora.setModel(new javax.swing.SpinnerDateModel());
+        spnFechahora.setModel(new javax.swing.SpinnerDateModel());
 
         TXTEstado.setText("Escribe estado");
 
@@ -112,7 +125,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                     .addComponent(TXTServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(spnFecgahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spnFechahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TXTIdCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,7 +146,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(btnInsertar)
-                            .addComponent(spnFecgahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnFechahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TXTIdCitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +193,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner spnFecgahora;
+    private javax.swing.JSpinner spnFechahora;
     private javax.swing.JTable tblCitas;
     // End of variables declaration//GEN-END:variables
 }
