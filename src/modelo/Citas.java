@@ -13,7 +13,7 @@ import java.util.Iterator;
  *
  * @author USUARIO
  */
-public class Cita {
+public class Citas {
     private int idcitas;
     private LocalDateTime fechahora;
     private String estado;
@@ -73,17 +73,17 @@ public class Cita {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cita other = (Cita) obj;
+        final Citas other = (Citas) obj;
         return this.idcitas == other.idcitas;
     }
-     public Iterator<Cita> listar(){
-    ArrayList<Cita> lasCitas = new ArrayList<>();
+     public Iterator<Citas> listar(){
+    ArrayList<Citas> lasCitas = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
         ResultSet rs = sql.executeQuery();
-        Cita unaCita;
+        Citas unaCita;
         while (rs.next()) {
-            unaCita = new Cita();
+            unaCita = new Citas();
             unaCita.setIdcitas(rs.getInt("idcitas"));
             unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
             unaCita.setEstado(rs.getString("estado"));
@@ -94,7 +94,7 @@ public class Cita {
         System.err.println("Error al listar las citas : " + ex.getMessage());
     }
     if (lasCitas.isEmpty()){
-        Cita misCitas = new Cita();
+        Citas misCitas = new Citas();
         misCitas.setServicio("No hay disponibilidad para ese servicio");
         lasCitas.add(misCitas);
     }
@@ -122,6 +122,7 @@ public void modificar(){
         sql.setObject(1, this.getFechahora());
         sql.setString(2, this.getEstado());
         sql.setString(3, this.getServicio());
+        sql.setInt(4, this.getIdcitas());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -140,8 +141,8 @@ public void eliminar(){
     }
 }
 
-public Iterator<Cita> buscar(String busqueda){
-    ArrayList<Cita> lasCitas = new ArrayList<>();
+public Iterator<Citas> buscar(String busqueda){
+    ArrayList<Citas> lasCitas = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
                 + " WHERE fechahora LIKE ? OR estado LIKE ? OR servicio LIKE ?");
@@ -149,9 +150,9 @@ public Iterator<Cita> buscar(String busqueda){
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
         ResultSet rs = sql.executeQuery();
-        Cita unaCita;
+        Citas unaCita;
         while (rs.next()) {
-            unaCita = new Cita();
+            unaCita = new Citas();
             unaCita.setIdcitas(rs.getInt("idcitas"));
             unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
             unaCita.setEstado(rs.getString("estado"));
@@ -163,8 +164,8 @@ public Iterator<Cita> buscar(String busqueda){
     }
     return lasCitas.iterator();
 }
-public Cita buscarPorId(int elId){
-    Cita unaCita = new Cita();
+public Citas buscarPorId(int elId){
+    Citas unaCita = new Citas();
     unaCita.setServicio(" no hay disponibilidad para ese servicio");
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idcitas = ?");
