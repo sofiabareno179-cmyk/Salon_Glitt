@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorServicios; 
+import modelo.Servicios;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
