@@ -14,7 +14,7 @@ import java.util.Iterator;
  *
  * @author USUARIO
  */
-public class Perfiles {
+public class Perfil {
     private int id;
     private String nombre;
     private String apellido;
@@ -74,17 +74,17 @@ public class Perfiles {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Perfiles other = (Perfiles) obj;
+        final Perfil other = (Perfil) obj;
         return this.id == other.id;
     }
-     public Iterator<Perfiles> listar(){
-    ArrayList<Perfiles> losPerfiles = new ArrayList<>();
+     public Iterator<Perfil> listar(){
+    ArrayList<Perfil> losPerfiles = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
         ResultSet rs = sql.executeQuery();
-        Perfiles unPerfil;
+        Perfil unPerfil;
         while (rs.next()) {
-            unPerfil = new Perfiles();
+            unPerfil = new Perfil();
             unPerfil.setId(rs.getInt("id"));
             unPerfil.setNombre(rs.getString("nombre"));
             unPerfil.setApellido(rs.getString("apellido"));
@@ -95,7 +95,7 @@ public class Perfiles {
         System.err.println("Error al listar los perfiles : " + ex.getMessage());
     }
     if (losPerfiles.isEmpty()){
-        Perfiles miPerfil = new Perfiles();
+        Perfil miPerfil = new Perfil();
         miPerfil.setNombre("este perfil no existe");
         losPerfiles.add(miPerfil);
     }
@@ -141,8 +141,8 @@ public void eliminar(){
     }
 }
 
-public Iterator<Perfiles> buscar(String busqueda){
-    ArrayList<Perfiles> losPerfiles = new ArrayList<>();
+public Iterator<Perfil> buscar(String busqueda){
+    ArrayList<Perfil> losPerfiles = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
                 + " WHERE nombre LIKE ? OR apellido LIKE ? OR bio LIKE ?");
@@ -150,9 +150,9 @@ public Iterator<Perfiles> buscar(String busqueda){
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
         ResultSet rs = sql.executeQuery();
-        Perfiles unPerfil;
+        Perfil unPerfil;
         while (rs.next()) {
-            unPerfil = new Perfiles();
+            unPerfil = new Perfil();
             unPerfil.setId(rs.getInt("id"));
             unPerfil.setNombre(rs.getString("nombre"));
             unPerfil.setApellido(rs.getString("apellido"));
@@ -164,8 +164,8 @@ public Iterator<Perfiles> buscar(String busqueda){
     }
     return losPerfiles.iterator();
 }
-public Perfiles buscarPorId(int elId){
-    Perfiles unPerfil = new Perfiles();
+public Perfil buscarPorId(int elId){
+    Perfil unPerfil = new Perfil();
     unPerfil.setNombre(" no hay disponiblidad de ese servicio");
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE id = ?");

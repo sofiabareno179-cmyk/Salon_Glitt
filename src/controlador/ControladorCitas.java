@@ -10,17 +10,17 @@ import modelo.Citas;
  * @author LENOVO
  */
 public class ControladorCitas {
-     public void controlarAccion(ActionEvent evento, Citas unaCitas){
+     public void controlarAccion(ActionEvent evento, Citas unaCita){
         String accion = evento.getActionCommand();
         switch(accion){
             case "Insertar":
-                unaCitas.insertar();
+                unaCita.insertar();
             break;
             case "Modificar":
-                unaCitas.modificar();
+                unaCita.modificar();
             break;
             case "Eliminar":
-                unaCitas.eliminar();
+                unaCita.eliminar();
             break;
         }
     }

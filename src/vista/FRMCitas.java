@@ -3,19 +3,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorCitas; 
+import modelo.Citas;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
 public class FRMCitas extends javax.swing.JInternalFrame {
-
+    ControladorCitas citasController = new ControladorCitas();
     /**
      * Creates new form Cita
      */
     public FRMCitas() {
         initComponents();
+        initComponents();
+        TXTIdCitas.setValue(0);
+        TXTIdCitas.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdCitas.setValue(0);
+    spnFechahora.setValue(new java.util.Date());
+    TXTEstado.setText("Escriba Email");
+    TXTServicio.setText("Escriba Telefono");
+    TXTBuscarCitas.setText("Escriba texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Citas unaCita = new Citas();
+    DefaultTableModel tabla = (DefaultTableModel)tblCitas.getModel();
+    Iterator<Citas> itCitas = unaCita.listar();
+    Object[] filaCitas = new Object[tblCitas.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itCitas.hasNext()) { 
+        unaCita = itCitas.next();
+        filaCitas[0] = unaCita.getIdcitas();
+        filaCitas[1] = unaCita.getFechahora();
+        filaCitas[2] = unaCita.getEstado();       
+        filaCitas[3] = unaCita.getServicio();
+        tabla.addRow(filaCitas);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +65,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        spnFecgahora = new javax.swing.JSpinner();
+        spnFechahora = new javax.swing.JSpinner();
         TXTEstado = new javax.swing.JTextField();
         TXTServicio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -55,15 +87,18 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel3.setText("Servicio");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        spnFecgahora.setModel(new javax.swing.SpinnerDateModel());
+        spnFechahora.setModel(new javax.swing.SpinnerDateModel());
 
         TXTEstado.setText("Escribe estado");
 
@@ -72,8 +107,17 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel4.setText("Buscar");
 
         TXTBuscarCitas.setText("Escribe texto a buscar");
+        TXTBuscarCitas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarCitasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarCitasFocusLost(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,6 +130,11 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                 "Id", "Fecha Hora", "Estado", "Servicio"
             }
         ));
+        tblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCitasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCitas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,7 +157,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                     .addComponent(TXTServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(spnFecgahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spnFechahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TXTIdCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,7 +178,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(btnInsertar)
-                            .addComponent(spnFecgahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnFechahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TXTIdCitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +207,85 @@ public class FRMCitas extends javax.swing.JInternalFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
+        doDefaultCloseAction();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        citasController.controlarAccion(evt, obtenerCitas());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCitasMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblCitas.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdCitas.setValue((Integer)tblCitas.getValueAt(fila, 0));
+                spnFechahora.setValue(tblCitas.getValueAt(fila, 1));
+                spnFechahora.setText((DateTime)tblCitas.getValueAt(fila, 1));
+                TXTEstado.setText((String)tblCitas.getValueAt(fila, 2));
+                TXTServicio.setText((String)tblCitas.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblCitasMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+         llenarTablaConBusqueda(TXTBuscarCitas.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarCitasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCitasFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarCitas.getText().equals("Escribe texto a buscar")){
+            TXTBuscarCitas.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarCitasFocusGained
+
+    private void TXTBuscarCitasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCitasFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarCitas.getText().isEmpty()){
+            TXTBuscarCitas.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarCitasFocusLost
+    private Citas obtenerCitas(){
+    Citas laCita = new Citas();
+    laCita.setIdcitas((Integer) TXTIdCitas.getValue());
+    laCita.setFechahora((DateTime)spnFechahora.getValue());
+    laCita.setEstado( TXTEstado.getText());
+    laCita.setServicio( TXTServicio.getText());
+    return laCita;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Citas unaCita = new Citas();
+    DefaultTableModel tabla = (DefaultTableModel)tblCitas.getModel();
+    Iterator<Citas> itCitas = unaCita.buscar(busqueda);
+    Object[] filaCitas = new Object[tblCitas.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itCitas.hasNext()) {
+    unaCita = itCitas.next();
+    filaCitas[0] = unaCita.getIdcitas();
+    filaCitas[1] = unaCita.getFechahora();
+    filaCitas[2] = unaCita.getEstado();
+    filaCitas[3] = unaCita.getServicio();
+    ((DefaultTableModel)tblCitas.getModel()).addRow(filaCitas);
+}
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -176,7 +303,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner spnFecgahora;
+    private javax.swing.JSpinner spnFechahora;
     private javax.swing.JTable tblCitas;
     // End of variables declaration//GEN-END:variables
 }
