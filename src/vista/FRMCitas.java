@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorCitas; 
+import modelo.Citas;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
 public class FRMCitas extends javax.swing.JInternalFrame {
-
+    ControladorCitas citasController = new ControladorCitas();
     /**
      * Creates new form Cita
      */
     public FRMCitas() {
         initComponents();
+        
     }
 
     /**
