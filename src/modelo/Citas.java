@@ -122,6 +122,7 @@ public void modificar(){
         sql.setObject(1, this.getFechahora());
         sql.setString(2, this.getEstado());
         sql.setString(3, this.getServicio());
+        sql.setInt(4, this.getIdcitas());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
