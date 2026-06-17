@@ -7,6 +7,7 @@ import controlador.ControladorCitas;
 import modelo.Citas;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
+import java.util.Date;
 /**
  *
  * @author LENOVO
@@ -18,16 +19,15 @@ public class FRMCitas extends javax.swing.JInternalFrame {
      */
     public FRMCitas() {
         initComponents();
-        initComponents();
         TXTIdCitas.setValue(0);
         TXTIdCitas.setVisible(false);
         limpiarFormulario();
     }
     private void limpiarFormulario() {
     TXTIdCitas.setValue(0);
-    spnFechahora.setValue(new java.util.Date());
-    TXTEstado.setText("Escriba Email");
-    TXTServicio.setText("Escriba Telefono");
+    spnFechahora.setValue(new Date());
+    TXTEstado.setText("Escriba Estado");
+    TXTServicio.setText("Escriba Servicio");
     TXTBuscarCitas.setText("Escriba texto a buscar");
     btnModificar.setEnabled(false);
     btnEliminar.setEnabled(false);
@@ -234,8 +234,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
             int fila = tblCitas.rowAtPoint(evt.getPoint());
             if(fila>-1){
                 TXTIdCitas.setValue((Integer)tblCitas.getValueAt(fila, 0));
-                spnFechahora.setValue(tblCitas.getValueAt(fila, 1));
-                spnFechahora.setText((DateTime)tblCitas.getValueAt(fila, 1));
+                 spnFechahora.setValue(tblCitas.getValueAt(fila, 1));
                 TXTEstado.setText((String)tblCitas.getValueAt(fila, 2));
                 TXTServicio.setText((String)tblCitas.getValueAt(fila, 3));
                 btnModificar.setEnabled(true);
@@ -271,6 +270,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     laCita.setServicio( TXTServicio.getText());
     return laCita;
 }
+    
     private void llenarTablaConBusqueda(String busqueda){
     Citas unaCita = new Citas();
     DefaultTableModel tabla = (DefaultTableModel)tblCitas.getModel();
