@@ -12,13 +12,42 @@ import java.util.Iterator;
  * @author LENOVO
  */
 public class FRMPerfiles extends javax.swing.JInternalFrame {
+    ControladorPerfiles perfilesController = new ControladorPerfiles();
 
     /**
      * Creates new form FRMPerfil
      */
     public FRMPerfiles() {
         initComponents();
+        TXTIdPerfil.setValue(0);
+        TXTIdPerfil.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdPerfil.setValue(0);
+    TXTNombre.setText("Escribe nombre");
+    TXTApellido.setText("Escribe apellido"); 
+    TXTBiografia.setText("Escriba biografia");
+    TXTBuscarPerfiles.setText("Escribe texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Perfiles unPerfil = new Perfiles();
+    DefaultTableModel tabla = (DefaultTableModel)tblPerfil.getModel();
+    Iterator<Perfiles> itPerfiles = unPerfil.listar();
+    Object[] filaPerfiles = new Object[tblPerfil.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itPerfiles.hasNext()) { 
+        unPerfil = itPerfiles.next();
+        filaPerfiles[0] = unPerfil.getId();
+        filaPerfiles[1] = unPerfil.getNombre();
+        filaPerfiles[2] = unPerfil.getApellido();       
+        filaPerfiles[3] = unPerfil.getBio();
+        tabla.addRow(filaPerfiles);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,8 +72,9 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
         tblPerfil = new javax.swing.JTable();
         TXTIdPerfil = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        TXTBuscarPerfiles = new javax.swing.JTextField();
         btnBuscarPerfil = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -54,12 +84,16 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel2.setText("Apellido");
 
@@ -90,13 +124,30 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        tblPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPerfilMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPerfil);
 
         jLabel4.setText("Buscar");
 
-        jTextField4.setText("Escribe texto a buscar");
+        TXTBuscarPerfiles.setText("Escribe texto a buscar");
+        TXTBuscarPerfiles.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarPerfilesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarPerfilesFocusLost(evt);
+            }
+        });
 
         btnBuscarPerfil.setText("Buscar");
+        btnBuscarPerfil.addActionListener(this::btnBuscarPerfilActionPerformed);
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,92 +156,185 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(TXTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TXTIdPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInsertar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(TXTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModificar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarPerfil)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnCerrar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TXTBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar)))))
+                                .addComponent(btnModificar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TXTBuscarPerfiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarPerfil)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(TXTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TXTIdPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpiar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(TXTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158)
+                        .addComponent(btnInsertar)))
                 .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnInsertar)
                     .addComponent(TXTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TXTIdPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(TXTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(TXTIdPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
+                    .addComponent(jLabel2)
+                    .addComponent(TXTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInsertar))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TXTBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXTBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscarPerfil)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TXTBuscarPerfiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarPerfil)
+                    .addComponent(btnEliminar))
+                .addGap(9, 9, 9)
+                .addComponent(btnCerrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+     // TODO add your handling code here:
+               limpiarFormulario();  
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        perfilesController.controlarAccion(evt, obtenerPerfiles());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        perfilesController.controlarAccion(evt, obtenerPerfiles());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        perfilesController.controlarAccion(evt, obtenerPerfiles());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPerfilMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblPerfil.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdPerfil.setValue((Integer)tblPerfil.getValueAt(fila, 0));
+                TXTNombre.setText((String)tblPerfil.getValueAt(fila, 1));
+                TXTApellido.setText((String)tblPerfil.getValueAt(fila, 2));
+                TXTBiografia.setText((String)tblPerfil.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblPerfilMouseClicked
+
+    private void btnBuscarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPerfilActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(TXTBuscarPerfiles.getText());
+    }//GEN-LAST:event_btnBuscarPerfilActionPerformed
+
+    private void TXTBuscarPerfilesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarPerfilesFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarPerfiles.getText().equals("Escribe texto a buscar")){
+            TXTBuscarPerfiles.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarPerfilesFocusGained
+
+    private void TXTBuscarPerfilesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarPerfilesFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarPerfiles.getText().isEmpty()){
+            TXTBuscarPerfiles.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarPerfilesFocusLost
+
+    private Perfiles obtenerPerfiles(){
+    Perfiles elPerfil = new Perfiles();
+    elPerfil.setId((Integer) TXTIdPerfil.getValue());
+    elPerfil.setNombre( TXTNombre.getText());
+    elPerfil.setApellido( TXTApellido.getText());
+    elPerfil.setBio( TXTBiografia.getText());
+    return elPerfil;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Perfiles unPerfil = new Perfiles();
+    DefaultTableModel tabla = (DefaultTableModel)tblPerfil.getModel();
+    Iterator<Perfiles> itPerfiles = unPerfil.buscar(busqueda);
+    Object[] filaPerfiles = new Object[tblPerfil.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itPerfiles.hasNext()) {
+    unPerfil = itPerfiles.next();
+    filaPerfiles[0] = unPerfil.getId();
+    filaPerfiles[1] = unPerfil.getNombre();
+    filaPerfiles[2] = unPerfil.getApellido();
+    filaPerfiles[3] = unPerfil.getBio();
+    ((DefaultTableModel)tblPerfil.getModel()).addRow(filaPerfiles);
+}
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTApellido;
     private javax.swing.JTextField TXTBiografia;
+    private javax.swing.JTextField TXTBuscarPerfiles;
     private javax.swing.JFormattedTextField TXTIdPerfil;
     private javax.swing.JTextField TXTNombre;
     private javax.swing.JButton btnBuscarPerfil;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tblPerfil;
     // End of variables declaration//GEN-END:variables
 }
