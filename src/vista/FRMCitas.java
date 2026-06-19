@@ -8,6 +8,8 @@ import modelo.Citas;
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
 import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 /**
  *
  * @author LENOVO
@@ -25,7 +27,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     }
     private void limpiarFormulario() {
     TXTIdCitas.setValue(0);
-    spnFechahora.setValue(new java.util.Date()); 
+    spnFechahora.setValue(new java.util.Date());
     TXTEstado.setText("Escriba Estado");
     TXTServicio.setText("Escriba Servicio");
     TXTBuscarCitas.setText("Escriba texto a buscar");
@@ -246,12 +248,12 @@ public class FRMCitas extends javax.swing.JInternalFrame {
             int fila = tblCitas.rowAtPoint(evt.getPoint());
             if(fila>-1){
                 TXTIdCitas.setValue((Integer)tblCitas.getValueAt(fila, 0));
-                 spnFechahora.setValue(tblCitas.getValueAt(fila, 1));
+                LocalDateTime ldt = (LocalDateTime) tblCitas.getValueAt(fila, 1);
+                spnFechahora.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
                 TXTEstado.setText((String)tblCitas.getValueAt(fila, 2));
                 TXTServicio.setText((String)tblCitas.getValueAt(fila, 3));
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
-                
             }
         }
     }//GEN-LAST:event_tblCitasMouseClicked
@@ -282,7 +284,8 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     private Citas obtenerCitas(){
     Citas laCita = new Citas();
     laCita.setIdcitas((Integer) TXTIdCitas.getValue());
-    laCita.setFechahora((Date) spnFechahora.getValue());
+    Date date = (Date) spnFechahora.getValue();
+    laCita.setFechahora(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     laCita.setEstado( TXTEstado.getText());
     laCita.setServicio( TXTServicio.getText());
     return laCita;
