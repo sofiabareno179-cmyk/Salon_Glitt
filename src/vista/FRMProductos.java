@@ -7,6 +7,9 @@ import controlador.ControladorProductos;
 import modelo.Productos;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
+import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 /**
  *
  * @author LENOVO
@@ -78,6 +81,7 @@ public void llenarTabla(){
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         TXTIdProductos = new javax.swing.JFormattedTextField();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -85,12 +89,16 @@ public void llenarTabla(){
         setTitle("                                         Formulario de Productos");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Precio");
 
@@ -109,8 +117,17 @@ public void llenarTabla(){
         TXTCategoria.setText("Escribe categoria");
 
         TXTBuscarProductos.setText("Escribe texto a buscar");
+        TXTBuscarProductos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarProductosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarProductosFocusLost(evt);
+            }
+        });
 
         btnBuscarProductos.setText("Buscar");
+        btnBuscarProductos.addActionListener(this::btnBuscarProductosActionPerformed);
 
         spnPrecio.setModel(new javax.swing.SpinnerNumberModel(69.0f, null, null, 1.0f));
 
@@ -133,7 +150,15 @@ public void llenarTabla(){
                 return types [columnIndex];
             }
         });
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProductos);
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,28 +168,19 @@ public void llenarTabla(){
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(29, 29, 29)
+                        .addComponent(TXTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TXTIdProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(29, 29, 29)
-                                .addComponent(TXTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TXTIdProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(spnPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TXTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCerrar)
-                            .addComponent(btnEliminar)
-                            .addComponent(btnModificar)
-                            .addComponent(btnInsertar))
-                        .addGap(28, 28, 28))
+                            .addComponent(spnPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TXTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -176,8 +192,15 @@ public void llenarTabla(){
                                 .addGap(18, 18, 18)
                                 .addComponent(TXTCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarProductos)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnBuscarProductos)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnInsertar)
+                    .addComponent(btnCerrar)
+                    .addComponent(btnLimpiar))
+                .addGap(28, 28, 28))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -185,14 +208,6 @@ public void llenarTabla(){
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnInsertar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCerrar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -214,15 +229,113 @@ public void llenarTabla(){
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(TXTBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarProductos))))
+                            .addComponent(btnBuscarProductos)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInsertar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCerrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        productosController.controlarAccion(evt, obtenerProductos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        productosController.controlarAccion(evt, obtenerProductos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        productosController.controlarAccion(evt, obtenerProductos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+         limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblProductos.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdProductos.setValue((Integer)tblProductos.getValueAt(fila, 0));
+                TXTDescripcion.setText((String)tblProductos.getValueAt(fila, 1));
+                LocalDateTime ldt = (LocalDateTime) tblProductos.getValueAt(fila, 2);
+                spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant())); 
+                TXTCategoria.setText((String)tblProductos.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_tblProductosMouseClicked
+
+    private void btnBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductosActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(TXTBuscarProductos.getText());
+    }//GEN-LAST:event_btnBuscarProductosActionPerformed
+
+    private void TXTBuscarProductosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarProductosFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarProductos.getText().equals("Escribe texto a buscar")){
+            TXTBuscarProductos.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarProductosFocusGained
+
+    private void TXTBuscarProductosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarProductosFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarProductos.getText().isEmpty()){
+            TXTBuscarProductos.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarProductosFocusLost
+
+    private Productos obtenerProductos(){
+    Productos elProducto = new Productos();
+    elProducto.setIdproductos((Integer) TXTIdProductos.getValue());
+    elProducto.setNombre( TXTNombre.getText());
+    elProducto.setDescripcion( TXTDescripcion.getText());
+    Date date = (Date) spnPrecio.getValue();
+    elProducto.setCategoria( TXTCategoria.getText());
+    return elProducto;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Productos unProducto = new Productos();
+    DefaultTableModel tabla = (DefaultTableModel)tblProductos.getModel();
+    Iterator<Productos> itProductos = unProducto.buscar(busqueda);
+    Object[] filaProductos = new Object[tblProductos.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itProductos.hasNext()) {
+    unProducto = itProductos.next();
+    filaProductos[0] = unProducto.getIdproductos();
+    filaProductos[1] = unProducto.getNombre();
+    filaProductos[2] = unProducto.getDescripcion();
+    filaProductos[3] = unProducto.getPrecio();
+    filaProductos[3] = unProducto.getCategoria();
+    ((DefaultTableModel)tblProductos.getModel()).addRow(filaProductos);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTBuscarProductos;
@@ -234,6 +347,7 @@ public void llenarTabla(){
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
