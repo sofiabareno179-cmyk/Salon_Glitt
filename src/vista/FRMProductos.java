@@ -34,7 +34,23 @@ public class FRMProductos extends javax.swing.JInternalFrame {
     btnEliminar.setEnabled(false);
     llenarTabla();
 }
-
+public void llenarTabla(){
+    Productos unProducto = new Productos();
+    DefaultTableModel tabla = (DefaultTableModel)tblProductos.getModel();
+    Iterator<Productos> itProductos = unProducto.listar();
+    Object[] filaProductos = new Object[tblProductos.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itProductos.hasNext()) { 
+        unProducto = itProductos.next();
+        filaProductos[0] = unProducto.getIdproductos();
+        filaProductos[1] = unProducto.getNombre();
+        filaProductos[2] = unProducto.getDescripcion();       
+        filaProductos[3] = unProducto.getPrecio();
+        filaProductos[4] = unProducto.getCategoria();
+        tabla.addRow(filaProductos);
+    }
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
