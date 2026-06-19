@@ -77,9 +77,9 @@ public class Inventario {
         Inventario unInventario;
         while (rs.next()) {
             unInventario = new Inventario();
-            unInventario.setIdinventario(rs.getInt("idcitas"));
-            unInventario.setStock(rs.getInt("estado"));
-            unInventario.setFecha(rs.getObject("fechahora",LocalDate.class));
+            unInventario.setIdinventario(rs.getInt("idinventario"));
+            unInventario.setStock(rs.getInt("stock"));
+            unInventario.setFecha(rs.getObject("fecha",LocalDate.class));
             elInventario.add(unInventario);
         }
     } catch (SQLException ex) {
@@ -87,7 +87,7 @@ public class Inventario {
     }
     if (elInventario.isEmpty()){
         Inventario inventory = new Inventario();
-        inventory.setStock(000);
+        inventory.setStock(0);
         elInventario.add(inventory);
     }
     return elInventario.iterator();
@@ -141,9 +141,9 @@ public Iterator<Inventario> buscar(String busqueda){
         Inventario unInventario;
         while (rs.next()) {
             unInventario = new Inventario();
-            unInventario.setIdinventario(rs.getInt("idcitas"));
-            unInventario.setStock(rs.getInt("estado"));
-            unInventario.setFecha(rs.getObject("fechahora",LocalDate.class));
+            unInventario.setIdinventario(rs.getInt("idinventario"));
+            unInventario.setStock(rs.getInt("stock"));
+            unInventario.setFecha(rs.getObject("fecha",LocalDate.class));
             elInventario.add(unInventario);
         }
     } catch (SQLException ex) {
@@ -153,16 +153,16 @@ public Iterator<Inventario> buscar(String busqueda){
 }
 public Inventario buscarPorId(int elId){
     Inventario unInventario = new Inventario();
-    unInventario.setStock(000);
+    unInventario.setStock(0);
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idinventario = ?");
         sql.setInt(1, elId);
         ResultSet rs = sql.executeQuery();
         while (rs.next()) {
                       unInventario = new Inventario();
-            unInventario.setIdinventario(rs.getInt("idcitas"));
-            unInventario.setStock(rs.getInt("estado"));
-            unInventario.setFecha(rs.getObject("fechahora",LocalDate.class));
+            unInventario.setIdinventario(rs.getInt("idinventario"));
+            unInventario.setStock(rs.getInt("stock"));
+            unInventario.setFecha(rs.getObject("fecha",LocalDate.class));
         }
     } catch (SQLException ex) {
         System.err.println("Error al buscar por Id " + ex.getMessage());
