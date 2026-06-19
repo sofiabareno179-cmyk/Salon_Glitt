@@ -3,20 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-import controlador.ControladorPerfil; 
-import modelo.Perfil;                 
+import controlador.ControladorPerfiles; 
+import modelo.Perfiles;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
-public class FRMPerfil extends javax.swing.JInternalFrame {
+public class FRMPerfiles extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FRMPerfil
      */
-    public FRMPerfil() {
+    public FRMPerfiles() {
         initComponents();
     }
 

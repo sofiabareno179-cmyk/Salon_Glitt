@@ -4,24 +4,24 @@
  */
 package controlador;
 import java.awt.event.ActionEvent;
-import modelo.Servicios;
+import modelo.Perfiles;
 /**
  *
  * @author LENOVO
  */
-public class ControladorServicios {
+public class ControladorPerfiles {
     
-    public void controlarAccion(ActionEvent evento, Servicios unServicio){
+    public void controlarAccion(ActionEvent evento, Perfiles unPerfil){
         String accion = evento.getActionCommand();
         switch(accion){
             case "Insertar":
-                unServicio.insertar();
+                unPerfil.insertar();
             break;
             case "Modificar":
-                unServicio.modificar();
+                unPerfil.modificar();
             break;
             case "Eliminar":
-                unServicio.eliminar();
+                unPerfil.eliminar();
             break;
         }
     }

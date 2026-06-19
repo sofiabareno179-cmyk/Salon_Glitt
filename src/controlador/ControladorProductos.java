@@ -11,4 +11,18 @@ import modelo.Productos;
  */
 public class ControladorProductos {
     
+    public void controlarAccion(ActionEvent evento, Productos unProducto){
+        String accion = evento.getActionCommand();
+        switch(accion){
+            case "Insertar":
+                unProducto.insertar();
+            break;
+            case "Modificar":
+                unProducto.modificar();
+            break;
+            case "Eliminar":
+                unProducto.eliminar();
+            break;
+        }
+    }
 }

@@ -12,13 +12,28 @@ import java.util.Iterator;
  * @author LENOVO
  */
 public class FRMProductos extends javax.swing.JInternalFrame {
+    ControladorProductos productosController = new ControladorProductos();
 
     /**
      * Creates new form FRMProductos
      */
     public FRMProductos() {
         initComponents();
+        TXTIdProductos.setValue(0);
+        TXTIdProductos.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    TXTIdProductos.setValue(0);
+    TXTNombre.setText("Escribe nombre");
+    TXTDescripcion.setText("Escribe descripcion");
+    spnPrecio.setValue(new java.util.Date()); 
+    TXTCategoria.setText("Escribe categoria");
+    TXTBuscarProductos.setText("Escribe texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

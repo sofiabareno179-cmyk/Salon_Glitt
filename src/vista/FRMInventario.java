@@ -229,7 +229,7 @@ public class FRMInventario extends javax.swing.JInternalFrame {
             int fila = tblInventario.rowAtPoint(evt.getPoint());
             if(fila>-1){
                 TXTIdInventario.setValue((Integer)tblInventario.getValueAt(fila, 0));
-                spnStock.setText((Integer)tblInventario.getValueAt(fila, 1));
+                spnStock.setValue((Integer)tblInventario.getValueAt(fila, 1));
                 TXTFecha.setText((String)tblInventario.getValueAt(fila, 2));
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
@@ -260,7 +260,7 @@ public class FRMInventario extends javax.swing.JInternalFrame {
     Inventario elInventario = new Inventario();
     elInventario.setIdinventario((Integer) TXTIdInventario.getValue());   
     elInventario.setStock((Integer)spnStock.getValue());
-    elInventario.setFecha( TXTFecha.getText());
+    elInventario.setFecha(TXTFecha.getText());
     return elInventario;
 }
     private void llenarTablaConBusqueda(String busqueda){
