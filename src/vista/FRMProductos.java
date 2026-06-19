@@ -332,7 +332,7 @@ public void llenarTabla(){
     filaProductos[1] = unProducto.getNombre();
     filaProductos[2] = unProducto.getDescripcion();
     filaProductos[3] = unProducto.getPrecio();
-    filaProductos[3] = unProducto.getCategoria();
+    filaProductos[4] = unProducto.getCategoria();
     ((DefaultTableModel)tblProductos.getModel()).addRow(filaProductos);
 }
 }
