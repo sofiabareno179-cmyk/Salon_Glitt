@@ -7,6 +7,7 @@ import controlador.ControladorInventario;
 import modelo.Inventario;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
+import java.time.LocalDate;
 /**
  *
  * @author LENOVO
@@ -23,9 +24,9 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         limpiarFormulario();
     }
     private void limpiarFormulario() {
-    TXTIdInventario.setValue(0); 
-    spnStock.setValue(new java.util.Date()); 
-    TXTFecha.setText("Escriba texto a buscar");
+    TXTIdInventario.setValue(0);
+    spnStock.setValue(0);
+    TXTFecha.setText("yyyy-MM-dd");
     TXTBuscarInventario.setText("Escriba texto a buscar");
     btnModificar.setEnabled(false);
     btnEliminar.setEnabled(false);
@@ -106,7 +107,7 @@ public class FRMInventario extends javax.swing.JInternalFrame {
             }
         });
 
-        spnStock.setModel(new javax.swing.SpinnerDateModel());
+        spnStock.setModel(new javax.swing.SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
@@ -212,7 +213,6 @@ public class FRMInventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:citasController.controlarAccion(evt, obtenerCitas());
         inventarioController.controlarAccion(evt, obtenerInventario());
         limpiarFormulario();
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -233,9 +233,8 @@ public class FRMInventario extends javax.swing.JInternalFrame {
                 TXTFecha.setText((String)tblInventario.getValueAt(fila, 2));
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
-                
             }
-        }  
+        }
     }//GEN-LAST:event_tblInventarioMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -258,9 +257,9 @@ public class FRMInventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TXTBuscarInventarioFocusLost
     private Inventario obtenerInventario(){
     Inventario elInventario = new Inventario();
-    elInventario.setIdinventario((Integer) TXTIdInventario.getValue());   
-    elInventario.setStock((Integer)spnStock.getValue());
-    elInventario.setFecha(TXTFecha.getText());
+    elInventario.setIdinventario((Integer) TXTIdInventario.getValue());
+    elInventario.setStock((Integer) spnStock.getValue());
+    elInventario.setFecha(LocalDate.parse(TXTFecha.getText()));
     return elInventario;
 }
     private void llenarTablaConBusqueda(String busqueda){
