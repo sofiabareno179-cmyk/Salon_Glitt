@@ -12,12 +12,16 @@ import java.util.Iterator;
  * @author LENOVO
  */
 public class FRMServicios extends javax.swing.JInternalFrame {
+    ControladorServicios serviciosController = new ControladorServicios();
 
     /**
      * Creates new form FRMServicios
      */
     public FRMServicios() {
         initComponents();
+        TXTIdServicios.setValue(0);
+        TXTIdServicios.setVisible(false);
+        limpiarFormulario();
     }
 
     /**
