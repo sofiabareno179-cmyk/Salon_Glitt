@@ -308,20 +308,13 @@ public class FRMServicios extends javax.swing.JInternalFrame {
     if (evt.getClickCount() == 2) {
         int fila = tblServicios.rowAtPoint(evt.getPoint());
         if (fila > -1) {
-            // Asignación de ID y Nombre
             TXTIdServicios.setValue((Integer) tblServicios.getValueAt(fila, 0));
             TXTNombre.setText((String) tblServicios.getValueAt(fila, 1));
-            
-            // Conversión y asignación de Fecha/Precio en JSpinner
             LocalDateTime ldt = (LocalDateTime) tblServicios.getValueAt(fila, 2);
             spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
-            
-            // CORRECCIÓN: Nombres de variables corregidos a minúscula inicial (estándar Java)
             TXTDuracion.setText((String) tblServicios.getValueAt(fila, 3));
             TXTCategoria.setText((String) tblServicios.getValueAt(fila, 4));
             TXTImagen.setText((String) tblServicios.getValueAt(fila, 5));
-            
-            // Activación de botones de acción
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
         }

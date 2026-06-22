@@ -74,6 +74,7 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         TXTBuscarUsuarios = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -145,6 +146,9 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +180,8 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
                     .addComponent(btnInsertar)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnCerrar))
+                    .addComponent(btnCerrar)
+                    .addComponent(btnLimpiar))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
@@ -193,16 +198,14 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(TXTNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TXTIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnInsertar)))
+                                .addComponent(btnLimpiar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblEmail)
-                                .addComponent(TXTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnModificar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)
-                        .addGap(4, 4, 4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEmail)
+                            .addComponent(TXTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInsertar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(btnModificar)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -213,9 +216,11 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCerrar)
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -280,6 +285,11 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_TXTBuscarUsuariosFocusLost
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+         limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     private Usuario obtenerUsuario(){
     Usuario elUsuario = new Usuario();
     elUsuario.setIdUsuario((Integer) TXTIdUsuario.getValue());
@@ -314,6 +324,7 @@ private void llenarTablaConBusqueda(String busqueda){
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
