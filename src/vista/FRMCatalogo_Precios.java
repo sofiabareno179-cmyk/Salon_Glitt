@@ -5,6 +5,7 @@
 package vista;
 import controlador.ControladorCatalogo_precios; 
 import modelo.Catalogo_Precios;
+
 public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
     ControladorCatalogo_precios catalogo_preciosController = new ControladorCatalogo_precios();
 
@@ -13,6 +14,7 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
      */
     public FRMCatalogo_Precios() {
         initComponents();
+        
     }
 
     /**
