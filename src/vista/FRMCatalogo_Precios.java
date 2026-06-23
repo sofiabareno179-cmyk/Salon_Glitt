@@ -4,13 +4,7 @@
  */
 package vista;
 import controlador.ControladorCatalogo_precios; 
-import modelo.Catalogo_precios;                 
-import javax.swing.table.DefaultTableModel;
-import java.util.Iterator;
-/**
- *
- * @author LENOVO
- */
+import modelo.Catalogo_Precios;
 public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
     ControladorCatalogo_precios catalogo_preciosController = new ControladorCatalogo_precios();
 
