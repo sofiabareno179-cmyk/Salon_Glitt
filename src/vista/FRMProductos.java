@@ -118,10 +118,13 @@ public void llenarTabla(){
         jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel1.setText("Precio");
 
+        TXTNombre.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTNombre.setText("Escribe nombre");
 
+        TXTDescripcion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTDescripcion.setText("Escribe descripcion");
 
+        spnPrecio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnPrecio.setModel(new javax.swing.SpinnerNumberModel(69.0f, null, null, 1.0f));
 
         btnEliminar.setBackground(new java.awt.Color(255, 153, 204));
@@ -145,11 +148,13 @@ public void llenarTabla(){
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel4.setText("Categoria");
 
+        TXTCategoria.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTCategoria.setText("Escribe categoria");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel5.setText("Buscar");
 
+        TXTBuscarProductos.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarProductos.setText("Escribe texto a buscar");
         TXTBuscarProductos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
