@@ -84,33 +84,52 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(214, 174, 253));
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel1.setText("Nombre");
 
+        TXTNombre.setBackground(new java.awt.Color(233, 216, 250));
         TXTNombre.setText("Escribe el nombre");
 
+        TXTIdPerfil.setBackground(new java.awt.Color(233, 215, 252));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel2.setText("Apellido");
 
+        TXTApellido.setBackground(new java.awt.Color(234, 217, 252));
         TXTApellido.setText("Escribe el apellido");
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel3.setText("Biografia");
 
+        TXTBiografia.setBackground(new java.awt.Color(229, 209, 249));
         TXTBiografia.setText("Escribe la biografia");
 
+        btnLimpiar.setBackground(new java.awt.Color(204, 204, 255));
+        btnLimpiar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
+        btnInsertar.setBackground(new java.awt.Color(204, 204, 255));
+        btnInsertar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnInsertar.setText("Insertar");
         btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
+        btnModificar.setBackground(new java.awt.Color(204, 204, 255));
+        btnModificar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(this::btnModificarActionPerformed);
 
+        btnEliminar.setBackground(new java.awt.Color(204, 204, 255));
+        btnEliminar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
+        btnCerrar.setBackground(new java.awt.Color(204, 204, 255));
+        btnCerrar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
+        TXTBuscarPerfiles.setBackground(new java.awt.Color(235, 220, 249));
         TXTBuscarPerfiles.setText("Escribe texto a buscar");
         TXTBuscarPerfiles.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -121,11 +140,15 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel4.setText("Buscar");
 
+        btnBuscarPerfil.setBackground(new java.awt.Color(204, 204, 255));
+        btnBuscarPerfil.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         btnBuscarPerfil.setText("Buscar");
         btnBuscarPerfil.addActionListener(this::btnBuscarPerfilActionPerformed);
 
+        tblPerfil.setBackground(new java.awt.Color(227, 206, 248));
         tblPerfil.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -208,12 +231,12 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
                     .addComponent(btnLimpiar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInsertar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,8 +252,7 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(btnBuscarPerfil))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
