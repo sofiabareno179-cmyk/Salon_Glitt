@@ -291,8 +291,7 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
                 TXTIdCatalogo_precios.setValue((Integer)tblCatalogo_precios.getValueAt(fila, 0));
                 TXTNombre.setText((String)tblCatalogo_precios.getValueAt(fila, 1));
                 TXTDescripcion.setText((String)tblCatalogo_precios.getValueAt(fila, 2));
-                LocalDateTime ldt = (LocalDateTime) tblCatalogo_precios.getValueAt(fila, 3);
-                spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant())); 
+                spnPrecio.setValue(tblCatalogo_precios.getValueAt(fila, 3));
                 TXTCategoria.setText((String)tblCatalogo_precios.getValueAt(fila, 4));
                 LocalDateTime ldt = (LocalDateTime) tblCatalogo_precios.getValueAt(fila, 5);
                 spnFecha_creacion.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
@@ -324,11 +323,12 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
     private Catalogo_Precios obtenerCatalogo_Precios(){
     Catalogo_Precios elCatalogo_Precios = new Catalogo_Precios();
     elCatalogo_Precios.setIdcatalogo((Integer) TXTIdCatalogo_precios.getValue());
-    elCatalogo_Precios.setNombre( TXTNombre.getText());
-    elCatalogo_Precios.setDescripcion( TXTDescripcion.getText());
-    Date date = (Date) spnPrecio.getValue();
-    elCatalogo_Precios.setCategoria( TXTCategoria.getText());
+    elCatalogo_Precios.setNombre(TXTNombre.getText());
+    elCatalogo_Precios.setDescripcion(TXTDescripcion.getText());
+    elCatalogo_Precios.setPrecio(((Number) spnPrecio.getValue()).doubleValue());
+    elCatalogo_Precios.setCategoria(TXTCategoria.getText());
     Date date = (Date) spnFecha_creacion.getValue();
+    elCatalogo_Precios.setFechaCreacion(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     return elCatalogo_Precios;
 }
     private void llenarTablaConBusqueda(String busqueda){
