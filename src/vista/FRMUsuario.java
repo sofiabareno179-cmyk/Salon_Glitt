@@ -104,6 +104,7 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         lblTelefono.setText("Telefono");
 
         TXTIdUsuario.setBackground(new java.awt.Color(226, 199, 253));
+        TXTIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         TXTTelefono.setBackground(new java.awt.Color(223, 197, 249));
         TXTTelefono.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
