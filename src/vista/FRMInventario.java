@@ -95,6 +95,7 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         TXTFecha.setText("Escribe la fecha");
 
         TXTIdInventario.setBackground(new java.awt.Color(223, 195, 252));
+        TXTIdInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         TXTBuscarInventario.setBackground(new java.awt.Color(227, 207, 246));
         TXTBuscarInventario.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
