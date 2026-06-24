@@ -8,6 +8,7 @@ import modelo.Bloqueos;
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
 import java.util.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 /**
@@ -302,13 +303,13 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
             int fila = tblBloqueos.rowAtPoint(evt.getPoint());
             if(fila>-1){
                 TXTIdBloqueos.setValue((Integer)tblBloqueos.getValueAt(fila, 0));
-                
-                LocalDateTime ldt = (LocalDateTime) tblBloqueos.getValueAt(fila, 1);
-                spnFecha.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
-                spnHora.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
-                spnFecha_creacion.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                LocalDate fecha = (LocalDate) tblBloqueos.getValueAt(fila, 1);
+                spnFecha.setValue(Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                String horaStr = (String) tblBloqueos.getValueAt(fila, 2);
+                spnHora.setValue(java.sql.Time.valueOf(horaStr));
+                LocalDateTime fchCreacion = (LocalDateTime) tblBloqueos.getValueAt(fila, 3);
+                spnFecha_creacion.setValue(Date.from(fchCreacion.atZone(ZoneId.systemDefault()).toInstant()));
                 TXTMotivo.setText((String)tblBloqueos.getValueAt(fila, 4));
-                spnCreado_por.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
             }
@@ -334,14 +335,17 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_TXTBuscarBloqueosFocusLost
 
-     private Bloqueos obtenerBloqueos(){
+    private Bloqueos obtenerBloqueos(){
     Bloqueos elBloqueos = new Bloqueos();
     elBloqueos.setIdbloqueo((Integer) TXTIdBloqueos.getValue());
-    Date date = (Date) spnFecha.getValue();
-    Date date = (Date) spnHora.getValue();
-    Date date = (Date) spnFecha_creacion.getValue();
-    elBloqueos.setMotivo( TXTMotivo.getText());
-    Date date = (Date) spnCreado_por.getValue();
+    Date fechaDate = (Date) spnFecha.getValue();
+    elBloqueos.setFecha(fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    Date horaDate = (Date) spnHora.getValue();
+    elBloqueos.setHora_inicio(String.format("%02d:%02d:%02d",
+            horaDate.getHours(), horaDate.getMinutes(), horaDate.getSeconds()));
+    Date fechaCreacionDate = (Date) spnFecha_creacion.getValue();
+    elBloqueos.setFecha_creacion(fechaCreacionDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+    elBloqueos.setMotivo(TXTMotivo.getText());
     return elBloqueos;
 }
     private void llenarTablaConBusqueda(String busqueda){
