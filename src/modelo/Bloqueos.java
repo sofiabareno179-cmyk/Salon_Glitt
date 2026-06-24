@@ -17,16 +17,16 @@ import java.util.Iterator;
  * @author USUARIO
  */
 public class Bloqueos {
-    private int idbloqueo;
+  private int idbloqueo;
     private LocalDate fecha;
     private String hora_inicio;
-    private String hora_fin;
+    private LocalDateTime Fecha_creacion;
     private String motivo;
     private LocalDateTime created_at;
-
+    
     public int getIdbloqueo() {
         return idbloqueo;
-    }
+    }  
 
     public void setIdbloqueo(int idbloqueo) {
         this.idbloqueo = idbloqueo;
@@ -48,12 +48,12 @@ public class Bloqueos {
         this.hora_inicio = hora_inicio;
     }
 
-    public String getHora_fin() {
-        return hora_fin;
+    public LocalDateTime getFecha_creacion() {
+        return Fecha_creacion;
     }
 
-    public void setHora_fin(String hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setFecha_creacion(LocalDateTime Fecha_creacion) {
+        this.Fecha_creacion = Fecha_creacion;
     }
 
     public String getMotivo() {
@@ -71,6 +71,9 @@ public class Bloqueos {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
+   
+
+
 
     @Override
     public String toString() {
@@ -109,7 +112,7 @@ public class Bloqueos {
             unBloqueo.setIdbloqueo(rs.getInt("idbloqueo"));
             unBloqueo.setFecha(rs.getObject("fecha",LocalDate.class));
             unBloqueo.setHora_inicio(rs.getString("hora_inicio"));
-            unBloqueo.setHora_fin(rs.getString("hora_fin"));
+            unBloqueo.setFecha_creacion(rs.getObject("fecha_creacion",LocalDateTime.class));
             unBloqueo.setMotivo(rs.getString("motivo"));
             unBloqueo.setCreated_at(rs.getObject("created_at",LocalDateTime.class));
             losBloqueos.add(unBloqueo);
@@ -131,7 +134,7 @@ public class Bloqueos {
                 + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?,?)");
         sql.setObject(1, this.getFecha());
         sql.setString(2, this.getHora_inicio());
-        sql.setString(3, this.getHora_fin());
+        sql.setObject(3, this.getFecha_creacion());
         sql.setString(4, this.getMotivo());
         sql.setObject(5, this.getCreated_at());
         sql.executeUpdate();
@@ -144,10 +147,10 @@ public class Bloqueos {
 public void modificar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
-                " SET fecha = ?, hora_inicio = ?, hora_fin = ? ,motivo = ?,created_at = ? WHERE idbloqueo = ?");
+                " SET fecha = ?, hora_inicio = ?, fecha_creacion = ? ,motivo = ?,created_at = ? WHERE idbloqueo = ?");
         sql.setObject(1, this.getFecha());
         sql.setString(2, this.getHora_inicio());
-        sql.setString(3, this.getHora_fin());
+        sql.setObject(3, this.getFecha_creacion());
         sql.setString(4, this.getMotivo());
         sql.setObject(5, this.getCreated_at());
         sql.executeUpdate();
@@ -172,7 +175,7 @@ public Iterator<Bloqueos> buscar(String busqueda){
     ArrayList<Bloqueos> losBloqueos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE fecha LIKE ? OR hora_inicio LIKE ? OR hora_fin LIKE ? OR motivo LIKE ? OR created_at LIKE ?");
+                + " WHERE fecha LIKE ? OR hora_inicio LIKE ? OR fecha_creacion LIKE ? OR motivo LIKE ? OR created_at LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -185,7 +188,7 @@ public Iterator<Bloqueos> buscar(String busqueda){
             unBloqueo.setIdbloqueo(rs.getInt("idbloqueo"));
             unBloqueo.setFecha(rs.getObject("fecha",LocalDate.class));
             unBloqueo.setHora_inicio(rs.getString("hora_inicio"));
-            unBloqueo.setHora_fin(rs.getString("hora_fin"));
+            unBloqueo.setFecha_creacion(rs.getObject("fecha_creacion",LocalDateTime.class));
             unBloqueo.setMotivo(rs.getString("motivo"));
             unBloqueo.setCreated_at(rs.getObject("created_at",LocalDateTime.class));
             losBloqueos.add(unBloqueo);
@@ -207,7 +210,7 @@ public Bloqueos buscarPorId(int elId){
             unBloqueo.setIdbloqueo(rs.getInt("idbloqueo"));
             unBloqueo.setFecha(rs.getObject("fecha",LocalDate.class));
             unBloqueo.setHora_inicio(rs.getString("hora_inicio"));
-            unBloqueo.setHora_fin(rs.getString("hora_fin"));
+            unBloqueo.setFecha_creacion(rs.getObject("fecha_creacion",LocalDateTime.class));
             unBloqueo.setMotivo(rs.getString("motivo"));
             unBloqueo.setCreated_at(rs.getObject("created_at",LocalDateTime.class));
         }
