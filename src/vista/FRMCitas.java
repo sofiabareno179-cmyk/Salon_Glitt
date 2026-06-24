@@ -100,6 +100,7 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         TXTEstado.setText("Escribe estado");
 
         TXTIdCitas.setBackground(new java.awt.Color(255, 227, 227));
+        TXTIdCitas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnLimpiar.setBackground(new java.awt.Color(255, 153, 204));
         btnLimpiar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
