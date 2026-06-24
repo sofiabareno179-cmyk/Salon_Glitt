@@ -92,14 +92,19 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
         setTitle("                                           Formulario de Catalogo_Precios");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Nombre");
 
@@ -124,8 +129,17 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
         TXTCategoria.setText("Escribe categoria");
 
         TXTBuscarCatalogo.setText("Escribe texto a buscar");
+        TXTBuscarCatalogo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarCatalogoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarCatalogoFocusLost(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblCatalogo_precios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,6 +158,11 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tblCatalogo_precios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCatalogo_preciosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblCatalogo_precios);
@@ -236,6 +255,99 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+         limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        catalogo_preciosController.controlarAccion(evt, obtenerCatalogo_Precios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+         catalogo_preciosController.controlarAccion(evt, obtenerCatalogo_Precios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+         catalogo_preciosController.controlarAccion(evt, obtenerCatalogo_Precios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void tblCatalogo_preciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCatalogo_preciosMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblCatalogo_precios.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdCatalogo_precios.setValue((Integer)tblCatalogo_precios.getValueAt(fila, 0));
+                TXTNombre.setText((String)tblCatalogo_precios.getValueAt(fila, 1));
+                TXTDescripcion.setText((String)tblCatalogo_precios.getValueAt(fila, 2));
+                LocalDateTime ldt = (LocalDateTime) tblCatalogo_precios.getValueAt(fila, 3);
+                spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant())); 
+                TXTCategoria.setText((String)tblCatalogo_precios.getValueAt(fila, 4));
+                LocalDateTime ldt = (LocalDateTime) tblCatalogo_precios.getValueAt(fila, 5);
+                spnFecha_creacion.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_tblCatalogo_preciosMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(TXTBuscarCatalogo.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarCatalogoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCatalogoFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarCatalogo.getText().equals("Escribe texto a buscar")){
+            TXTBuscarCatalogo.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarCatalogoFocusGained
+
+    private void TXTBuscarCatalogoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarCatalogoFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarCatalogo.getText().isEmpty()){
+            TXTBuscarCatalogo.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarCatalogoFocusLost
+ 
+    private Catalogo_Precios obtenerCatalogo_Precios(){
+    Catalogo_Precios elCatalogo_Precios = new Catalogo_Precios();
+    elCatalogo_Precios.setIdcatalogo((Integer) TXTIdCatalogo_precios.getValue());
+    elCatalogo_Precios.setNombre( TXTNombre.getText());
+    elCatalogo_Precios.setDescripcion( TXTDescripcion.getText());
+    Date date = (Date) spnPrecio.getValue();
+    elCatalogo_Precios.setCategoria( TXTCategoria.getText());
+    Date date = (Date) spnFecha_creacion.getValue();
+    return elCatalogo_Precios;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Catalogo_Precios unCatalogo_Precios = new Catalogo_Precios();
+    DefaultTableModel tabla = (DefaultTableModel)tblCatalogo_precios.getModel();
+    Iterator<Catalogo_Precios> itCatalogo_Precios = unCatalogo_Precios.buscar(busqueda);
+    Object[] filaCatalogo_Precios = new Object[tblCatalogo_precios.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itCatalogo_Precios.hasNext()) {
+    unCatalogo_Precios = itCatalogo_Precios.next();
+    filaCatalogo_Precios[0] = unCatalogo_Precios.getIdcatalogo();
+    filaCatalogo_Precios[1] = unCatalogo_Precios.getNombre();
+    filaCatalogo_Precios[2] = unCatalogo_Precios.getDescripcion();
+    filaCatalogo_Precios[3] = unCatalogo_Precios.getPrecio();
+    filaCatalogo_Precios[4] = unCatalogo_Precios.getCategoria();
+    filaCatalogo_Precios[5] = unCatalogo_Precios.getFechaCreacion();
+    ((DefaultTableModel)tblCatalogo_precios.getModel()).addRow(filaCatalogo_Precios);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTBuscarCatalogo;
