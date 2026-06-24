@@ -179,6 +179,7 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
         jLabel6.setText("Buscar");
 
         TXTIdCatalogo_precios.setBackground(new java.awt.Color(234, 214, 255));
+        TXTIdCatalogo_precios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         tblCatalogo_precios.setBackground(new java.awt.Color(232, 209, 255));
         tblCatalogo_precios.setModel(new javax.swing.table.DefaultTableModel(
