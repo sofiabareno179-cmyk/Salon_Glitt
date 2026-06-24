@@ -89,9 +89,11 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         jLabel1.setText("Dia Semana");
 
         TXTDiasemana.setBackground(new java.awt.Color(226, 204, 248));
+        TXTDiasemana.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTDiasemana.setText("Escribe dia de la semana");
 
         TXTIdAgenda.setBackground(new java.awt.Color(235, 219, 250));
+        TXTIdAgenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         btnLimpiar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -124,12 +126,15 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         TXTHorainicio.setBackground(new java.awt.Color(236, 217, 255));
+        TXTHorainicio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTHorainicio.setText("Escribe hora de inicio");
 
         TXTHorafin.setBackground(new java.awt.Color(231, 212, 249));
+        TXTHorafin.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTHorafin.setText("Escribe hora de fin");
 
         TXTBuscarAgenda.setBackground(new java.awt.Color(229, 211, 248));
+        TXTBuscarAgenda.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarAgenda.setText("Escribe texto a buscar");
         TXTBuscarAgenda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -211,7 +216,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
                                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(TXTHorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TXTHorafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 6, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(122, 122, 122)

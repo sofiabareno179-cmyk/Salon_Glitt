@@ -131,13 +131,17 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel1.setText("Fecha");
 
+        spnFecha.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnFecha.setModel(new javax.swing.SpinnerDateModel());
 
+        spnHora.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnHora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
 
+        spnFecha_creacion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnFecha_creacion.setModel(new javax.swing.SpinnerDateModel());
 
         TXTMotivo.setBackground(new java.awt.Color(255, 225, 255));
+        TXTMotivo.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTMotivo.setText("Escribe motivo");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
@@ -152,14 +156,17 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel4.setText("creado por");
 
+        spnCreado_por.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnCreado_por.setModel(new javax.swing.SpinnerNumberModel());
 
         TXTIdBloqueos.setBackground(new java.awt.Color(255, 222, 255));
+        TXTIdBloqueos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel6.setText("Buscar");
 
         TXTBuscarBloqueos.setBackground(new java.awt.Color(255, 224, 255));
+        TXTBuscarBloqueos.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarBloqueos.setText("Escribe el texto a buscar");
         TXTBuscarBloqueos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -294,7 +301,7 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

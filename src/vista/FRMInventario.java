@@ -84,17 +84,21 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel1.setText("Stock");
 
+        spnStock.setFont(new java.awt.Font("Sylfaen", 2, 12)); // NOI18N
         spnStock.setModel(new javax.swing.SpinnerDateModel());
 
         lblfecha.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         lblfecha.setText("Fecha");
 
         TXTFecha.setBackground(new java.awt.Color(228, 208, 248));
+        TXTFecha.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTFecha.setText("Escribe la fecha");
 
         TXTIdInventario.setBackground(new java.awt.Color(223, 195, 252));
+        TXTIdInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         TXTBuscarInventario.setBackground(new java.awt.Color(227, 207, 246));
+        TXTBuscarInventario.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarInventario.setText("Escribe texto a buscar");
         TXTBuscarInventario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
