@@ -47,6 +47,11 @@ public class MDISalon extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorio.setBackground(new java.awt.Color(204, 204, 255));
+
+        menuBar.setBackground(new java.awt.Color(153, 153, 255));
+
+        MNUAdministrar.setBackground(new java.awt.Color(255, 204, 255));
         MNUAdministrar.setMnemonic('f');
         MNUAdministrar.setText("Administrar");
 
