@@ -134,28 +134,34 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre");
 
         TXTNombre.setBackground(new java.awt.Color(233, 218, 249));
+        TXTNombre.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTNombre.setText("Escribe nombre");
 
         TXTDescripcion.setBackground(new java.awt.Color(228, 203, 252));
+        TXTDescripcion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTDescripcion.setText("Escribe descripcion");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel2.setText("Descripcion");
 
+        spnPrecio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnPrecio.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 1.0f));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel3.setText("Precio");
 
         TXTCategoria.setBackground(new java.awt.Color(232, 213, 250));
+        TXTCategoria.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTCategoria.setText("Escribe categoria");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel4.setText("Categoria");
 
+        spnFecha_creacion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnFecha_creacion.setModel(new javax.swing.SpinnerDateModel());
 
         TXTBuscarCatalogo.setBackground(new java.awt.Color(231, 210, 252));
+        TXTBuscarCatalogo.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarCatalogo.setText("Escribe texto a buscar");
         TXTBuscarCatalogo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -222,7 +228,7 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
                                         .addComponent(TXTCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(222, 222, 222)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                                     .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
