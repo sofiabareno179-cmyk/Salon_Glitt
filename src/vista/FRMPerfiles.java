@@ -92,6 +92,7 @@ public class FRMPerfiles extends javax.swing.JInternalFrame {
         TXTNombre.setText("Escribe el nombre");
 
         TXTIdPerfil.setBackground(new java.awt.Color(233, 215, 252));
+        TXTIdPerfil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel2.setText("Apellido");
