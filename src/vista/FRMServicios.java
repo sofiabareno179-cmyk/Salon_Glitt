@@ -103,22 +103,26 @@ public class FRMServicios extends javax.swing.JInternalFrame {
         jLabel2.setText("Precio");
 
         TXTNombre.setBackground(new java.awt.Color(252, 226, 252));
+        TXTNombre.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTNombre.setText("Escriba nombre");
 
         TXTIdServicios.setBackground(new java.awt.Color(255, 225, 255));
 
+        spnPrecio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnPrecio.setModel(new javax.swing.SpinnerNumberModel());
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel3.setText("Duracion");
 
         TXTDuracion.setBackground(new java.awt.Color(255, 228, 255));
+        TXTDuracion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTDuracion.setText("Escriba duracion");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel4.setText("Categoria");
 
         TXTCategoria.setBackground(new java.awt.Color(253, 221, 253));
+        TXTCategoria.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTCategoria.setText("Escriba categoria");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
@@ -130,6 +134,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
         jLabel7.setText("Buscar");
 
         TXTBuscarServicios.setBackground(new java.awt.Color(253, 216, 253));
+        TXTBuscarServicios.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarServicios.setText("Escribe texto a buscar");
         TXTBuscarServicios.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -223,7 +228,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
                                 .addComponent(TXTIdServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(197, 197, 197)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                             .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -238,7 +243,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
                                 .addComponent(TXTImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(230, 230, 230)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
