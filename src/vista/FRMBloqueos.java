@@ -160,6 +160,7 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         spnCreado_por.setModel(new javax.swing.SpinnerNumberModel());
 
         TXTIdBloqueos.setBackground(new java.awt.Color(255, 222, 255));
+        TXTIdBloqueos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel6.setText("Buscar");
