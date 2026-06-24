@@ -93,6 +93,7 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
         TXTDiasemana.setText("Escribe dia de la semana");
 
         TXTIdAgenda.setBackground(new java.awt.Color(235, 219, 250));
+        TXTIdAgenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         btnLimpiar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
