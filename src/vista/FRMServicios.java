@@ -107,6 +107,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
         TXTNombre.setText("Escriba nombre");
 
         TXTIdServicios.setBackground(new java.awt.Color(255, 225, 255));
+        TXTIdServicios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         spnPrecio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnPrecio.setModel(new javax.swing.SpinnerNumberModel());
