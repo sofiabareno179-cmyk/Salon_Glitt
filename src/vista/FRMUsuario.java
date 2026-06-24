@@ -93,9 +93,11 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         lblEmail.setText("Email");
 
         TXTNombreUsuario.setBackground(new java.awt.Color(221, 199, 243));
+        TXTNombreUsuario.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTNombreUsuario.setText("Escriba Nombre");
 
         TXTEmail.setBackground(new java.awt.Color(225, 204, 246));
+        TXTEmail.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTEmail.setText("Escriba Email");
 
         lblTelefono.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
@@ -104,12 +106,14 @@ public class FRMUsuario extends javax.swing.JInternalFrame {
         TXTIdUsuario.setBackground(new java.awt.Color(226, 199, 253));
 
         TXTTelefono.setBackground(new java.awt.Color(223, 197, 249));
+        TXTTelefono.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTTelefono.setText("Escriba Telefono");
 
         lblBuscar.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         lblBuscar.setText("Buscar");
 
         TXTBuscarUsuarios.setBackground(new java.awt.Color(228, 205, 252));
+        TXTBuscarUsuarios.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarUsuarios.setText("Escriba texto a buscar");
         TXTBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
