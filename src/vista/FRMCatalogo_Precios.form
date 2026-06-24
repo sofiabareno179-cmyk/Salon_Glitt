@@ -79,6 +79,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< Updated upstream
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="spnPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
@@ -98,6 +99,70 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
                                       </Group>
+=======
+<<<<<<< Updated upstream
+                                          <Component id="TXTNombre" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="TXTIdCatalogo_precios" min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
+=======
+<<<<<<< Updated upstream
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="spnPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="TXTNombre" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                                  <Component id="TXTIdCatalogo_precios" min="-2" pref="38" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="TXTDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="btnInsertar" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+=======
+<<<<<<< Updated upstream
+                                          <Component id="TXTNombre" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="TXTIdCatalogo_precios" min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
+>>>>>>> Stashed changes
+                                      <Component id="TXTDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnInsertar" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="btnLimpiar" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="btnModificar" pref="57" max="32767" attributes="0"/>
+<<<<<<< Updated upstream
+=======
+=======
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="spnPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="TXTNombre" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                                  <Component id="TXTIdCatalogo_precios" min="-2" pref="38" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="TXTDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="btnInsertar" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                                   </Group>
                               </Group>
                           </Group>
