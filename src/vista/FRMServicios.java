@@ -29,7 +29,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
     private void limpiarFormulario() {
     TXTIdServicios.setValue(0);
     TXTNombre.setText("Escriba nombre");
-    spnPrecio.setValue(new java.util.Date());
+    spnPrecio.setValue(0.0);
     TXTDuracion.setText("Escriba duracion"); 
     TXTCategoria.setText("Escriba categoria");
     TXTImagen.setText("");

@@ -11,14 +11,37 @@ import modelo.ConexionBD;
  */
 public class MDISalon extends javax.swing.JFrame {
     FRMUsuario fUsuario;
+    FRMServicios fServicio;
+    FRMProductos fProducto;
+    FRMPerfiles fPerfiles;
+    FRMCitas fCita;
+    FRMCatalogo_Precios fCatalogo;
+    FRMBloqueos fBloqueos;
+    FRMAgenda FAgenda;
+    
     /**
      * Creates new form MDIApplication
      */
     public MDISalon() {
         initComponents();
         fUsuario = new FRMUsuario();
+        fServicio=new FRMServicios();
+        fProducto=new FRMProductos();
+        fPerfiles=new FRMPerfiles();
+        fCita=new FRMCitas();
+        fCatalogo=new FRMCatalogo_Precios();
+        fBloqueos=new FRMBloqueos();
+        FAgenda=new FRMAgenda();
         
         escritorio.add(fUsuario);
+        escritorio.add(fServicio);
+        escritorio.add(fProducto);
+        escritorio.add(fPerfiles);
+        escritorio.add(fCita);
+        escritorio.add(fCatalogo);
+        escritorio.add(fBloqueos);
+        escritorio.add(FAgenda);
+        
     }
 
     /**
@@ -35,7 +58,13 @@ public class MDISalon extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         MNUAdministrar = new javax.swing.JMenu();
         itemUsuario = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
+        itemServicios = new javax.swing.JMenuItem();
+        itemProductos = new javax.swing.JMenuItem();
+        itemPerfiles = new javax.swing.JMenuItem();
+        itemCitas = new javax.swing.JMenuItem();
+        itemCatalogo = new javax.swing.JMenuItem();
+        itemBloqueos = new javax.swing.JMenuItem();
+        itemAgenda = new javax.swing.JMenuItem();
         itemSalir = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
@@ -65,9 +94,34 @@ public class MDISalon extends javax.swing.JFrame {
         itemUsuario.addActionListener(this::itemUsuarioActionPerformed);
         MNUAdministrar.add(itemUsuario);
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        MNUAdministrar.add(saveMenuItem);
+        itemServicios.setMnemonic('s');
+        itemServicios.setText("Servicios");
+        itemServicios.addActionListener(this::itemServiciosActionPerformed);
+        MNUAdministrar.add(itemServicios);
+
+        itemProductos.setText("Productos");
+        itemProductos.addActionListener(this::itemProductosActionPerformed);
+        MNUAdministrar.add(itemProductos);
+
+        itemPerfiles.setText("Perfiles");
+        itemPerfiles.addActionListener(this::itemPerfilesActionPerformed);
+        MNUAdministrar.add(itemPerfiles);
+
+        itemCitas.setText("Citas");
+        itemCitas.addActionListener(this::itemCitasActionPerformed);
+        MNUAdministrar.add(itemCitas);
+
+        itemCatalogo.setText("Catalogo");
+        itemCatalogo.addActionListener(this::itemCatalogoActionPerformed);
+        MNUAdministrar.add(itemCatalogo);
+
+        itemBloqueos.setText("Bloqueos");
+        itemBloqueos.addActionListener(this::itemBloqueosActionPerformed);
+        MNUAdministrar.add(itemBloqueos);
+
+        itemAgenda.setText("Agenda");
+        itemAgenda.addActionListener(this::itemAgendaActionPerformed);
+        MNUAdministrar.add(itemAgenda);
 
         itemSalir.setMnemonic('x');
         itemSalir.setText("Salir");
@@ -144,6 +198,34 @@ public class MDISalon extends javax.swing.JFrame {
         fUsuario.setVisible(true);
     }//GEN-LAST:event_itemUsuarioActionPerformed
 
+    private void itemBloqueosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBloqueosActionPerformed
+        fBloqueos.setVisible(true);
+    }//GEN-LAST:event_itemBloqueosActionPerformed
+
+    private void itemServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemServiciosActionPerformed
+         fServicio.setVisible(true);
+    }//GEN-LAST:event_itemServiciosActionPerformed
+
+    private void itemProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProductosActionPerformed
+        fProducto.setVisible(true);
+    }//GEN-LAST:event_itemProductosActionPerformed
+
+    private void itemPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPerfilesActionPerformed
+        fPerfiles.setVisible(true);
+    }//GEN-LAST:event_itemPerfilesActionPerformed
+
+    private void itemCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCitasActionPerformed
+         fCita.setVisible(true);
+    }//GEN-LAST:event_itemCitasActionPerformed
+
+    private void itemCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCatalogoActionPerformed
+        fCatalogo.setVisible(true);
+    }//GEN-LAST:event_itemCatalogoActionPerformed
+
+    private void itemAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgendaActionPerformed
+         FAgenda.setVisible(true);
+    }//GEN-LAST:event_itemAgendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,12 +273,18 @@ public class MDISalon extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem itemAgenda;
+    private javax.swing.JMenuItem itemBloqueos;
+    private javax.swing.JMenuItem itemCatalogo;
+    private javax.swing.JMenuItem itemCitas;
+    private javax.swing.JMenuItem itemPerfiles;
+    private javax.swing.JMenuItem itemProductos;
     private javax.swing.JMenuItem itemSalir;
+    private javax.swing.JMenuItem itemServicios;
     private javax.swing.JMenuItem itemUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
