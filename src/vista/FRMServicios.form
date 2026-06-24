@@ -64,7 +64,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnLimpiar" max="32767" attributes="0"/>
+                              <Component id="btnLimpiar" pref="56" max="32767" attributes="0"/>
                               <Component id="btnInsertar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -85,7 +85,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnEliminar" pref="56" max="32767" attributes="0"/>
+                              <Component id="btnEliminar" max="32767" attributes="0"/>
                               <Component id="btnCerrar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -179,6 +179,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fc" green="e2" red="fc" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Escriba nombre"/>
           </Properties>
         </Component>
@@ -191,6 +194,9 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="spnPrecio">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="12" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
@@ -209,6 +215,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="e4" red="ff" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Escriba duracion"/>
           </Properties>
         </Component>
@@ -224,6 +233,9 @@
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fd" green="dd" red="fd" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Escriba categoria"/>
           </Properties>
@@ -255,6 +267,9 @@
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fd" green="d8" red="fd" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Escribe texto a buscar"/>
           </Properties>
