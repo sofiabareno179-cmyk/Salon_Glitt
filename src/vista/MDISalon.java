@@ -31,6 +31,7 @@ public class MDISalon extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         MNUAdministrar = new javax.swing.JMenu();
         itemUsuario = new javax.swing.JMenuItem();
@@ -48,6 +49,10 @@ public class MDISalon extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         escritorio.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Pictures\\Saved Pictures\\Glitt.png")); // NOI18N
+        escritorio.add(jLabel1);
+        jLabel1.setBounds(0, 0, 500, 430);
 
         menuBar.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -111,11 +116,13 @@ public class MDISalon extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,6 +193,7 @@ public class MDISalon extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JMenuItem itemUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
