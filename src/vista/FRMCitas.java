@@ -92,9 +92,11 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel2.setText("Estado");
 
+        spnFechahora.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         spnFechahora.setModel(new javax.swing.SpinnerDateModel());
 
         TXTEstado.setBackground(new java.awt.Color(255, 222, 255));
+        TXTEstado.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTEstado.setText("Escribe estado");
 
         TXTIdCitas.setBackground(new java.awt.Color(255, 227, 227));
@@ -124,9 +126,11 @@ public class FRMCitas extends javax.swing.JInternalFrame {
         jLabel4.setText("Buscar");
 
         TXTServicio.setBackground(new java.awt.Color(255, 228, 255));
+        TXTServicio.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTServicio.setText("Escribe el servicio");
 
         TXTBuscarCitas.setBackground(new java.awt.Color(250, 223, 250));
+        TXTBuscarCitas.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         TXTBuscarCitas.setText("Escribe texto a buscar");
         TXTBuscarCitas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -221,11 +225,11 @@ public class FRMCitas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(TXTEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnInsertar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TXTEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
