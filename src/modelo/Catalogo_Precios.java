@@ -21,7 +21,7 @@ public class Catalogo_Precios {
     private  String descripcion;
     private double precio;
     private String categoria;
-    private LocalDateTime fechaCreacion;
+    private LocalDateTime fecha_creacion;
 
     public int getIdcatalogo() {
         return idcatalogo;
@@ -64,11 +64,11 @@ public class Catalogo_Precios {
     }
 
     public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
+        return fecha_creacion;
     }
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+        this.fecha_creacion = fechaCreacion;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Catalogo_Precios {
             unCatalogo.setDescripcion(rs.getString("descripcion"));
             unCatalogo.setPrecio(rs.getFloat("precio"));
             unCatalogo.setCategoria(rs.getString("categoria"));
-            unCatalogo.setFechaCreacion(rs.getObject("servicio",LocalDateTime.class));
+            unCatalogo.setFechaCreacion(rs.getObject("fecha_creacion",LocalDateTime.class));
             losCatalogo.add(unCatalogo);
         }
     } catch (SQLException ex) {
@@ -143,7 +143,7 @@ public class Catalogo_Precios {
 public void modificar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
-                " SET nombre = ?, descripcion = ?, precio = ? ,categoria = ?,fechacreacion = ? WHERE idcatalogo = ?");
+                " SET nombre = ?, descripcion = ?, precio = ? ,categoria = ?,fecha_creacion = ? WHERE idcatalogo = ?");
        sql.setString(1, this.getNombre());
         sql.setString(2, this.getDescripcion());
         sql.setDouble(3, this.getPrecio());
@@ -171,7 +171,7 @@ public Iterator<Catalogo_Precios> buscar(String busqueda){
     ArrayList<Catalogo_Precios> loscatalogos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE ? OR categoria LIKE ? OR fechacreacion LIKE ?");
+                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE ? OR categoria LIKE ? OR fecha_creacion LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -186,7 +186,7 @@ public Iterator<Catalogo_Precios> buscar(String busqueda){
             unCatalogo.setDescripcion(rs.getString("descripcion"));
             unCatalogo.setPrecio(rs.getFloat("precio"));
             unCatalogo.setCategoria(rs.getString("categoria"));
-            unCatalogo.setFechaCreacion(rs.getObject("servicio",LocalDateTime.class));
+            unCatalogo.setFechaCreacion(rs.getObject("fecha_creacion",LocalDateTime.class));
             loscatalogos.add(unCatalogo);
         }
     } catch (SQLException ex) {
@@ -208,7 +208,7 @@ public Catalogo_Precios buscarPorId(int elId){
             unCatalogo.setDescripcion(rs.getString("descripcion"));
             unCatalogo.setPrecio(rs.getFloat("precio"));
             unCatalogo.setCategoria(rs.getString("categoria"));
-            unCatalogo.setFechaCreacion(rs.getObject("servicio",LocalDateTime.class));
+            unCatalogo.setFechaCreacion(rs.getObject("fecha_creacion",LocalDateTime.class));
         }
     } catch (SQLException ex) {
         System.err.println("Error al buscar por Id " + ex.getMessage());

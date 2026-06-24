@@ -30,7 +30,7 @@ public class FRMProductos extends javax.swing.JInternalFrame {
     TXTIdProductos.setValue(0);
     TXTNombre.setText("Escribe nombre");
     TXTDescripcion.setText("Escribe descripcion");
-    spnPrecio.setValue(new java.util.Date()); 
+    spnPrecio.setValue(0.0); 
     TXTCategoria.setText("Escribe categoria");
     TXTBuscarProductos.setText("Escribe texto a buscar");
     btnModificar.setEnabled(false);
