@@ -95,14 +95,19 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         setTitle("                                      Formulario de Bloqueos");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Fecha");
 
@@ -123,12 +128,21 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         TXTMotivo.setText("Escribe motivo");
 
         TXTBuscarBloqueos.setText("Escribe el texto a buscar");
+        TXTBuscarBloqueos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXTBuscarBloqueosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXTBuscarBloqueosFocusLost(evt);
+            }
+        });
 
         spnFecha_creacion.setModel(new javax.swing.SpinnerDateModel());
 
         spnCreado_por.setModel(new javax.swing.SpinnerNumberModel());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblBloqueos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,6 +161,11 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tblBloqueos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBloqueosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblBloqueos);
@@ -249,6 +268,99 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        BloqueosController.controlarAccion(evt, obtenerBloqueos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        BloqueosController.controlarAccion(evt, obtenerBloqueos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        BloqueosController.controlarAccion(evt, obtenerBloqueos());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void tblBloqueosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBloqueosMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblBloqueos.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                TXTIdBloqueos.setValue((Integer)tblBloqueos.getValueAt(fila, 0));
+                
+                LocalDateTime ldt = (LocalDateTime) tblBloqueos.getValueAt(fila, 1);
+                spnFecha.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                spnHora.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                spnFecha_creacion.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                TXTMotivo.setText((String)tblBloqueos.getValueAt(fila, 4));
+                spnCreado_por.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_tblBloqueosMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(TXTBuscarBloqueos.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TXTBuscarBloqueosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarBloqueosFocusGained
+        // TODO add your handling code here:
+        if (TXTBuscarBloqueos.getText().equals("Escribe el texto a buscar")){
+            TXTBuscarBloqueos.setText("");
+        }
+    }//GEN-LAST:event_TXTBuscarBloqueosFocusGained
+
+    private void TXTBuscarBloqueosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXTBuscarBloqueosFocusLost
+        // TODO add your handling code here:
+        if (TXTBuscarBloqueos.getText().isEmpty()){
+            TXTBuscarBloqueos.setText("Escribe el texto a buscar");
+        }
+    }//GEN-LAST:event_TXTBuscarBloqueosFocusLost
+
+     private Bloqueos obtenerBloqueos(){
+    Bloqueos elBloqueos = new Bloqueos();
+    elBloqueos.setIdbloqueo((Integer) TXTIdBloqueos.getValue());
+    Date date = (Date) spnFecha.getValue();
+    Date date = (Date) spnHora.getValue();
+    Date date = (Date) spnFecha_creacion.getValue();
+    elBloqueos.setMotivo( TXTMotivo.getText());
+    Date date = (Date) spnCreado_por.getValue();
+    return elBloqueos;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Bloqueos unBloqueos = new Bloqueos();
+    DefaultTableModel tabla = (DefaultTableModel)tblBloqueos.getModel();
+    Iterator<Bloqueos> itBloqueos = unBloqueos.buscar(busqueda);
+    Object[] filaBloqueos = new Object[tblBloqueos.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itBloqueos.hasNext()) {
+    unBloqueos = itBloqueos.next();
+    filaBloqueos[0] = unBloqueos.getIdbloqueo();
+    filaBloqueos[1] = unBloqueos.getFecha();
+    filaBloqueos[2] = unBloqueos.getHora_inicio();
+    filaBloqueos[3] = unBloqueos.getFecha_creacion();
+    filaBloqueos[4] = unBloqueos.getMotivo();
+    filaBloqueos[5] = unBloqueos.getCreated_at();
+    ((DefaultTableModel)tblBloqueos.getModel()).addRow(filaBloqueos);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXTBuscarBloqueos;
