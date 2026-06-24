@@ -103,7 +103,7 @@ public class Servicios {
         Servicios unServicio;
         while (rs.next()) {
             unServicio = new Servicios();
-            unServicio.setIdservicio(rs.getInt("idProductos"));
+            unServicio.setIdservicio(rs.getInt("idservicio"));
             unServicio.setNombre(rs.getString("nombre"));
             unServicio.setPrecio(rs.getBigDecimal("precio"));
             unServicio.setDuracion(rs.getString("duracion"));
@@ -112,11 +112,11 @@ public class Servicios {
             losServicios.add(unServicio);
         }
     } catch (SQLException ex) {
-        System.err.println("Error al listar los productos : " + ex.getMessage());
+        System.err.println("Error al listar los servicios : " + ex.getMessage());
     }
     if (losServicios.isEmpty()){
         Servicios misServicios = new Servicios();
-        misServicios.setNombre("No hay disponibilidad para ese serrvicios");
+        misServicios.setNombre("No hay disponibilidad para ese servicios");
         losServicios.add(misServicios);
     }
     return losServicios.iterator();

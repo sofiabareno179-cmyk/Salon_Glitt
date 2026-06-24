@@ -27,9 +27,9 @@ public class FRMCatalogo_Precios extends javax.swing.JInternalFrame {
     TXTIdCatalogo_precios.setValue(0);
     TXTNombre.setText("Escribe nombre");
     TXTDescripcion.setText("Escribe descripcion");
-    spnPrecio.setValue(0);
+    spnPrecio.setValue(0.0);
     TXTCategoria.setText("Escribe categoria");
-    spnFecha_creacion.setValue(0);
+    spnFecha_creacion.setValue(new java.util.Date());
     TXTBuscarCatalogo.setText("Escribe texto a buscar");
     btnModificar.setEnabled(false);
     btnEliminar.setEnabled(false);

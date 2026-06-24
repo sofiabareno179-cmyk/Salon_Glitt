@@ -29,9 +29,9 @@ public class FRMBloqueos extends javax.swing.JInternalFrame {
     }
     private void limpiarFormulario() {
     TXTIdBloqueos.setValue(0);
-    spnFecha.setValue(0);
-    spnHora.setValue(0);
-    spnFecha_creacion.setValue(0);
+    spnFecha.setValue(new java.util.Date());
+    spnHora.setValue(new java.util.Date());
+    spnFecha_creacion.setValue(new java.util.Date());
     TXTMotivo.setText("Escribe motivo");
     spnCreado_por.setValue(0);
     TXTBuscarBloqueos.setText("Escribe el texto a buscar");

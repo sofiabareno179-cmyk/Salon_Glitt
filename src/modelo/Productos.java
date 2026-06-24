@@ -93,7 +93,7 @@ public class Productos {
         Productos unProducto;
         while (rs.next()) {
             unProducto = new Productos();
-            unProducto.setIdproductos(rs.getInt("idProductos"));
+            unProducto.setIdproductos(rs.getInt("idproductos"));
             unProducto.setNombre(rs.getString("nombre"));
             unProducto.setDescripcion(rs.getString("descripcion"));
             unProducto.setPrecio(rs.getBigDecimal("precio"));
@@ -156,7 +156,7 @@ public Iterator<Productos> buscar(String busqueda){
     ArrayList<Productos> losProductos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE 0R categoria LIKE ?");
+                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE OR categoria LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -165,7 +165,7 @@ public Iterator<Productos> buscar(String busqueda){
         Productos unProducto;
         while (rs.next()) {
             unProducto = new Productos();
-            unProducto.setIdproductos(rs.getInt("idProductos"));
+            unProducto.setIdproductos(rs.getInt("idproductos"));
             unProducto.setNombre(rs.getString("nombre"));
             unProducto.setDescripcion(rs.getString("descripcion"));
             unProducto.setPrecio(rs.getBigDecimal("precio"));
@@ -185,7 +185,7 @@ public Productos buscarPorId(int elId){
         sql.setInt(1, elId);
         ResultSet rs = sql.executeQuery();
         while (rs.next()) {
-            unProducto.setIdproductos(rs.getInt("idProductos"));
+            unProducto.setIdproductos(rs.getInt("idproductos"));
             unProducto.setNombre(rs.getString("nombre"));
             unProducto.setDescripcion(rs.getString("descripcion"));
             unProducto.setPrecio(rs.getBigDecimal("precio"));

@@ -17,10 +17,10 @@ public class ConexionBD {
     private ConexionBD() {
         try{
             
-            String driverBD = "com.mysql.cj.jdbc.Driver";
-            String urlBD = "jdbc:mysql://localhost/evaluacion";
-            String usuarioBD = "root";
-            String claveBD = "";
+            String driverBD = "org.postgresql.Driver";
+            String urlBD = "jdbc:postgresql://localhost:500/salonglitt_db";
+            String usuarioBD = "admin";
+            String claveBD = "9027865";
             Class.forName(driverBD);
             conexion = DriverManager.getConnection(urlBD, usuarioBD, claveBD);
         } catch (ClassNotFoundException ex){
