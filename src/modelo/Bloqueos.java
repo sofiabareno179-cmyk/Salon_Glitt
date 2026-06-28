@@ -20,7 +20,9 @@ public class Bloqueos {
   private int idbloqueo;
     private LocalDate fecha;
     private String hora_inicio;
+    private String hora_fin;
     private LocalDateTime Fecha_creacion;
+    private int idusuario;
     private String motivo;
     private LocalDateTime created_at;
     
@@ -104,7 +106,8 @@ public class Bloqueos {
   public Iterator<Bloqueos> listar(){
     ArrayList<Bloqueos> losBloqueos = new ArrayList<>();
     try {
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
+        String query = "INSERT INTO " + this.getClass().getSimpleName() + " (fecha, hora_inicio, fecha_creacion, motivo, created_at) VALUES(?,?,?,?,?)";
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
         ResultSet rs = sql.executeQuery();
         Bloqueos unBloqueo;
         while (rs.next()) {

@@ -19,6 +19,7 @@ public class Inventario {
    private int idinventario;
    private int stock ;
   private LocalDate fecha;
+  private int idproductos;
 
     public int getIdinventario() {
         return idinventario;
@@ -42,6 +43,14 @@ public class Inventario {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public int getIdproductos() {
+        return idproductos;
+    }
+
+    public void setIdproductos(int idproductos) {
+        this.idproductos = idproductos;
     }
 
     @Override

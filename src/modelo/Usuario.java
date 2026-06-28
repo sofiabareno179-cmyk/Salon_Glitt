@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.mindrot.jbcrypt.BCrypt;
 /**
  *
  * @author LENOVO
@@ -16,7 +17,10 @@ public class Usuario {
     private int idUsuario;
     private String nombreuser;
     private String email;
+    private String password_hash;
     private String telefono;
+    private String rol;
+            
     
     public int getIdUsuario() {
         return idUsuario;
@@ -42,12 +46,28 @@ public class Usuario {
         this.email = email;
     }
 
+    public String getPassword_hash() {
+        return password_hash;
+    }
+
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
+    }
+
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @Override
@@ -87,6 +107,7 @@ public class Usuario {
                 unUsuario.setIdUsuario(rs.getInt("idUsuario"));
                 unUsuario.setNombreuser(rs.getString("nombreuser"));
                 unUsuario.setEmail(rs.getString("email"));
+                unUsuario.setPassword_hash(rs.getString("password_hash"));
                 unUsuario.setTelefono( rs.getString("telefono"));
                 losUsuarios.add(unUsuario);
             }
@@ -102,11 +123,16 @@ public class Usuario {
     }    
     public void insertar(){
         try{
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-            + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?)");
+            
+            String nombreTabla = this.getClass().getSimpleName().toLowerCase();
+            String query = "INSERT INTO " + nombreTabla + " (nombreuser, email,password_hash, telefono,rol) VALUES(?, ?, ?,?,'cliente')";
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
             sql.setString(1, this.getNombreuser());
             sql.setString(2, this.getEmail());
-            sql.setString(3, this.getTelefono());
+            String textoPlanoPassword = this.getPassword_hash();
+            String passwordConHash = BCrypt.hashpw(textoPlanoPassword, BCrypt.gensalt());
+            sql.setString(3,passwordConHash);
+            sql.setString(4, this.getTelefono());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
         } catch(SQLException ex){
