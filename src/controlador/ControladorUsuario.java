@@ -15,6 +15,7 @@ public class ControladorUsuario {
         String accion = evento.getActionCommand();
         switch(accion){
             case "Insertar":
+            case "Crear Cuenta":
                 unUsuario.insertar();
             break;
             case "Modificar":
