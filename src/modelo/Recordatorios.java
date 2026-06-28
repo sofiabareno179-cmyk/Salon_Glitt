@@ -18,7 +18,8 @@ public class Recordatorios {
     private String titulo;
     private String mensaje;
     private LocalDate fecha_recordatorio;
-
+    private int idusuario;
+    
     public int getIdrecordatorios() {
         return idrecordatorios;
     }
@@ -49,6 +50,14 @@ public class Recordatorios {
 
     public void setFecha_recordatorio(LocalDate fecha_recordatorio) {
         this.fecha_recordatorio = fecha_recordatorio;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     @Override

@@ -17,6 +17,7 @@ public class Citas {
     private int idcitas;
     private LocalDateTime fechahora;
     private String estado;
+    private int idusuario;
     private String servicio;
 
     public int getIdcitas() {
@@ -41,6 +42,14 @@ public class Citas {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     public String getServicio() {
@@ -88,6 +97,7 @@ public class Citas {
             unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
             unaCita.setEstado(rs.getString("estado"));
             unaCita.setServicio(rs.getString("servicio"));
+            unaCita.setIdusuario(rs.getInt("idusuario"));
             lasCitas.add(unaCita);
         }
     } catch (SQLException ex) {
@@ -95,7 +105,7 @@ public class Citas {
     }
     if (lasCitas.isEmpty()){
         Citas misCitas = new Citas();
-        misCitas.setServicio("No hay disponibilidad para ese servicio");
+        misCitas.setServicio("No hay disponibilidad");
         lasCitas.add(misCitas);
     }
     return lasCitas.iterator();
@@ -103,11 +113,12 @@ public class Citas {
    
     public void insertar(){
     try {
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
+        String query = "INSERT INTO " + this.getClass().getSimpleName() + " (fechahora, estado, idusuario,servicio) VALUES(?,?,?,?)";
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
         sql.setObject(1, this.getFechahora());
         sql.setString(2, this.getEstado());
-        sql.setString(3, this.getServicio());
+        sql.setInt(3, this.getIdusuario());
+        sql.setString(4, this.getServicio());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {
