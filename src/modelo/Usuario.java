@@ -103,7 +103,7 @@ public class Usuario {
     public void insertar(){
         try{
             PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-            + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?)");
+            + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
             sql.setString(1, this.getNombreuser());
             sql.setString(2, this.getEmail());
             sql.setString(3, this.getTelefono());
