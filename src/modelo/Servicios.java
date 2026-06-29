@@ -19,6 +19,7 @@ public class Servicios {
     private BigDecimal precio;
     private String duracion;
     private String categoria;
+    private int idcitas;
     private String imagen;
 
     public int getIdservicio() {
@@ -59,6 +60,14 @@ public class Servicios {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public int getIdcitas() {
+        return idcitas;
+    }
+
+    public void setIdcitas(int idcitas) {
+        this.idcitas = idcitas;
     }
 
     public String getImagen() {
@@ -124,8 +133,9 @@ public class Servicios {
    
     public void insertar(){
     try {
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
+      String query = "INSERT INTO " + this.getClass().getSimpleName()
+              + " (nombre, precio, duracion, categoria, imagen) VALUES (?, ?, ?, ?, ?)";            
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
         sql.setString(1, this.getNombre());
         sql.setObject(2, this.getPrecio());
         sql.setString(3, this.getDuracion());
@@ -147,6 +157,7 @@ public void modificar(){
         sql.setString(3, this.getDuracion());
         sql.setString(4, this.getCategoria());
         sql.setString(5, this.getImagen());
+        sql.setInt(6, this.getIdservicio());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -169,7 +180,7 @@ public Iterator<Servicios> buscar(String busqueda){
     ArrayList<Servicios> losServicios = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE nombre LIKE ? OR precio LIKE ? OR duracion LIKE ? 0R categoria LIKE ? OR imagen LIKE ?");
+                + " WHERE nombre LIKE ? OR precio::text LIKE ? OR duracion LIKE ? OR categoria LIKE ? OR imagen LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");

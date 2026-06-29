@@ -19,6 +19,7 @@ public class Perfiles {
     private String nombre;
     private String apellido;
     private String bio;
+    private int idusuario;
 
     public int getId() {
         return id;
@@ -50,6 +51,14 @@ public class Perfiles {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     @Override

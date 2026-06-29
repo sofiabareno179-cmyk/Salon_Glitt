@@ -15,6 +15,7 @@ public class ControladorPerfiles {
         String accion = evento.getActionCommand();
         switch(accion){
             case "Insertar":
+            case "Crear Cuenta":
                 unPerfil.insertar();
             break;
             case "Modificar":

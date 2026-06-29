@@ -19,6 +19,7 @@ public class Notificacion {
  private int idnotificaciones;   
  private String titulo;
  private String mensaje;
+ private int idusuario;
  private boolean leida;
  private LocalDateTime fechaCreacion;
 
@@ -44,6 +45,14 @@ public class Notificacion {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     public boolean isLeida() {
