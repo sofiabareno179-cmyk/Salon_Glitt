@@ -58,22 +58,23 @@ public class MDISalon extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         MNUAdministrar = new javax.swing.JMenu();
         itemUsuario = new javax.swing.JMenuItem();
-        itemServicios = new javax.swing.JMenuItem();
-        itemProductos = new javax.swing.JMenuItem();
-        itemPerfiles = new javax.swing.JMenuItem();
-        itemCitas = new javax.swing.JMenuItem();
-        itemCatalogo = new javax.swing.JMenuItem();
-        itemBloqueos = new javax.swing.JMenuItem();
-        itemAgenda = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        saveMenuItem = new javax.swing.JMenuItem();
         itemSalir = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        contentMenuItem = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +84,9 @@ public class MDISalon extends javax.swing.JFrame {
         escritorio.add(jLabel1);
         jLabel1.setBounds(0, 0, 500, 430);
 
-        menuBar.setBackground(new java.awt.Color(153, 153, 255));
+        menuBar.setBackground(new java.awt.Color(255, 204, 255));
+        menuBar.setForeground(new java.awt.Color(204, 153, 255));
+        menuBar.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 24)); // NOI18N
 
         MNUAdministrar.setBackground(new java.awt.Color(255, 204, 255));
         MNUAdministrar.setMnemonic('f');
@@ -94,34 +97,30 @@ public class MDISalon extends javax.swing.JFrame {
         itemUsuario.addActionListener(this::itemUsuarioActionPerformed);
         MNUAdministrar.add(itemUsuario);
 
-        itemServicios.setMnemonic('s');
-        itemServicios.setText("Servicios");
-        itemServicios.addActionListener(this::itemServiciosActionPerformed);
-        MNUAdministrar.add(itemServicios);
+        jMenuItem1.setText("Perfiles");
+        MNUAdministrar.add(jMenuItem1);
 
-        itemProductos.setText("Productos");
-        itemProductos.addActionListener(this::itemProductosActionPerformed);
-        MNUAdministrar.add(itemProductos);
+        jMenuItem2.setText("Bloqueos");
+        MNUAdministrar.add(jMenuItem2);
 
-        itemPerfiles.setText("Perfiles");
-        itemPerfiles.addActionListener(this::itemPerfilesActionPerformed);
-        MNUAdministrar.add(itemPerfiles);
+        jMenuItem3.setText("Servicios");
+        MNUAdministrar.add(jMenuItem3);
 
-        itemCitas.setText("Citas");
-        itemCitas.addActionListener(this::itemCitasActionPerformed);
-        MNUAdministrar.add(itemCitas);
+        jMenuItem4.setText("Productos");
+        MNUAdministrar.add(jMenuItem4);
 
-        itemCatalogo.setText("Catalogo");
-        itemCatalogo.addActionListener(this::itemCatalogoActionPerformed);
-        MNUAdministrar.add(itemCatalogo);
+        jMenuItem5.setText("Catalogo");
+        MNUAdministrar.add(jMenuItem5);
 
-        itemBloqueos.setText("Bloqueos");
-        itemBloqueos.addActionListener(this::itemBloqueosActionPerformed);
-        MNUAdministrar.add(itemBloqueos);
+        jMenuItem6.setText("Citas");
+        MNUAdministrar.add(jMenuItem6);
 
-        itemAgenda.setText("Agenda");
-        itemAgenda.addActionListener(this::itemAgendaActionPerformed);
-        MNUAdministrar.add(itemAgenda);
+        jMenuItem7.setText("Agenda");
+        MNUAdministrar.add(jMenuItem7);
+
+        saveMenuItem.setMnemonic('s');
+        saveMenuItem.setText("Save");
+        MNUAdministrar.add(saveMenuItem);
 
         itemSalir.setMnemonic('x');
         itemSalir.setText("Salir");
@@ -129,6 +128,19 @@ public class MDISalon extends javax.swing.JFrame {
         MNUAdministrar.add(itemSalir);
 
         menuBar.add(MNUAdministrar);
+
+        helpMenu.setMnemonic('h');
+        helpMenu.setText("Help");
+
+        contentMenuItem.setMnemonic('c');
+        contentMenuItem.setText("Contents");
+        helpMenu.add(contentMenuItem);
+
+        aboutMenuItem.setMnemonic('a');
+        aboutMenuItem.setText("About");
+        helpMenu.add(aboutMenuItem);
+
+        menuBar.add(helpMenu);
 
         editMenu.setMnemonic('e');
         editMenu.setText("Edit");
@@ -151,19 +163,6 @@ public class MDISalon extends javax.swing.JFrame {
 
         menuBar.add(editMenu);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
-
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,9 +173,9 @@ public class MDISalon extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -273,18 +272,19 @@ public class MDISalon extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem itemAgenda;
-    private javax.swing.JMenuItem itemBloqueos;
-    private javax.swing.JMenuItem itemCatalogo;
-    private javax.swing.JMenuItem itemCitas;
-    private javax.swing.JMenuItem itemPerfiles;
-    private javax.swing.JMenuItem itemProductos;
     private javax.swing.JMenuItem itemSalir;
-    private javax.swing.JMenuItem itemServicios;
     private javax.swing.JMenuItem itemUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
