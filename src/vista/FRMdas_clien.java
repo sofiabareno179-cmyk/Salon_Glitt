@@ -74,6 +74,7 @@ FRMCronograma Fcronograma;
         jLabel2.setText("Gestiona tus citas con la delicadeza que mereces.");
 
         btnmiscitas.setBackground(new java.awt.Color(255, 153, 204));
+        btnmiscitas.setFont(new java.awt.Font("Yu Gothic UI Semilight", 3, 18)); // NOI18N
         btnmiscitas.setText("Mis Citas");
         btnmiscitas.addActionListener(this::btnmiscitasActionPerformed);
 
@@ -84,7 +85,7 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-peluqueria-50.png")); // NOI18N
 
         jLabel5.setText("Peluqueria");
 
@@ -102,7 +103,7 @@ FRMCronograma Fcronograma;
         panelPeluqueriaLayout.setVerticalGroup(
             panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPeluqueriaLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jLabel5)
@@ -116,7 +117,7 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-tratamiento-de-belleza-64.png")); // NOI18N
 
         jLabel8.setText("Tratamiento");
 
@@ -151,7 +152,7 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel10.setText("jLabel10");
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-componentes-con-estilo-48.png")); // NOI18N
 
         jLabel11.setText("Manicure");
 
