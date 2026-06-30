@@ -5,7 +5,9 @@
 package vista;
 import controlador.ControladorAgenda; 
 import java.time.LocalTime;
-import modelo.Agenda;                 
+import java.time.format.DateTimeFormatter;
+import modelo.Agenda;
+import modelo.Usuario;
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
 /**
@@ -14,11 +16,15 @@ import java.util.Iterator;
  */
 public class FRMAgenda extends javax.swing.JInternalFrame {
     ControladorAgenda agendaController = new ControladorAgenda();
-    /**
-     * Creates new form FRMAgenda
-     */
+    private Usuario usuarioActual;
+
     public FRMAgenda() {
+        this(null);
+    }
+
+    public FRMAgenda(Usuario usuario) {
         initComponents();
+        this.usuarioActual = usuario;
         TXTIdAgenda.setValue(0);
         TXTIdAgenda.setVisible(false);
         limpiarFormulario();
@@ -355,10 +361,23 @@ public class FRMAgenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
     private Agenda obtenerAgenda(){
     Agenda elAgenda = new Agenda();
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:m");
     elAgenda.setIdagenda((Integer) TXTIdAgenda.getValue());
-    elAgenda.setDiasemana(  TXTDiasemana.getText());
-    elAgenda.setHorainicio(LocalTime.parse(TXTHorainicio.getText()));
-    elAgenda.setHorafin( LocalTime.parse(TXTHorafin.getText()));
+    String dia = TXTDiasemana.getText().trim();
+    if (!dia.isEmpty() && !dia.equals("Escribe dia de la semana")) {
+        elAgenda.setDiasemana(dia);
+    }
+    String horaI = TXTHorainicio.getText().trim();
+    String horaF = TXTHorafin.getText().trim();
+    if (!horaI.isEmpty() && !horaI.equals("Escribe hora de inicio")) {
+        elAgenda.setHorainicio(LocalTime.parse(horaI, timeFormatter));
+    }
+    if (!horaF.isEmpty() && !horaF.equals("Escribe hora de fin")) {
+        elAgenda.setHorafin(LocalTime.parse(horaF, timeFormatter));
+    }
+    if (usuarioActual != null) {
+        elAgenda.setIdusuario(usuarioActual.getIdUsuario());
+    }
     return elAgenda;
 }
     private void llenarTablaConBusqueda(String busqueda){

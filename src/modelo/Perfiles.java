@@ -114,7 +114,7 @@ public class Perfiles {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
+                + this.getClass().getSimpleName() + " (nombre, apellido, bio) VALUES(?,?,?)");
         sql.setString(1, this.getNombre());
         sql.setString(2, this.getApellido());
         sql.setString(3, this.getBio());
@@ -132,6 +132,7 @@ public void modificar(){
         sql.setString(1, this.getNombre());
         sql.setString(2, this.getApellido());
         sql.setString(3, this.getBio());
+        sql.setInt(4, this.getId());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -193,3 +194,4 @@ public Perfiles buscarPorId(int elId){
 }
 
 }
+

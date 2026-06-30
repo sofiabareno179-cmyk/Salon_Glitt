@@ -45,6 +45,10 @@ public class FRMtratamiento extends javax.swing.JInternalFrame {
 
         jLabel9.setText("jLabel9");
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N

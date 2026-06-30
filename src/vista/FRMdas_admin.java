@@ -4,6 +4,7 @@
  */
 package vista;
 import modelo.ConexionBD;
+import modelo.Usuario;
 /**
  *
  * @author USUARIO
@@ -12,7 +13,7 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
   FRMUsuario fUsuario;
    FRMServicios fServicio;
    FRMProductos fProducto;
-//   FRMProveedores fProveedores;
+   FRMProveedores fProveedores;
    FRMInventario fInventario;
     FRMPerfiles fPerfiles;
     FRMCitas fCita;
@@ -22,20 +23,20 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
     /**
      * Creates new form dasadmin
      */
-    private javax.swing.JFrame loginPrincipal;
-    public FRMdas_admin() {
+    private MDISalon padre;
+    public FRMdas_admin(MDISalon padre, Usuario usuario) {
+        this.padre = padre;
         initComponents(); 
-    this.loginPrincipal = loginPrincipal;
         fUsuario = new FRMUsuario();
         fServicio=new FRMServicios();
         fProducto=new FRMProductos();
-//        fProveedores=new FRMProveedores();
+        fProveedores=new FRMProveedores();
         fInventario=new FRMInventario();
         fPerfiles=new FRMPerfiles();
-        fCita=new FRMCitas();
+        fCita=new FRMCitas(usuario);
         fCatalogo=new FRMCatalogo_Precios();
         fBloqueos=new FRMBloqueos();
-        FAgenda=new FRMAgenda();
+        FAgenda=new FRMAgenda(usuario);
         
         escritorio.add(fUsuario);
         escritorio.add(fServicio);
@@ -45,7 +46,8 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         escritorio.add(fCatalogo);
         escritorio.add(fBloqueos);
         escritorio.add(FAgenda);
-        
+        escritorio.add(fProveedores);
+        escritorio.add(fInventario);
         
     }
 
@@ -87,11 +89,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuInicio = new javax.swing.JMenu();
-        MenuCatalogo = new javax.swing.JMenu();
-        menuBloqueos = new javax.swing.JMenu();
-        menuCerrar = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -386,31 +383,14 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(311, Short.MAX_VALUE))
         );
 
         escritorio.add(jPanel1);
         jPanel1.setBounds(0, 0, 250, 480);
-
-        menuInicio.setText("Inicio");
-        menuInicio.addActionListener(this::menuInicioActionPerformed);
-        jMenuBar1.add(menuInicio);
-
-        MenuCatalogo.setText("Catalogo");
-        MenuCatalogo.addActionListener(this::MenuCatalogoActionPerformed);
-        jMenuBar1.add(MenuCatalogo);
-
-        menuBloqueos.setText("Bloqueos");
-        menuBloqueos.addActionListener(this::menuBloqueosActionPerformed);
-        jMenuBar1.add(menuBloqueos);
-
-        menuCerrar.setText("Cerrar Sesion");
-        jMenuBar1.add(menuCerrar);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -418,12 +398,12 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         pack();
@@ -458,13 +438,13 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_PanelProductosMouseClicked
 
     private void PanelProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelProveedoresMouseClicked
-//          fProveedores.setVisible(true);
-//            fProveedores.toFront();
-//            try { 
-//                fProveedores.setSelected(true); 
-//            } catch (java.beans.PropertyVetoException e) {
-//                System.err.println("Error al enfocar: " + e.getMessage());
-//            }
+          fProveedores.setVisible(true);
+            fProveedores.toFront();
+            try { 
+                fProveedores.setSelected(true); 
+            } catch (java.beans.PropertyVetoException e) {
+                System.err.println("Error al enfocar: " + e.getMessage());
+            }
     }//GEN-LAST:event_PanelProveedoresMouseClicked
 
     private void PanelInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelInventarioMouseClicked
@@ -488,26 +468,10 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_PanelAgendaMouseClicked
 
 private void regresarAlLogin() {
-    ConexionBD.desconectar(); // Cierras base de datos
-    
-    if (this.loginPrincipal != null) {
-        this.loginPrincipal.setVisible(true); // Volvemos a mostrar el Login
-    }
-    
-    this.dispose(); // Cerramos la ventana actual
+    ConexionBD.desconectar();
+    padre.mostrarLogin();
+    this.dispose();
 }
-    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
-    regresarAlLogin();
-    }//GEN-LAST:event_menuInicioActionPerformed
-
-    private void MenuCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCatalogoActionPerformed
-     fCatalogo.setVisible(true);
-    }//GEN-LAST:event_MenuCatalogoActionPerformed
-
-    private void menuBloqueosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBloqueosActionPerformed
-       fBloqueos.setVisible(true);
-    }//GEN-LAST:event_menuBloqueosActionPerformed
-
     private void btnGestionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsuarioActionPerformed
         fUsuario.setVisible(true);
         fUsuario.toFront();
@@ -515,11 +479,11 @@ private void regresarAlLogin() {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
        regresarAlLogin();
+        this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu MenuCatalogo;
     private javax.swing.JPanel PanelAgenda;
     private javax.swing.JPanel PanelCitas;
     private javax.swing.JPanel PanelInventario;
@@ -545,14 +509,10 @@ private void regresarAlLogin() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenu menuBloqueos;
-    private javax.swing.JMenu menuCerrar;
-    private javax.swing.JMenu menuInicio;
     // End of variables declaration//GEN-END:variables
 
 }

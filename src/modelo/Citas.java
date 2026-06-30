@@ -129,11 +129,12 @@ public class Citas {
 public void modificar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
-                " SET fechahora = ?, estado = ?, servicio = ? WHERE idcitas = ?");
+                " SET fechahora = ?, estado = ?, servicio = ?, idusuario = ? WHERE idcitas = ?");
         sql.setObject(1, this.getFechahora());
         sql.setString(2, this.getEstado());
         sql.setString(3, this.getServicio());
-        sql.setInt(4, this.getIdcitas());
+        sql.setInt(4, this.getIdusuario());
+        sql.setInt(5, this.getIdcitas());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -156,7 +157,7 @@ public Iterator<Citas> buscar(String busqueda){
     ArrayList<Citas> lasCitas = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE fechahora LIKE ? OR estado LIKE ? OR servicio LIKE ?");
+                + " WHERE fechahora::text LIKE ? OR estado LIKE ? OR servicio LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -196,3 +197,5 @@ public Citas buscarPorId(int elId){
 
     
 }
+
+

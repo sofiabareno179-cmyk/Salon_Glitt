@@ -43,6 +43,7 @@ public class FRMpeluqueria extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));

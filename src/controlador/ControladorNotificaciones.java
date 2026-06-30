@@ -3,15 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
 import java.awt.event.ActionEvent;
 import modelo.Notificacion;
+
 /**
  *
- * @author LENOVO
+ * @author USUARIO
  */
 public class ControladorNotificaciones {
     
-    public void controlarAccion(ActionEvent evento, Notificacion unaNotificacion){
+        public void controlarAccion(ActionEvent evento, Notificacion unaNotificacion){
         String accion = evento.getActionCommand();
         switch(accion){
             case "Insertar":
