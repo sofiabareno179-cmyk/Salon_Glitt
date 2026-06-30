@@ -27,6 +27,8 @@ public class Login extends javax.swing.JInternalFrame {
         setResizable(false);
         setTitle("Ingresar al Sistema");
         txtPassword.setText("");
+        txtPassword.addActionListener(e -> btnIngresarActionPerformed(null));
+        jLabel1.setText("");
         this.repaint();
     }
     
@@ -76,7 +78,6 @@ public class Login extends javax.swing.JInternalFrame {
         btnIngresar.addActionListener(this::btnIngresarActionPerformed);
 
         txtPassword.setBackground(new java.awt.Color(204, 204, 255));
-        txtPassword.setText("jPasswordField1");
 
         btnCrear.setText("Crear Cuenta");
         btnCrear.addActionListener(this::btnCrearActionPerformed);
@@ -157,6 +158,10 @@ public class Login extends javax.swing.JInternalFrame {
         }
 
         ConexionBD.getInstance();
+        if (ConexionBD.conexion == null) {
+            JOptionPane.showMessageDialog(this, "Error de conexión con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         usuarioAutenticado = Usuario.autenticar(usuario, password);
         
         if (usuarioAutenticado != null) {
@@ -166,7 +171,7 @@ public class Login extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
             txtPassword.setText("");
-            txtUsuario.requestFocus();
+            txtPassword.requestFocus();
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

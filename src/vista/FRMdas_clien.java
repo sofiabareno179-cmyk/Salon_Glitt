@@ -5,6 +5,8 @@
 package vista;
 
 import modelo.ConexionBD;
+import modelo.Usuario;
+import modelo.Usuario;
 
 /**
  *
@@ -19,13 +21,13 @@ FRMCronograma Fcronograma;
      * Creates new form FRMdas_clien
      */
     private MDISalon padre;
-    public FRMdas_clien(MDISalon padre) {
+    public FRMdas_clien(MDISalon padre, Usuario usuario) {
         this.padre = padre;
         initComponents();
         fpeluqueria =new FRMpeluqueria();
         ftratamiento=new FRMtratamiento();
         fmanicure=new FRMmanicure();
-        Fcronograma=new FRMCronograma();
+        Fcronograma=new FRMCronograma(usuario);
           
         
         escritorio.add(fpeluqueria);
@@ -62,7 +64,7 @@ FRMCronograma Fcronograma;
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -196,9 +198,9 @@ FRMCronograma Fcronograma;
         jLabel3.setFont(new java.awt.Font("Segoe Script", 0, 18)); // NOI18N
         jLabel3.setText("Nuestros Servicios");
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 204));
-        jButton1.setText("Cerrar Sesion");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnCerrar.setBackground(new java.awt.Color(255, 204, 204));
+        btnCerrar.setText("Cerrar Sesion");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -207,7 +209,7 @@ FRMCronograma Fcronograma;
         escritorio.setLayer(panelTratamiento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(panelManicure, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -229,7 +231,7 @@ FRMCronograma Fcronograma;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                 .addGap(0, 100, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(escritorioLayout.createSequentialGroup()
@@ -244,7 +246,7 @@ FRMCronograma Fcronograma;
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,10 +311,10 @@ FRMCronograma Fcronograma;
         Fcronograma.setVisible(true);
     }//GEN-LAST:event_btnmiscitasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
        regresarAlLogin();
        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
 private void regresarAlLogin() {
     ConexionBD.desconectar();
     padre.mostrarLogin();
@@ -320,9 +322,9 @@ private void regresarAlLogin() {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnmiscitas;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
