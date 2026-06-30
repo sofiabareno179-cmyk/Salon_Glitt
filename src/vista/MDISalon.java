@@ -69,7 +69,7 @@ flogin.setVisible(true);
             dpanellogin.add(dasAdmin);
             dasAdmin.setVisible(true);
         } else {
-            FRMdas_clien dasClien = new FRMdas_clien(this);
+            FRMdas_clien dasClien = new FRMdas_clien(this, usuario);
             dpanellogin.add(dasClien);
             dasClien.setVisible(true);
         }
