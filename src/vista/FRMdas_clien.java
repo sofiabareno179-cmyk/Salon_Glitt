@@ -77,6 +77,7 @@ FRMCronograma Fcronograma;
         jLabel2.setText("Gestiona tus citas con la delicadeza que mereces.");
 
         btnmiscitas.setBackground(new java.awt.Color(255, 153, 204));
+        btnmiscitas.setFont(new java.awt.Font("Yu Gothic UI Semilight", 3, 18)); // NOI18N
         btnmiscitas.setText("Mis Citas");
         btnmiscitas.addActionListener(this::btnmiscitasActionPerformed);
 
@@ -87,7 +88,7 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-peluqueria-50.png")); // NOI18N
 
         jLabel5.setText("Peluqueria");
 
@@ -101,20 +102,23 @@ FRMCronograma Fcronograma;
                 .addGap(30, 30, 30)
                 .addGroup(panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel5))
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPeluqueriaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         panelPeluqueriaLayout.setVerticalGroup(
             panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPeluqueriaLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel4)
-                .addGap(31, 31, 31)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelTratamiento.setBackground(new java.awt.Color(204, 255, 255));
@@ -124,11 +128,11 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-tratamiento-de-belleza-64.png")); // NOI18N
 
         jLabel8.setText("Tratamiento");
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setText("Cuida tu piel");
 
         javax.swing.GroupLayout panelTratamientoLayout = new javax.swing.GroupLayout(panelTratamiento);
         panelTratamiento.setLayout(panelTratamientoLayout);
@@ -165,7 +169,7 @@ FRMCronograma Fcronograma;
             }
         });
 
-        jLabel10.setText("jLabel10");
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-componentes-con-estilo-48.png")); // NOI18N
 
         jLabel11.setText("Manicure");
 
@@ -230,7 +234,7 @@ FRMCronograma Fcronograma;
                             .addComponent(btnmiscitas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(57, 57, 57)
                         .addComponent(panelManicure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
