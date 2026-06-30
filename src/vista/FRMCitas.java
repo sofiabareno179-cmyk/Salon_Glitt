@@ -4,7 +4,8 @@
  */
 package vista;
 import controlador.ControladorCitas; 
-import modelo.Citas;                 
+import modelo.Citas;
+import modelo.Usuario;
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
 import java.util.Date;
@@ -16,11 +17,15 @@ import java.time.ZoneId;
  */
 public class FRMCitas extends javax.swing.JInternalFrame {
     ControladorCitas citasController = new ControladorCitas();
-    /**
-     * Creates new form Cita
-     */
+    private Usuario usuarioActual;
+
     public FRMCitas() {
+        this(null);
+    }
+
+    public FRMCitas(Usuario usuario) {
         initComponents();
+        this.usuarioActual = usuario;
         TXTIdCitas.setValue(0);
         TXTIdCitas.setVisible(false);
         limpiarFormulario();
@@ -346,6 +351,9 @@ public class FRMCitas extends javax.swing.JInternalFrame {
     laCita.setFechahora(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     laCita.setEstado( TXTEstado.getText());
     laCita.setServicio( TXTServicio.getText());
+    if (usuarioActual != null) {
+        laCita.setIdusuario(usuarioActual.getIdUsuario());
+    }
     return laCita;
 }
     

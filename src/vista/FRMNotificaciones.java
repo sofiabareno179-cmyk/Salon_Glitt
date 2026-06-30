@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-import controlador.ControladorNotificacion; 
+import controlador.ControladorNotificaciones; 
 import modelo.Notificacion;             
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;

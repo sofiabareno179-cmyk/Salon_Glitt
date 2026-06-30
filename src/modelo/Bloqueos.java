@@ -50,6 +50,22 @@ public class Bloqueos {
         this.hora_inicio = hora_inicio;
     }
 
+    public String getHora_fin() {
+        return hora_fin;
+    }
+
+    public void setHora_fin(String hora_fin) {
+        this.hora_fin = hora_fin;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
+
     public LocalDateTime getFecha_creacion() {
         return Fecha_creacion;
     }
@@ -106,8 +122,7 @@ public class Bloqueos {
   public Iterator<Bloqueos> listar(){
     ArrayList<Bloqueos> losBloqueos = new ArrayList<>();
     try {
-        String query = "INSERT INTO " + this.getClass().getSimpleName() + " (fecha, hora_inicio, fecha_creacion, motivo, created_at) VALUES(?,?,?,?,?)";
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName());
         ResultSet rs = sql.executeQuery();
         Bloqueos unBloqueo;
         while (rs.next()) {
@@ -134,12 +149,14 @@ public class Bloqueos {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?,?)");
+                + this.getClass().getSimpleName() + " (fecha, hora_inicio, hora_fin, Fecha_creacion, idusuario, motivo, created_at) VALUES(?,?,?,?,?,?,?)");
         sql.setObject(1, this.getFecha());
         sql.setString(2, this.getHora_inicio());
-        sql.setObject(3, this.getFecha_creacion());
-        sql.setString(4, this.getMotivo());
-        sql.setObject(5, this.getCreated_at());
+        sql.setString(3, this.getHora_fin());
+        sql.setObject(4, this.getFecha_creacion());
+        sql.setInt(5, this.getIdusuario());
+        sql.setString(6, this.getMotivo());
+        sql.setObject(7, this.getCreated_at());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {
@@ -178,7 +195,7 @@ public Iterator<Bloqueos> buscar(String busqueda){
     ArrayList<Bloqueos> losBloqueos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE fecha LIKE ? OR hora_inicio LIKE ? OR fecha_creacion LIKE ? OR motivo LIKE ? OR created_at LIKE ?");
+                + " WHERE fecha::text LIKE ? OR hora_inicio LIKE ? OR fecha_creacion::text LIKE ? OR motivo LIKE ? OR created_at::text LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -226,3 +243,4 @@ public Bloqueos buscarPorId(int elId){
     
     
 }
+

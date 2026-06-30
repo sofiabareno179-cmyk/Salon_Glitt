@@ -126,12 +126,12 @@ public class Proveedores {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?)");
+                + this.getClass().getSimpleName() + " (nombre_empresa, contacto_nombre, telefono, email, direccion) VALUES(?,?,?,?,?)");
         sql.setString(1, this.getNombre_empresa());
         sql.setString(2, this.getContacto_nombre());
         sql.setString(3, this.getTelefono());
         sql.setString(4, this.getEmail());
-        sql.setString(4, this.getDireccion());
+        sql.setString(5, this.getDireccion());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {
@@ -147,7 +147,8 @@ public void modificar(){
         sql.setString(2, this.getContacto_nombre());
         sql.setString(3, this.getTelefono());
         sql.setString(4, this.getEmail());
-        sql.setString(4, this.getDireccion());
+        sql.setString(5, this.getDireccion());
+        sql.setInt(6, this.getIdproveedores());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -197,7 +198,7 @@ public Proveedores buscarPorId(int elId){
     Proveedores unProveedores = new Proveedores();
     unProveedores.setNombre_empresa(" no hay");
     try {
-        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idnotificaciones = ?");
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idproveedores = ?");
         sql.setInt(1, elId);
         ResultSet rs = sql.executeQuery();
         while (rs.next()) {
@@ -216,3 +217,7 @@ public Proveedores buscarPorId(int elId){
 }
  
 }
+
+
+
+

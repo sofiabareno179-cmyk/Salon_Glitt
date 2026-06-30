@@ -18,10 +18,10 @@ FRMCronograma Fcronograma;
     /**
      * Creates new form FRMdas_clien
      */
- private javax.swing.JFrame loginPrincipal;
-    public FRMdas_clien() {
+    private MDISalon padre;
+    public FRMdas_clien(MDISalon padre) {
+        this.padre = padre;
         initComponents();
-         this.loginPrincipal = loginPrincipal;
         fpeluqueria =new FRMpeluqueria();
         ftratamiento=new FRMtratamiento();
         fmanicure=new FRMmanicure();
@@ -62,9 +62,7 @@ FRMCronograma Fcronograma;
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuInicio = new javax.swing.JMenu();
-        menuCerrar = new javax.swing.JMenu();
+        jButton1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -110,9 +108,9 @@ FRMCronograma Fcronograma;
             .addGroup(panelPeluqueriaLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel4)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -155,7 +153,7 @@ FRMCronograma Fcronograma;
                 .addComponent(jLabel8)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         panelManicure.setBackground(new java.awt.Color(153, 255, 204));
@@ -192,11 +190,15 @@ FRMCronograma Fcronograma;
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 0, 18)); // NOI18N
         jLabel3.setText("Nuestros Servicios");
+
+        jButton1.setBackground(new java.awt.Color(255, 204, 204));
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -205,6 +207,7 @@ FRMCronograma Fcronograma;
         escritorio.setLayer(panelTratamiento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(panelManicure, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -220,46 +223,43 @@ FRMCronograma Fcronograma;
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)))
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(354, 354, 354)
+                        .addComponent(btnmiscitas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addGap(0, 100, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
                             .addGroup(escritorioLayout.createSequentialGroup()
                                 .addComponent(panelPeluqueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
+                                .addGap(67, 67, 67)
                                 .addComponent(panelTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnmiscitas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addComponent(panelManicure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                            .addComponent(jLabel3))
+                        .addGap(50, 50, 50)
+                        .addComponent(panelManicure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(btnmiscitas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelManicure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelPeluqueria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34))
+                .addGap(29, 29, 29)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelManicure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPeluqueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
-
-        menuInicio.setText("Inicio");
-        menuInicio.addActionListener(this::menuInicioActionPerformed);
-        jMenuBar1.add(menuInicio);
-
-        menuCerrar.setText("Cerrar Sesion");
-        menuCerrar.addActionListener(this::menuCerrarActionPerformed);
-        jMenuBar1.add(menuCerrar);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,27 +308,21 @@ FRMCronograma Fcronograma;
     private void btnmiscitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmiscitasActionPerformed
         Fcronograma.setVisible(true);
     }//GEN-LAST:event_btnmiscitasActionPerformed
-private void regresarAlLogin() {
-    ConexionBD.desconectar(); // Cierras base de datos
-    
-    if (this.loginPrincipal != null) {
-        this.loginPrincipal.setVisible(true); // Volvemos a mostrar el Login
-    }
-    
-    this.dispose(); // Cerramos la ventana actual
-}
-    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
-      regresarAlLogin();
-    }//GEN-LAST:event_menuInicioActionPerformed
 
-    private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        regresarAlLogin();
-    }//GEN-LAST:event_menuCerrarActionPerformed
-
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+private void regresarAlLogin() {
+    ConexionBD.desconectar();
+    padre.mostrarLogin();
+    this.dispose();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnmiscitas;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -341,10 +335,7 @@ private void regresarAlLogin() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenu menuCerrar;
-    private javax.swing.JMenu menuInicio;
     private javax.swing.JPanel panelManicure;
     private javax.swing.JPanel panelPeluqueria;
     private javax.swing.JPanel panelTratamiento;

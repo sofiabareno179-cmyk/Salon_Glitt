@@ -127,7 +127,7 @@ public class Catalogo_Precios {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?,?)");
+                + this.getClass().getSimpleName() + " (nombre, descripcion, precio, categoria, fecha_creacion) VALUES(?,?,?,?,?)");
         sql.setString(1, this.getNombre());
         sql.setString(2, this.getDescripcion());
         sql.setDouble(3, this.getPrecio());
@@ -171,7 +171,7 @@ public Iterator<Catalogo_Precios> buscar(String busqueda){
     ArrayList<Catalogo_Precios> loscatalogos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE ? OR categoria LIKE ? OR fecha_creacion LIKE ?");
+                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio::text LIKE ? OR categoria LIKE ? OR fecha_creacion::text LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");

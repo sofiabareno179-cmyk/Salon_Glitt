@@ -5,6 +5,7 @@
 package vista;
 import java.beans.PropertyVetoException;
 import modelo.ConexionBD;
+import modelo.Usuario;
 /**
  *
  * @author LENOVO
@@ -18,30 +19,61 @@ public class MDISalon extends javax.swing.JFrame {
     FRMCatalogo_Precios fCatalogo;
     FRMBloqueos fBloqueos;
     FRMAgenda FAgenda;
-    
+    Login flogin;
+
     /**
      * Creates new form MDIApplication
      */
     public MDISalon() {
         initComponents();
-        fUsuario = new FRMUsuario();
-        fServicio=new FRMServicios();
-        fProducto=new FRMProductos();
-        fPerfiles=new FRMPerfiles();
-        fCita=new FRMCitas();
-        fCatalogo=new FRMCatalogo_Precios();
-        fBloqueos=new FRMBloqueos();
-        FAgenda=new FRMAgenda();
-        
-        escritorio.add(fUsuario);
-        escritorio.add(fServicio);
-        escritorio.add(fProducto);
-        escritorio.add(fPerfiles);
-        escritorio.add(fCita);
-        escritorio.add(fCatalogo);
-        escritorio.add(fBloqueos);
-        escritorio.add(FAgenda);
-        
+         flogin = new Login(this);
+
+// 2. Lo agregamos al JDesktopPane de la ventana principal
+dpanellogin.add(flogin);
+
+// 3. Calculamos la posición para que quede exactamente en el centro
+int x = (dpanellogin.getWidth() - flogin.getWidth()) / 2;
+int y = (dpanellogin.getHeight() - flogin.getHeight()) / 2;
+flogin.setLocation(x, y);
+
+// 4. Lo hacemos visible
+flogin.setVisible(true);
+    }
+
+
+    public void abrirCrearCuenta() {
+        FRMCrearcuenta crearCuenta = new FRMCrearcuenta();
+        dpanellogin.add(crearCuenta);
+        int x = (dpanellogin.getWidth() - crearCuenta.getWidth()) / 2;
+        int y = (dpanellogin.getHeight() - crearCuenta.getHeight()) / 2;
+        crearCuenta.setLocation(x, y);
+        crearCuenta.setVisible(true);
+    }
+
+    public void mostrarLogin() {
+        dpanellogin.removeAll();
+        ConexionBD.reconectar();
+        flogin = new Login(this);
+        dpanellogin.add(flogin);
+        int x = (dpanellogin.getWidth() - flogin.getWidth()) / 2;
+        int y = (dpanellogin.getHeight() - flogin.getHeight()) / 2;
+        flogin.setLocation(x, y);
+        flogin.setVisible(true);
+        dpanellogin.repaint();
+    }
+
+    public void mostrarDashboard(Usuario usuario) {
+        dpanellogin.removeAll();
+        if ("admin".equals(usuario.getRol())) {
+            FRMdas_admin dasAdmin = new FRMdas_admin(this, usuario);
+            dpanellogin.add(dasAdmin);
+            dasAdmin.setVisible(true);
+        } else {
+            FRMdas_clien dasClien = new FRMdas_clien(this);
+            dpanellogin.add(dasClien);
+            dasClien.setVisible(true);
+        }
+        dpanellogin.repaint();
     }
 
     /**
@@ -54,7 +86,7 @@ public class MDISalon extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        dpanellogin = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         MNUAdministrar = new javax.swing.JMenu();
         itemUsuario = new javax.swing.JMenuItem();
@@ -80,9 +112,19 @@ public class MDISalon extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Pictures\\Saved Pictures\\Glitt.png")); // NOI18N
-        escritorio.add(jLabel1);
-        jLabel1.setBounds(0, 0, 500, 430);
+        javax.swing.GroupLayout dpanelloginLayout = new javax.swing.GroupLayout(dpanellogin);
+        dpanellogin.setLayout(dpanelloginLayout);
+        dpanelloginLayout.setHorizontalGroup(
+            dpanelloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 840, Short.MAX_VALUE)
+        );
+        dpanelloginLayout.setVerticalGroup(
+            dpanelloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        escritorio.add(dpanellogin);
+        dpanellogin.setBounds(90, 30, 840, 430);
 
         menuBar.setBackground(new java.awt.Color(255, 204, 255));
         menuBar.setForeground(new java.awt.Color(204, 153, 255));
@@ -169,13 +211,16 @@ public class MDISalon extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -256,8 +301,8 @@ public class MDISalon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                modelo.ConexionBD.getInstance();
-                new MDISalon().setVisible(true);
+                MDISalon mdi = new MDISalon();
+                mdi.setVisible(true);
             }
         });
     }
@@ -269,12 +314,12 @@ public class MDISalon extends javax.swing.JFrame {
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JDesktopPane dpanellogin;
     private javax.swing.JMenu editMenu;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JMenuItem itemUsuario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
