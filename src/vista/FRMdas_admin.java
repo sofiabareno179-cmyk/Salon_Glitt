@@ -107,8 +107,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 152349.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\Planner-80_icon-icons.com_57289.png")); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel4.setText("Citas");
 
         javax.swing.GroupLayout PanelCitasLayout = new javax.swing.GroupLayout(PanelCitas);
@@ -116,26 +117,26 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelCitasLayout.setHorizontalGroup(
             PanelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCitasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(27, 27, 27))
         );
         PanelCitasLayout.setVerticalGroup(
             PanelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCitasLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCitasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(PanelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCitasLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
                 .addGap(30, 30, 30))
         );
 
         escritorio.add(PanelCitas);
-        PanelCitas.setBounds(260, 190, 160, 90);
+        PanelCitas.setBounds(270, 160, 190, 110);
 
         PanelServicios.setBackground(new java.awt.Color(153, 255, 204));
         PanelServicios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,8 +145,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 153627.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\hairdressing_electronics_beauty_salon_dry_blow_hairdryer_dryer_hair_icon_262736.png")); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel2.setText("Servicios");
 
         javax.swing.GroupLayout PanelServiciosLayout = new javax.swing.GroupLayout(PanelServicios);
@@ -153,26 +155,26 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelServiciosLayout.setHorizontalGroup(
             PanelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelServiciosLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel2)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         PanelServiciosLayout.setVerticalGroup(
             PanelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelServiciosLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(35, 35, 35)
                 .addGroup(PanelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelServiciosLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel2)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         escritorio.add(PanelServicios);
-        PanelServicios.setBounds(470, 180, 170, 90);
+        PanelServicios.setBounds(510, 160, 200, 110);
 
         PanelProductos.setBackground(new java.awt.Color(255, 153, 255));
         PanelProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -181,8 +183,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 153643.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\277557_perfume-bottle-icon.png")); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel6.setText("Productos");
 
         javax.swing.GroupLayout PanelProductosLayout = new javax.swing.GroupLayout(PanelProductos);
@@ -190,27 +193,26 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelProductosLayout.setHorizontalGroup(
             PanelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelProductosLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addGap(26, 26, 26))
+                .addGap(42, 42, 42))
         );
         PanelProductosLayout.setVerticalGroup(
             PanelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelProductosLayout.createSequentialGroup()
-                .addGroup(PanelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelProductosLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel6))
-                    .addGroup(PanelProductosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProductosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(43, 43, 43))
         );
 
         escritorio.add(PanelProductos);
-        PanelProductos.setBounds(700, 180, 160, 90);
+        PanelProductos.setBounds(770, 160, 190, 110);
 
         PanelProveedores.setBackground(new java.awt.Color(102, 204, 255));
         PanelProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,8 +221,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 154057.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\truck-side-view_icon-icons.com_70347.png")); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel8.setText("Proveedores");
 
         javax.swing.GroupLayout PanelProveedoresLayout = new javax.swing.GroupLayout(PanelProveedores);
@@ -228,26 +231,27 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelProveedoresLayout.setHorizontalGroup(
             PanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelProveedoresLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel8)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         PanelProveedoresLayout.setVerticalGroup(
             PanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelProveedoresLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
                 .addGroup(PanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelProveedoresLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel8)))
-                .addGap(85, 85, 85))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel8))
+                    .addGroup(PanelProveedoresLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(72, 72, 72))
         );
 
         escritorio.add(PanelProveedores);
-        PanelProveedores.setBounds(260, 300, 160, 90);
+        PanelProveedores.setBounds(260, 300, 200, 110);
 
         PanelInventario.setBackground(new java.awt.Color(255, 204, 153));
         PanelInventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,6 +262,7 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 154102.png")); // NOI18N
 
+        jLabel10.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel10.setText("Inventario");
 
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
@@ -265,26 +270,26 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelInventarioLayout.setHorizontalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInventarioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel9)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
         PanelInventarioLayout.setVerticalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInventarioLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInventarioLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(15, 15, 15)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInventarioLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         escritorio.add(PanelInventario);
-        PanelInventario.setBounds(480, 300, 170, 90);
+        PanelInventario.setBounds(510, 300, 200, 110);
 
         PanelAgenda.setBackground(new java.awt.Color(255, 255, 204));
         PanelAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -293,8 +298,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 154107.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\meeting_event_christmas_agenda_calender_schedule_date_calendar_time_icon_258647.png")); // NOI18N
 
+        jLabel12.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel12.setText("Agenda");
 
         javax.swing.GroupLayout PanelAgendaLayout = new javax.swing.GroupLayout(PanelAgenda);
@@ -302,34 +308,34 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         PanelAgendaLayout.setHorizontalGroup(
             PanelAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAgendaLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel12)
-                .addGap(33, 33, 33))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         PanelAgendaLayout.setVerticalGroup(
             PanelAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAgendaLayout.createSequentialGroup()
                 .addGroup(PanelAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelAgendaLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelAgendaLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(46, 46, 46)
                         .addComponent(jLabel12)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         escritorio.add(PanelAgenda);
-        PanelAgenda.setBounds(700, 300, 160, 90);
+        PanelAgenda.setBounds(770, 300, 190, 110);
 
         jLabel13.setFont(new java.awt.Font("SimSun-ExtG", 3, 24)); // NOI18N
         jLabel13.setText("Panel de Control");
         escritorio.add(jLabel13);
-        jLabel13.setBounds(270, 80, 240, 50);
+        jLabel13.setBounds(490, 50, 240, 50);
 
-        jPanel1.setBackground(new java.awt.Color(255, 175, 215));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
 
         jLabel14.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel14.setText("ADMIN SALON");
@@ -342,9 +348,9 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         btnCerrar.setText("Cerrar Sesion");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 170030.png")); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\users_icon-icons.com_57999.png")); // NOI18N
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 170039.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\logout_90894.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -352,23 +358,22 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel16)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGestionUsuario))
-                        .addGap(44, 44, 44))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGestionUsuario))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -114,10 +114,11 @@ public class Perfiles {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " (nombre, apellido, bio) VALUES(?,?,?)");
+                + this.getClass().getSimpleName() + " (nombre, apellido, bio, idusuario) VALUES(?,?,?,?)");
         sql.setString(1, this.getNombre());
         sql.setString(2, this.getApellido());
         sql.setString(3, this.getBio());
+        sql.setInt(4, this.getIdusuario());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {

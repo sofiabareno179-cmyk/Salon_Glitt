@@ -176,6 +176,52 @@ public Iterator<Citas> buscar(String busqueda){
     }
     return lasCitas.iterator();
 }
+public Iterator<Citas> buscarPorUsuario(String busqueda, int idusuario){
+    ArrayList<Citas> lasCitas = new ArrayList<>();
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
+                + " WHERE idusuario = ? AND (fechahora::text LIKE ? OR estado LIKE ? OR servicio LIKE ?)");
+        sql.setInt(1, idusuario);
+        sql.setString(2, "%" + busqueda + "%");
+        sql.setString(3, "%" + busqueda + "%");
+        sql.setString(4, "%" + busqueda + "%");
+        ResultSet rs = sql.executeQuery();
+        Citas unaCita;
+        while (rs.next()) {
+            unaCita = new Citas();
+            unaCita.setIdcitas(rs.getInt("idcitas"));
+            unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
+            unaCita.setEstado(rs.getString("estado"));
+            unaCita.setServicio(rs.getString("servicio"));
+            lasCitas.add(unaCita);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al buscar citas por usuario: " + ex.getMessage());
+    }
+    return lasCitas.iterator();
+}
+public Iterator<Citas> listarPorUsuario(int idusuario){
+    ArrayList<Citas> lasCitas = new ArrayList<>();
+    try {
+        PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName() + " WHERE idusuario = ?");
+        sql.setInt(1, idusuario);
+        ResultSet rs = sql.executeQuery();
+        Citas unaCita;
+        while (rs.next()) {
+            unaCita = new Citas();
+            unaCita.setIdcitas(rs.getInt("idcitas"));
+            unaCita.setFechahora(rs.getObject("fechahora",LocalDateTime.class));
+            unaCita.setEstado(rs.getString("estado"));
+            unaCita.setServicio(rs.getString("servicio"));
+            unaCita.setIdusuario(rs.getInt("idusuario"));
+            lasCitas.add(unaCita);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al listar citas por usuario: " + ex.getMessage());
+    }
+    return lasCitas.iterator();
+}
+
 public Citas buscarPorId(int elId){
     Citas unaCita = new Citas();
     unaCita.setServicio(" no hay disponibilidad para ese servicio");
