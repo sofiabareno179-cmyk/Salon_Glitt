@@ -3,19 +3,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorRecordatorios; 
+import modelo.Recordatorios;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
 public class FRMRecordatorios extends javax.swing.JInternalFrame {
-
+    ControladorRecordatorios recordatoriosController = new ControladorRecordatorios();
     /**
      * Creates new form FRMRecordatorios
      */
     public FRMRecordatorios() {
         initComponents();
+        txtIdRecordatorios.setValue(0);
+        txtIdRecordatorios.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    txtIdRecordatorios.setValue(0);
+    txtTitulo.setText("Escribe titulo");
+    txtMensaje.setText("Escribe mensaje"); 
+    txtFecha.setText("Escriba fecha");
+    txtBuscar.setText("Escribe texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Recordatorios unRecordatorios = new Recordatorios();
+    DefaultTableModel tabla = (DefaultTableModel)tblRecordatorios.getModel();
+    Iterator<Recordatorios> itRecordatorios = unRecordatorios.listar();
+    Object[] filaRecordatorios = new Object[tblRecordatorios.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itRecordatorios.hasNext()) { 
+        unRecordatorios = itRecordatorios.next();
+        filaRecordatorios[0] = unRecordatorios.getIdrecordatorios();
+        filaRecordatorios[1] = unRecordatorios.getTitulo();
+        filaRecordatorios[2] = unRecordatorios.getMensaje();       
+        filaRecordatorios[3] = unRecordatorios.getFecha_recordatorio();
+        tabla.addRow(filaRecordatorios);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +74,7 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblRecordatorios = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 153, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 153, 255)));
@@ -62,18 +93,23 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
 
         btnLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         btnInsertar.setBackground(new java.awt.Color(204, 204, 255));
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setBackground(new java.awt.Color(204, 204, 255));
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setBackground(new java.awt.Color(204, 204, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setBackground(new java.awt.Color(204, 204, 255));
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Titulo");
 
@@ -94,12 +130,21 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
 
         txtBuscar.setBackground(new java.awt.Color(227, 200, 255));
         txtBuscar.setText("Escribe texto a buscar");
+        txtBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscarFocusLost(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(204, 204, 255));
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
-        jTable1.setBackground(new java.awt.Color(228, 203, 252));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRecordatorios.setBackground(new java.awt.Color(228, 203, 252));
+        tblRecordatorios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -125,7 +170,12 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblRecordatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRecordatoriosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblRecordatorios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,6 +263,92 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarFormulario();  
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+         doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        recordatoriosController.controlarAccion(evt, obtenerRecordatorios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        recordatoriosController.controlarAccion(evt, obtenerRecordatorios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        recordatoriosController.controlarAccion(evt, obtenerRecordatorios());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblRecordatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRecordatoriosMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tblRecordatorios.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                txtIdRecordatorios.setValue((Integer)tblRecordatorios.getValueAt(fila, 0));
+                txtTitulo.setText((String)tblRecordatorios.getValueAt(fila, 1));
+                txtMensaje.setText((String)tblRecordatorios.getValueAt(fila, 2));
+                txtFecha.setText((String)tblRecordatorios.getValueAt(fila, 3));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                
+            }
+        }
+    }//GEN-LAST:event_tblRecordatoriosMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        llenarTablaConBusqueda(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarFocusGained
+        // TODO add your handling code here:
+         if (txtBuscar.getText().equals("Escribe texto a buscar")){
+            txtBuscar.setText("");
+        }
+    }//GEN-LAST:event_txtBuscarFocusGained
+
+    private void txtBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarFocusLost
+        // TODO add your handling code here:
+        if (txtBuscar.getText().isEmpty()){
+            txtBuscar.setText("Escribe texto a buscar");
+        }
+    }//GEN-LAST:event_txtBuscarFocusLost
+
+    private Recordatorios obtenerRecordatorios(){
+    Recordatorios elRecordatorios = new Recordatorios();
+    elRecordatorios.setIdrecordatorios((Integer) txtIdRecordatorios.getValue());
+    elRecordatorios.setTitulo( txtTitulo.getText());
+    elRecordatorios.setMensaje( txtMensaje.getText());
+    elRecordatorios.setFecha_recordatorio(  txtFecha.getText());
+    return elRecordatorios;
+}
+    private void llenarTablaConBusqueda(String busqueda){
+    Recordatorios unRecordatorios = new Recordatorios();
+    DefaultTableModel tabla = (DefaultTableModel)tblRecordatorios.getModel();
+    Iterator<Recordatorios> itRecordatorios = unRecordatorios.buscar(busqueda);
+    Object[] filaRecordatorios = new Object[tblRecordatorios.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itRecordatorios.hasNext()) {
+    unRecordatorios = itRecordatorios.next();
+    filaRecordatorios[0] = unRecordatorios.getIdrecordatorios();
+    filaRecordatorios[1] = unRecordatorios.getTitulo();
+    filaRecordatorios[2] = unRecordatorios.getMensaje();
+    filaRecordatorios[3] = unRecordatorios.getFecha_recordatorio();
+    ((DefaultTableModel)tblRecordatorios.getModel()).addRow(filaRecordatorios);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -227,7 +363,7 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblRecordatorios;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JFormattedTextField txtIdRecordatorios;
