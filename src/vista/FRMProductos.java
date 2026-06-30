@@ -4,12 +4,10 @@
  */
 package vista;
 import controlador.ControladorProductos; 
+import java.math.BigDecimal;
 import modelo.Productos;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
-import java.util.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 /**
  *
  * @author LENOVO
@@ -333,10 +331,10 @@ public void llenarTabla(){
             int fila = tblProductos.rowAtPoint(evt.getPoint());
             if(fila>-1){
                 TXTIdProductos.setValue((Integer)tblProductos.getValueAt(fila, 0));
-                TXTDescripcion.setText((String)tblProductos.getValueAt(fila, 1));
-                LocalDateTime ldt = (LocalDateTime) tblProductos.getValueAt(fila, 2);
-                spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant())); 
-                TXTCategoria.setText((String)tblProductos.getValueAt(fila, 3));
+                TXTNombre.setText((String)tblProductos.getValueAt(fila, 1));
+                TXTDescripcion.setText((String)tblProductos.getValueAt(fila, 2));
+                spnPrecio.setValue(tblProductos.getValueAt(fila, 3));
+                TXTCategoria.setText((String)tblProductos.getValueAt(fila, 4));
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
             }
@@ -367,7 +365,7 @@ public void llenarTabla(){
     elProducto.setIdproductos((Integer) TXTIdProductos.getValue());
     elProducto.setNombre( TXTNombre.getText());
     elProducto.setDescripcion( TXTDescripcion.getText());
-    Date date = (Date) spnPrecio.getValue();
+    elProducto.setPrecio(new BigDecimal(spnPrecio.getValue().toString()));
     elProducto.setCategoria( TXTCategoria.getText());
     return elProducto;
 }
@@ -411,3 +409,5 @@ public void llenarTabla(){
     private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }
+
+

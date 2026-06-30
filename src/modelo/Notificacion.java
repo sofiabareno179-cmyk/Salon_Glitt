@@ -108,6 +108,7 @@ public class Notificacion {
             unaNotificacion.setTitulo(rs.getString("titulo"));
             unaNotificacion.setMensaje(rs.getString("mensaje"));
             unaNotificacion.setLeida(rs.getBoolean("leida"));
+            unaNotificacion.setIdusuario(rs.getInt("idusuario"));
             unaNotificacion.setFechaCreacion(rs.getObject("fechaCreacion", LocalDateTime.class));
             lasNotificaciones.add(unaNotificacion);
         }
@@ -125,11 +126,12 @@ public class Notificacion {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?)");
+                + this.getClass().getSimpleName() + " (titulo, mensaje, idusuario, leida, fechaCreacion) VALUES(?,?,?,?,?)");
         sql.setString(1, this.getTitulo());
         sql.setString(2, this.getMensaje());
-        sql.setBoolean(3, this.isLeida());
-        sql.setObject(4, this.getFechaCreacion());
+        sql.setInt(3, this.getIdusuario());
+        sql.setBoolean(4, this.isLeida());
+        sql.setObject(5, this.getFechaCreacion());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {
@@ -168,7 +170,7 @@ public Iterator<Notificacion> buscar(String busqueda){
     ArrayList<Notificacion> lasNotificaciones = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE titulo LIKE ? OR mensaje LIKE ? OR leida LIKE ? OR fechaCreacion LIKE ?");
+                + " WHERE titulo LIKE ? OR mensaje LIKE ? OR leida::text LIKE ? OR fechaCreacion::text LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -181,6 +183,7 @@ public Iterator<Notificacion> buscar(String busqueda){
             unaNotificacion.setTitulo(rs.getString("titulo"));
             unaNotificacion.setMensaje(rs.getString("mensaje"));
             unaNotificacion.setLeida(rs.getBoolean("leida"));
+            unaNotificacion.setIdusuario(rs.getInt("idusuario"));
             unaNotificacion.setFechaCreacion(rs.getObject("fechaCreacion", LocalDateTime.class));
             lasNotificaciones.add(unaNotificacion);
         }
@@ -201,6 +204,7 @@ public Notificacion buscarPorId(int elId){
             unaNotificacion.setTitulo(rs.getString("titulo"));
             unaNotificacion.setMensaje(rs.getString("mensaje"));
             unaNotificacion.setLeida(rs.getBoolean("leida"));
+            unaNotificacion.setIdusuario(rs.getInt("idusuario"));
             unaNotificacion.setFechaCreacion(rs.getObject("fechaCreacion", LocalDateTime.class));
         }
     } catch (SQLException ex) {
@@ -210,3 +214,4 @@ public Notificacion buscarPorId(int elId){
 }
  
 }
+

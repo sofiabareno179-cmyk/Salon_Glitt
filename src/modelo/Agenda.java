@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,6 +17,8 @@ import java.util.Iterator;
  * @author USUARIO
  */
 public class Agenda {
+    private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("H:m[:ss]");
+    private static final DateTimeFormatter TIME_OUT = DateTimeFormatter.ofPattern("H:mm");
     private int idagenda ;
     private String diasemana;
     private LocalTime horainicio;
@@ -97,8 +100,10 @@ public class Agenda {
             unaAgenda = new Agenda();
             unaAgenda.setIdagenda(rs.getInt("idagenda"));
             unaAgenda.setDiasemana(rs.getString("diasemana"));
-            unaAgenda.setHorainicio(rs.getObject("horainicio", LocalTime.class));
-            unaAgenda.setHorafin(rs.getObject("horafin", LocalTime.class));
+            String hi = rs.getString("horainicio");
+            if (hi != null) unaAgenda.setHorainicio(LocalTime.parse(hi, TIME_FMT));
+            String hf = rs.getString("horafin");
+            if (hf != null) unaAgenda.setHorafin(LocalTime.parse(hf, TIME_FMT));
             unaAgenda.setIdusuario(rs.getInt("idusuario"));
             laAgenda.add(unaAgenda);
         }
@@ -118,8 +123,8 @@ public class Agenda {
        String query = "INSERT INTO " + this.getClass().getSimpleName() + " (diasemana, horainicio, horafin, idusuario) VALUES(?,?,?,?)";
             PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
         sql.setString(1, this.getDiasemana());
-        sql.setObject(2, this.getHorainicio());
-        sql.setObject(3, this.getHorafin());
+        sql.setString(2, this.getHorainicio() != null ? this.getHorainicio().format(TIME_OUT) : null);
+        sql.setString(3, this.getHorafin() != null ? this.getHorafin().format(TIME_OUT) : null);
         sql.setInt(4, this.getIdusuario());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
@@ -131,11 +136,12 @@ public class Agenda {
 public void modificar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
-                " SET diasemana = ?, horainicio = ?, horafin = ? WHERE idagenda = ?");
+                " SET diasemana = ?, horainicio = ?, horafin = ?, idusuario = ? WHERE idagenda = ?");
         sql.setString(1, this.getDiasemana()); 
-        sql.setObject(2, this.getHorainicio());
-        sql.setObject(3, this.getHorafin());
-        sql.setInt(4, this.getIdagenda());
+        sql.setString(2, this.getHorainicio() != null ? this.getHorainicio().format(TIME_OUT) : null);
+        sql.setString(3, this.getHorafin() != null ? this.getHorafin().format(TIME_OUT) : null);
+        sql.setInt(4, this.getIdusuario());
+        sql.setInt(5, this.getIdagenda());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -158,7 +164,7 @@ public Iterator<Agenda> buscar(String busqueda){
     ArrayList<Agenda> laAgenda = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE diasemana LIKE ? OR horainicio LIKE ? OR horafin LIKE ?");
+                + " WHERE diasemana LIKE ? OR horainicio::text LIKE ? OR horafin::text LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -168,8 +174,10 @@ public Iterator<Agenda> buscar(String busqueda){
             unaAgenda = new Agenda();
             unaAgenda.setIdagenda(rs.getInt("idagenda"));
             unaAgenda.setDiasemana(rs.getString("diasemana"));
-            unaAgenda.setHorainicio(rs.getObject("horainicio", LocalTime.class));
-            unaAgenda.setHorafin(rs.getObject("horafin", LocalTime.class));
+            String hi = rs.getString("horainicio");
+            if (hi != null) unaAgenda.setHorainicio(LocalTime.parse(hi, TIME_FMT));
+            String hf = rs.getString("horafin");
+            if (hf != null) unaAgenda.setHorafin(LocalTime.parse(hf, TIME_FMT));
             laAgenda.add(unaAgenda);
         }
     } catch (SQLException ex) {
@@ -187,8 +195,10 @@ public Agenda buscarPorId(int elId){
         while (rs.next()) {
             unaAgenda.setIdagenda(rs.getInt("idagenda"));
             unaAgenda.setDiasemana(rs.getString("diasemana"));
-            unaAgenda.setHorainicio(rs.getObject("horainicio", LocalTime.class));
-            unaAgenda.setHorafin(rs.getObject("horafin", LocalTime.class));
+            String hi = rs.getString("horainicio");
+            if (hi != null) unaAgenda.setHorainicio(LocalTime.parse(hi, TIME_FMT));
+            String hf = rs.getString("horafin");
+            if (hf != null) unaAgenda.setHorafin(LocalTime.parse(hf, TIME_FMT));
             unaAgenda.setIdusuario(rs.getInt("idusuario"));
         }
     } catch (SQLException ex) {

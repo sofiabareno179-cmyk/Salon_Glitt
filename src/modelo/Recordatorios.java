@@ -113,10 +113,11 @@ public class Recordatorios {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?)");
+                + this.getClass().getSimpleName() + " (titulo, mensaje, fecha_recordatorio, idusuario) VALUES(?,?,?,?)");
         sql.setString(1, this.getTitulo());
         sql.setString(2, this.getMensaje());
         sql.setObject(3, this.getFecha_recordatorio());
+        sql.setInt(4, this.getIdusuario());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
     } catch (SQLException ex) {
@@ -127,10 +128,11 @@ public class Recordatorios {
 public void modificar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + 
-                " SET titulo = ?, mensaje  = ?, fecha_recordatorio = ?  WHERE idrecordatorios = ?");
+                " SET titulo = ?, mensaje = ?, fecha_recordatorio = ? WHERE idrecordatorios = ?");
         sql.setString(1, this.getTitulo());
         sql.setString(2, this.getMensaje());
         sql.setObject(3, this.getFecha_recordatorio());
+        sql.setInt(4, this.getIdrecordatorios());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -153,7 +155,7 @@ public Iterator<Recordatorios> buscar(String busqueda){
     ArrayList<Recordatorios> elRecordatorio = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE titulo LIKE ? OR mensaje LIKE ? OR bio fecha_recordatorio ?");
+                + " WHERE titulo LIKE ? OR mensaje LIKE ? OR fecha_recordatorio::text LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -193,3 +195,8 @@ public Recordatorios buscarPorId(int elId){
 }
 
 }
+
+
+
+
+

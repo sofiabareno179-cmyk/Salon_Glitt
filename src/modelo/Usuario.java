@@ -205,5 +205,34 @@ public class Usuario {
         }
         return unUsuario;
     }
- 
+
+    public static Usuario autenticar(String identificador, String password) {
+        try {
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement(
+                "SELECT * FROM Usuario WHERE email = ? OR nombreuser = ?");
+            sql.setString(1, identificador);
+            sql.setString(2, identificador);
+            ResultSet rs = sql.executeQuery();
+            if (rs.next()) {
+                String hash = rs.getString("password_hash");
+                if (hash == null || !hash.matches("^\\$2[aby]\\$\\d{2}\\$[A-Za-z0-9./]{53}$")) {
+                    System.err.println("Hash inválido en BD para usuario: " + identificador);
+                    return null;
+                }
+                if (BCrypt.checkpw(password, hash)) {
+                    Usuario u = new Usuario();
+                    u.setIdUsuario(rs.getInt("idUsuario"));
+                    u.setNombreuser(rs.getString("nombreuser"));
+                    u.setEmail(rs.getString("email"));
+                    u.setTelefono(rs.getString("telefono"));
+                    u.setPassword_hash(hash);
+                    u.setRol(rs.getString("rol"));
+                    return u;
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error en autenticación: " + ex.getMessage());
+        }
+        return null;
+    }
 }
