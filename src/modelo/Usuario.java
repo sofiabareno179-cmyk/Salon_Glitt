@@ -121,11 +121,10 @@ public class Usuario {
         }
         return losUsuarios.iterator();
     }    
-    public void insertar(){
+    public int insertar(){
         try{
-            
             String nombreTabla = this.getClass().getSimpleName().toLowerCase();
-            String query = "INSERT INTO " + nombreTabla + " (nombreuser, email,password_hash, telefono,rol) VALUES(?, ?, ?,?,'cliente')";
+            String query = "INSERT INTO " + nombreTabla + " (nombreuser, email,password_hash, telefono,rol) VALUES(?, ?, ?,?,'cliente') RETURNING idUsuario";
             PreparedStatement sql = ConexionBD.conexion.prepareStatement(query);
             sql.setString(1, this.getNombreuser());
             sql.setString(2, this.getEmail());
@@ -133,11 +132,16 @@ public class Usuario {
             String passwordConHash = BCrypt.hashpw(textoPlanoPassword, BCrypt.gensalt());
             sql.setString(3,passwordConHash);
             sql.setString(4, this.getTelefono());
-            sql.executeUpdate();
-            System.out.println(this.getClass().getSimpleName() + " insertado correctamente");
+            ResultSet rs = sql.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                System.out.println(this.getClass().getSimpleName() + " insertado correctamente con id=" + id);
+                return id;
+            }
         } catch(SQLException ex){
             System.err.println("Error al insertar " + this.getClass().getSimpleName() + ":" + ex.getMessage());
         }
+        return -1;
     }
        public void modificar(){
         try{
