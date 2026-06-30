@@ -3,19 +3,55 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package vista;
-
+import controlador.ControladorProveedores; 
+import modelo.Proveedores;                 
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 /**
  *
  * @author LENOVO
  */
 public class FRMProveedores extends javax.swing.JInternalFrame {
+    ControladorProveedores proveedoresController = new ControladorProveedores();
 
     /**
      * Creates new form FRMProveedores
      */
     public FRMProveedores() {
         initComponents();
+        txtIdProveedores.setValue(0);
+        txtIdProveedores.setVisible(false);
+        limpiarFormulario();
     }
+    private void limpiarFormulario() {
+    txtIdProveedores.setValue(0);
+    txtNombreEmpresa.setText("Escribe el nombre de la empresa");
+    txtContactoNombre.setText("Escribe nombre del contacto");
+    txtTelefono.setText("Escribe telefono");
+    txtEmail.setText("Escribe email");
+    txtDireccion.setText("Escribe la direccion");
+    txtBuscar.setText("Escribe texto a buscar");
+    btnModificar.setEnabled(false);
+    btnEliminar.setEnabled(false);
+    llenarTabla();
+}
+    public void llenarTabla(){
+    Proveedores unProveedor = new Proveedores();
+    DefaultTableModel tabla = (DefaultTableModel)tblProveedores.getModel();
+    Iterator<Proveedores> itProveedores = unProveedor.listar();
+    Object[] filaProveedores = new Object[tblProveedores.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itProveedores.hasNext()) { 
+        unProveedor = itProveedores.next();
+        filaProveedores[0] = unProveedor.getIdproveedores();
+        filaProveedores[1] = unProveedor.getNombre_empresa();
+        filaProveedores[2] = unProveedor.getContacto_nombre();       
+        filaProveedores[3] = unProveedor.getTelefono();
+        filaProveedores[4] = unProveedor.getEmail();
+        filaProveedores[5] = unProveedor.getDireccion();
+        tabla.addRow(filaProveedores);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,18 +97,23 @@ public class FRMProveedores extends javax.swing.JInternalFrame {
 
         btnLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         btnInsertar.setBackground(new java.awt.Color(204, 204, 255));
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(this::btnInsertarActionPerformed);
 
         btnModificar.setBackground(new java.awt.Color(204, 204, 255));
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setBackground(new java.awt.Color(204, 204, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnCerrar.setBackground(new java.awt.Color(204, 204, 255));
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         jLabel1.setText("Nombre_empresa");
 
@@ -89,7 +130,6 @@ public class FRMProveedores extends javax.swing.JInternalFrame {
 
         txtContactoNombre.setBackground(new java.awt.Color(255, 204, 255));
         txtContactoNombre.setText("Escribe nombre del contacto");
-        txtContactoNombre.addActionListener(this::txtContactoNombreActionPerformed);
 
         txtTelefono.setBackground(new java.awt.Color(255, 204, 255));
         txtTelefono.setText("Escribe telefono");
@@ -107,6 +147,7 @@ public class FRMProveedores extends javax.swing.JInternalFrame {
 
         btnBuscar.setBackground(new java.awt.Color(204, 204, 255));
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         tblProveedores.setBackground(new java.awt.Color(249, 218, 249));
         tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
@@ -123,9 +164,19 @@ public class FRMProveedores extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProveedoresMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblProveedores);
@@ -231,10 +282,77 @@ public class FRMProveedores extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContactoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactoNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContactoNombreActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        doDefaultCloseAction();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        proveedoresController.controlarAccion(evt, obtenerProveedor());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        proveedoresController.controlarAccion(evt, obtenerProveedor());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        proveedoresController.controlarAccion(evt, obtenerProveedor());
+        limpiarFormulario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProveedoresMouseClicked
+        if(evt.getClickCount()==2){
+            int fila = tblProveedores.rowAtPoint(evt.getPoint());
+            if(fila>-1){
+                txtIdProveedores.setValue((Integer)tblProveedores.getValueAt(fila, 0));
+                txtNombreEmpresa.setText((String)tblProveedores.getValueAt(fila, 1));
+                txtContactoNombre.setText((String)tblProveedores.getValueAt(fila, 2));
+                txtTelefono.setText((String)tblProveedores.getValueAt(fila, 3));
+                txtEmail.setText((String)tblProveedores.getValueAt(fila, 4));
+                txtDireccion.setText((String)tblProveedores.getValueAt(fila, 5));
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_tblProveedoresMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         llenarTablaConBusqueda(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private Proveedores obtenerProveedor(){
+    Proveedores elProveedor = new Proveedores();
+    elProveedor.setIdproveedores((Integer) txtIdProveedores.getValue());
+    elProveedor.setNombre_empresa( txtNombreEmpresa.getText());
+    elProveedor.setContacto_nombre( txtContactoNombre.getText());
+    elProveedor.setTelefono( txtTelefono.getText());
+    elProveedor.setEmail( txtEmail.getText());
+    elProveedor.setDireccion( txtDireccion.getText());
+    return elProveedor;
+}
+    
+    private void llenarTablaConBusqueda(String busqueda){
+    Proveedores unProveedor = new Proveedores();
+    DefaultTableModel tabla = (DefaultTableModel)tblProveedores.getModel();
+    Iterator<Proveedores> itProveedores = unProveedor.buscar(busqueda);
+    Object[] filaProveedores = new Object[tblProveedores.getColumnCount()];
+    tabla.setRowCount(0); 
+    while (itProveedores.hasNext()) {
+    unProveedor = itProveedores.next();
+    filaProveedores[0] = unProveedor.getIdproveedores();
+    filaProveedores[1] = unProveedor.getNombre_empresa();
+    filaProveedores[2] = unProveedor.getContacto_nombre();
+    filaProveedores[3] = unProveedor.getTelefono();
+    filaProveedores[4] = unProveedor.getEmail();
+    filaProveedores[5] = unProveedor.getDireccion();
+    ((DefaultTableModel)tblProveedores.getModel()).addRow(filaProveedores);
+}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

@@ -105,7 +105,7 @@ public class Inventario {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?)");
+                + this.getClass().getSimpleName() + " (stock, fecha) VALUES(?,?)");
         sql.setInt(1, this.getStock());
         sql.setObject(2, this.getFecha());
         sql.executeUpdate();
@@ -143,7 +143,7 @@ public Iterator<Inventario> buscar(String busqueda){
     ArrayList<Inventario> elInventario = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE stock LIKE ? OR fecha LIKE ? ");
+                + " WHERE stock::text LIKE ? OR fecha::text LIKE ? ");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         ResultSet rs = sql.executeQuery();

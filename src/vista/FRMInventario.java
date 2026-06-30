@@ -85,7 +85,7 @@ public class FRMInventario extends javax.swing.JInternalFrame {
         jLabel1.setText("Stock");
 
         spnStock.setFont(new java.awt.Font("Sylfaen", 2, 12)); // NOI18N
-        spnStock.setModel(new javax.swing.SpinnerDateModel());
+        spnStock.setModel(new javax.swing.SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
         lblfecha.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         lblfecha.setText("Fecha");
@@ -369,3 +369,4 @@ public class FRMInventario extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblInventario;
     // End of variables declaration//GEN-END:variables
 }
+

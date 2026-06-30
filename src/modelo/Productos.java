@@ -114,7 +114,7 @@ public class Productos {
     public void insertar(){
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO "
-                + this.getClass().getSimpleName() + " VALUES(NULL,?,?,?,?)");
+                + this.getClass().getSimpleName() + " (nombre, descripcion, precio, categoria) VALUES(?,?,?,?)");
         sql.setString(1, this.getNombre());
         sql.setString(2, this.getDescripcion());
         sql.setObject(3, this.getPrecio());
@@ -134,6 +134,7 @@ public void modificar(){
         sql.setString(2, this.getDescripcion());
         sql.setObject(3, this.getPrecio());
         sql.setString(4, this.getCategoria());
+        sql.setInt(5, this.getIdproductos());
         sql.executeUpdate();
         System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
     } catch (SQLException ex) {
@@ -156,7 +157,7 @@ public Iterator<Productos> buscar(String busqueda){
     ArrayList<Productos> losProductos = new ArrayList<>();
     try {
         PreparedStatement sql = ConexionBD.conexion.prepareStatement("SELECT * FROM " + this.getClass().getSimpleName()
-                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE OR categoria LIKE ?");
+                + " WHERE nombre LIKE ? OR descripcion LIKE ? OR precio::text LIKE ? OR categoria LIKE ?");
         sql.setString(1, "%" + busqueda + "%");
         sql.setString(2, "%" + busqueda + "%");
         sql.setString(3, "%" + busqueda + "%");
@@ -199,3 +200,4 @@ public Productos buscarPorId(int elId){
 
     
 }
+

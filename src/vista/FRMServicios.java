@@ -4,6 +4,7 @@
  */
 package vista;
 import controlador.ControladorServicios; 
+import java.math.BigDecimal;
 import modelo.Servicios;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
@@ -350,8 +351,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
         if (fila > -1) {
             TXTIdServicios.setValue((Integer) tblServicios.getValueAt(fila, 0));
             TXTNombre.setText((String) tblServicios.getValueAt(fila, 1));
-            LocalDateTime ldt = (LocalDateTime) tblServicios.getValueAt(fila, 2);
-            spnPrecio.setValue(Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()));
+            spnPrecio.setValue(tblServicios.getValueAt(fila, 2));
             TXTDuracion.setText((String) tblServicios.getValueAt(fila, 3));
             TXTCategoria.setText((String) tblServicios.getValueAt(fila, 4));
             TXTImagen.setText((String) tblServicios.getValueAt(fila, 5));
@@ -384,7 +384,7 @@ public class FRMServicios extends javax.swing.JInternalFrame {
     Servicios elServicio = new Servicios();
     elServicio.setIdservicio((Integer) TXTIdServicios.getValue());
     elServicio.setNombre( TXTNombre.getText());
-    Date date = (Date) spnPrecio.getValue();
+    elServicio.setPrecio(BigDecimal.valueOf(((Number) spnPrecio.getValue()).doubleValue()));
     elServicio.setDuracion( TXTDuracion.getText());
     elServicio.setCategoria( TXTCategoria.getText());
     elServicio.setImagen( TXTImagen.getText());
