@@ -20,16 +20,17 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lbimagen" min="-2" pref="490" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbimagen" min="-2" pref="364" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="lbimagen" alignment="0" max="32767" attributes="0"/>
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" max="32767" attributes="0"/>
+          <Component id="lbimagen" pref="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -98,15 +99,23 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbnombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbapellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbnombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbapellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="70" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -171,37 +180,65 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="e1" red="e1" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="EJ. Maria"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellido">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fd" green="e3" red="e3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="EJ. Gracia"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreUsuario">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="e4" red="e4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="EJ . Mariagraci"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="e4" red="e4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="correo@gmail.com"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefono">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="e1" red="e1" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="3333333333"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtPassword">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fc" green="dc" red="dc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCrear">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fd" green="b8" red="b8" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Crear Cuenta"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                <MatteColorBorder>
+                  <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
+                </MatteColorBorder>
+              </Border>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>
@@ -209,16 +246,36 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCerrar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fc" green="9d" red="9d" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cerrar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                <MatteColorBorder>
+                  <Color PropertyName="color" blue="ff" green="0" red="33" type="rgb"/>
+                </MatteColorBorder>
+              </Border>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\LENOVO\Downloads\icons8-usuario-predeterminado-64.png"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="lbimagen">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\LENOVO\Pictures\Saved Pictures\imagen Formulario Glitt.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
