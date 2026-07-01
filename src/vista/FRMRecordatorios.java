@@ -7,6 +7,8 @@ import controlador.ControladorRecordatorios;
 import modelo.Recordatorios;                 
 import javax.swing.table.DefaultTableModel;
 import java.util.Iterator;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author LENOVO
@@ -299,7 +301,12 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
                 txtIdRecordatorios.setValue((Integer)tblRecordatorios.getValueAt(fila, 0));
                 txtTitulo.setText((String)tblRecordatorios.getValueAt(fila, 1));
                 txtMensaje.setText((String)tblRecordatorios.getValueAt(fila, 2));
-                txtFecha.setText((String)tblRecordatorios.getValueAt(fila, 3));
+                Object fechaObj = tblRecordatorios.getValueAt(fila, 3);
+                if (fechaObj instanceof LocalDate) {
+                    txtFecha.setText(((LocalDate) fechaObj).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                } else if (fechaObj != null) {
+                    txtFecha.setText(fechaObj.toString());
+                }
                 btnModificar.setEnabled(true);
                 btnEliminar.setEnabled(true);
                 
@@ -329,9 +336,12 @@ public class FRMRecordatorios extends javax.swing.JInternalFrame {
     private Recordatorios obtenerRecordatorios(){
     Recordatorios elRecordatorios = new Recordatorios();
     elRecordatorios.setIdrecordatorios((Integer) txtIdRecordatorios.getValue());
-    elRecordatorios.setTitulo( txtTitulo.getText());
-    elRecordatorios.setMensaje( txtMensaje.getText());
-    elRecordatorios.setFecha_recordatorio(  txtFecha.getText());
+    elRecordatorios.setTitulo(txtTitulo.getText());
+    elRecordatorios.setMensaje(txtMensaje.getText());
+    String fechaTexto = txtFecha.getText();
+    if (fechaTexto != null && !fechaTexto.isEmpty() && !fechaTexto.equals("Escribe la fecha") && !fechaTexto.equals("Escriba fecha")) {
+        elRecordatorios.setFecha_recordatorio(LocalDate.parse(fechaTexto, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+    }
     return elRecordatorios;
 }
     private void llenarTablaConBusqueda(String busqueda){

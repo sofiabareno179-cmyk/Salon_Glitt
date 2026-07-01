@@ -108,7 +108,8 @@ public class Usuario {
                 unUsuario.setNombreuser(rs.getString("nombreuser"));
                 unUsuario.setEmail(rs.getString("email"));
                 unUsuario.setPassword_hash(rs.getString("password_hash"));
-                unUsuario.setTelefono( rs.getString("telefono"));
+                unUsuario.setTelefono(rs.getString("telefono"));
+                unUsuario.setRol(rs.getString("rol"));
                 losUsuarios.add(unUsuario);
             }
         }catch(SQLException ex){
@@ -143,14 +144,25 @@ public class Usuario {
         }
         return -1;
     }
-       public void modificar(){
+    public void modificar(){
         try{
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + " SET nombreuser = ?, email = ?, telefono = ? WHERE idUsuario = ?");
-            sql.setString(1, this.getNombreuser());
-            sql.setString(2, this.getEmail());
-            sql.setString(3, this.getTelefono());
-            sql.setInt(4, this.getIdUsuario());
-            sql.executeUpdate();
+            String passwordHash = this.getPassword_hash();
+            if (passwordHash == null || passwordHash.isEmpty()) {
+                PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + " SET nombreuser = ?, email = ?, telefono = ? WHERE idUsuario = ?");
+                sql.setString(1, this.getNombreuser());
+                sql.setString(2, this.getEmail());
+                sql.setString(3, this.getTelefono());
+                sql.setInt(4, this.getIdUsuario());
+                sql.executeUpdate();
+            } else {
+                PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE " + this.getClass().getSimpleName() + " SET nombreuser = ?, email = ?, telefono = ?, password_hash = ? WHERE idUsuario = ?");
+                sql.setString(1, this.getNombreuser());
+                sql.setString(2, this.getEmail());
+                sql.setString(3, this.getTelefono());
+                sql.setString(4, BCrypt.hashpw(passwordHash, BCrypt.gensalt()));
+                sql.setInt(5, this.getIdUsuario());
+                sql.executeUpdate();
+            }
             System.out.println(this.getClass().getSimpleName() + " modificado correctamente");
         }catch(SQLException ex){
             System.err.println("Error al modificar " + this.getClass().getSimpleName() + ":" + ex.getMessage());
@@ -179,10 +191,12 @@ public class Usuario {
             Usuario unUsuario;
             while (rs.next()) {
                 unUsuario = new Usuario();
-                unUsuario.setIdUsuario(   rs.getInt   ("idUsuario"));
-                unUsuario.setNombreuser( rs.getString("nombreuser"));
+                unUsuario.setIdUsuario(rs.getInt("idUsuario"));
+                unUsuario.setNombreuser(rs.getString("nombreuser"));
                 unUsuario.setEmail(rs.getString("email"));
-                unUsuario.setTelefono(  rs.getString("telefono")); 
+                unUsuario.setPassword_hash(rs.getString("password_hash"));
+                unUsuario.setTelefono(rs.getString("telefono"));
+                unUsuario.setRol(rs.getString("rol"));
                 losUsuarios.add(unUsuario);
             }
         } catch (SQLException ex) {
@@ -199,10 +213,11 @@ public class Usuario {
             sql.setInt(1, elId);
             ResultSet rs = sql.executeQuery();
             while (rs.next()) {
-                unUsuario.setIdUsuario(         rs.getInt   ("idUsuario"));
-                unUsuario.setNombreuser(     rs.getString("nombreuser"));
+                unUsuario.setIdUsuario(rs.getInt("idUsuario"));
+                unUsuario.setNombreuser(rs.getString("nombreuser"));
                 unUsuario.setEmail(rs.getString("email"));
-                unUsuario.setTelefono(   rs.getString("telefono"));
+                unUsuario.setTelefono(rs.getString("telefono"));
+                unUsuario.setRol(rs.getString("rol"));
             }
         } catch (SQLException ex) {
             System.err.println("Error al buscar por Id " + ex.getMessage());

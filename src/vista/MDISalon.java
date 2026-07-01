@@ -26,18 +26,33 @@ public class MDISalon extends javax.swing.JFrame {
      */
     public MDISalon() {
         initComponents();
-         flogin = new Login(this);
+        inicializarFormularios();
+        flogin = new Login(this);
 
-// 2. Lo agregamos al JDesktopPane de la ventana principal
-dpanellogin.add(flogin);
+        dpanellogin.add(flogin);
+        int x = (dpanellogin.getWidth() - flogin.getWidth()) / 2;
+        int y = (dpanellogin.getHeight() - flogin.getHeight()) / 2;
+        flogin.setLocation(x, y);
+        flogin.setVisible(true);
+    }
 
-// 3. Calculamos la posición para que quede exactamente en el centro
-int x = (dpanellogin.getWidth() - flogin.getWidth()) / 2;
-int y = (dpanellogin.getHeight() - flogin.getHeight()) / 2;
-flogin.setLocation(x, y);
-
-// 4. Lo hacemos visible
-flogin.setVisible(true);
+    private void inicializarFormularios() {
+        fUsuario = new FRMUsuario();
+        fServicio = new FRMServicios();
+        fProducto = new FRMProductos();
+        fPerfiles = new FRMPerfiles();
+        fCita = new FRMCitas();
+        fCatalogo = new FRMCatalogo_Precios();
+        fBloqueos = new FRMBloqueos();
+        FAgenda = new FRMAgenda();
+        escritorio.add(fUsuario);
+        escritorio.add(fServicio);
+        escritorio.add(fProducto);
+        escritorio.add(fPerfiles);
+        escritorio.add(fCita);
+        escritorio.add(fCatalogo);
+        escritorio.add(fBloqueos);
+        escritorio.add(FAgenda);
     }
 
 
@@ -140,24 +155,31 @@ flogin.setVisible(true);
         MNUAdministrar.add(itemUsuario);
 
         jMenuItem1.setText("Perfiles");
+        jMenuItem1.addActionListener(this::itemPerfilesActionPerformed);
         MNUAdministrar.add(jMenuItem1);
 
         jMenuItem2.setText("Bloqueos");
+        jMenuItem2.addActionListener(this::itemBloqueosActionPerformed);
         MNUAdministrar.add(jMenuItem2);
 
         jMenuItem3.setText("Servicios");
+        jMenuItem3.addActionListener(this::itemServiciosActionPerformed);
         MNUAdministrar.add(jMenuItem3);
 
         jMenuItem4.setText("Productos");
+        jMenuItem4.addActionListener(this::itemProductosActionPerformed);
         MNUAdministrar.add(jMenuItem4);
 
         jMenuItem5.setText("Catalogo");
+        jMenuItem5.addActionListener(this::itemCatalogoActionPerformed);
         MNUAdministrar.add(jMenuItem5);
 
         jMenuItem6.setText("Citas");
+        jMenuItem6.addActionListener(this::itemCitasActionPerformed);
         MNUAdministrar.add(jMenuItem6);
 
         jMenuItem7.setText("Agenda");
+        jMenuItem7.addActionListener(this::itemAgendaActionPerformed);
         MNUAdministrar.add(jMenuItem7);
 
         saveMenuItem.setMnemonic('s');
@@ -227,12 +249,13 @@ flogin.setVisible(true);
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
-                ConexionBD.desconectar();
-        try{
-            fUsuario.setClosed(true);
-            
-        }catch(PropertyVetoException ex){
-            System.err.println("Error al salir:"+ex.getMessage());
+        ConexionBD.desconectar();
+        if (fUsuario != null) {
+            try{
+                fUsuario.setClosed(true);
+            }catch(PropertyVetoException ex){
+                System.err.println("Error al salir:"+ex.getMessage());
+            }
         }
         System.exit(0);     
     }//GEN-LAST:event_itemSalirActionPerformed

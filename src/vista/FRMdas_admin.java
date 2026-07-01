@@ -107,7 +107,7 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\Planner-80_icon-icons.com_57289.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Documents\\GitHub\\Salon_Glitt\\src\\img\\Calendario.png")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel4.setText("Citas");
@@ -145,8 +145,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\hairdressing_electronics_beauty_salon_dry_blow_hairdryer_dryer_hair_icon_262736.png")); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel2.setText("Servicios");
 
@@ -183,8 +181,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\277557_perfume-bottle-icon.png")); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel6.setText("Productos");
 
@@ -220,8 +216,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
                 PanelProveedoresMouseClicked(evt);
             }
         });
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\truck-side-view_icon-icons.com_70347.png")); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel8.setText("Proveedores");
@@ -260,8 +254,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\Screenshots\\Captura de pantalla 2026-06-28 154102.png")); // NOI18N
-
         jLabel10.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel10.setText("Inventario");
 
@@ -297,8 +289,6 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
                 PanelAgendaMouseClicked(evt);
             }
         });
-
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\meeting_event_christmas_agenda_calender_schedule_date_calendar_time_icon_258647.png")); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel12.setText("Agenda");
@@ -348,9 +338,7 @@ public class FRMdas_admin extends javax.swing.JInternalFrame {
         btnCerrar.setText("Cerrar Sesion");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\users_icon-icons.com_57999.png")); // NOI18N
-
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Downloads\\logout_90894.png")); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Documents\\GitHub\\Salon_Glitt\\src\\img\\users_icon-icons.com_57999.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
