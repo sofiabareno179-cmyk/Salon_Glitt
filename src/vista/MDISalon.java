@@ -37,6 +37,7 @@ public class MDISalon extends javax.swing.JFrame {
     }
 
     private void inicializarFormularios() {
+        ConexionBD.getInstance();
         fUsuario = new FRMUsuario();
         fServicio = new FRMServicios();
         fProducto = new FRMProductos();
