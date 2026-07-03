@@ -87,6 +87,7 @@ FRMCronograma Fcronograma;
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-peluqueria-50.png")); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 2, 18)); // NOI18N
         jLabel5.setText("Peluqueria");
 
         javax.swing.GroupLayout panelPeluqueriaLayout = new javax.swing.GroupLayout(panelPeluqueria);
@@ -94,20 +95,23 @@ FRMCronograma Fcronograma;
         panelPeluqueriaLayout.setHorizontalGroup(
             panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPeluqueriaLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGroup(panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPeluqueriaLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel4))
+                    .addGroup(panelPeluqueriaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         panelPeluqueriaLayout.setVerticalGroup(
             panelPeluqueriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPeluqueriaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap())
+                .addGap(56, 56, 56))
         );
 
         panelTratamiento.setBackground(new java.awt.Color(204, 255, 255));
@@ -119,6 +123,7 @@ FRMCronograma Fcronograma;
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-tratamiento-de-belleza-64.png")); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Sylfaen", 2, 18)); // NOI18N
         jLabel8.setText("Tratamiento");
 
         javax.swing.GroupLayout panelTratamientoLayout = new javax.swing.GroupLayout(panelTratamiento);
@@ -128,21 +133,21 @@ FRMCronograma Fcronograma;
             .addGroup(panelTratamientoLayout.createSequentialGroup()
                 .addGroup(panelTratamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTratamientoLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(77, 77, 77)
                         .addComponent(jLabel7))
                     .addGroup(panelTratamientoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         panelTratamientoLayout.setVerticalGroup(
             panelTratamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTratamientoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel8)
-                .addContainerGap())
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         panelManicure.setBackground(new java.awt.Color(153, 255, 204));
@@ -154,30 +159,30 @@ FRMCronograma Fcronograma;
 
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\icons8-componentes-con-estilo-48.png")); // NOI18N
 
+        jLabel11.setFont(new java.awt.Font("Sylfaen", 2, 18)); // NOI18N
         jLabel11.setText("Manicure");
 
         javax.swing.GroupLayout panelManicureLayout = new javax.swing.GroupLayout(panelManicure);
         panelManicure.setLayout(panelManicureLayout);
         panelManicureLayout.setHorizontalGroup(
             panelManicureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManicureLayout.createSequentialGroup()
+                .addContainerGap(85, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(73, 73, 73))
             .addGroup(panelManicureLayout.createSequentialGroup()
-                .addGroup(panelManicureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelManicureLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel10))
-                    .addGroup(panelManicureLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel11)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelManicureLayout.setVerticalGroup(
             panelManicureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelManicureLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel11)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 0, 18)); // NOI18N
@@ -226,7 +231,7 @@ FRMCronograma Fcronograma;
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21)
                 .addComponent(panelManicure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(94, 94, 94))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCerrar))
@@ -246,9 +251,8 @@ FRMCronograma Fcronograma;
                 .addGap(37, 37, 37)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelManicure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(panelTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelPeluqueria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(panelTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPeluqueria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
